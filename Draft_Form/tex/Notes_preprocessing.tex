@@ -1,0 +1,127 @@
+
+%% Preprocessing:
+
+% -------------------------------------------- %
+% BWI Daten:
+% -------------------------------------------- %
+
+------------------------------------------------------------------------
+------ 1) Auswahl der wzp4-Plots: ------
+ 
+ --> an 8092 Plots (2810 Cluster) in RLP wurde die wzp4 durchgeführt.
+ Es wurden Plots ausgewählt welche:
+# 1) - zur BWI3 gehoeren --> inve3 = 1 & 
+# 2) -  auf bestocktem Holzboden liegen --> wa = 5 & 
+# 3) - im begehbaren Wald liegen --> begehbar = 1 &
+# ---> 8092 Plots
+
+------------------------------------------------------------------------
+------ 2) Auswahl der wzp4-Bäume pro Plot: ------
+ 
+Für diese 8092 Plots wurden jene Probebäume ausgewählt, welche
+# 4) - in der wzp4 aufgenommen wurden (wzp4-Baeume) --> av = 0
+# 5) - ! alle "bestandesinternen Bäume"* (bz = 1) ! 
+
+--> 56149 wzp4-Bäume in RLP aufgenommen (bestandesinterne Bäume), verteilt auf 8092 Plots
+    (Info: weicht von  # Bäumen in Modellierungspaper ab --> hier habe ich wohl best.übergreifend ausgewertet --> 56561)
+
+------------------------------------------------------------------------
+------ 3) Berechnung der Vorratsdichte pro Plot: ------
+-> Nach Winkelzählprobe (Formel geben?) Waldrand (Bestandes)-Edge-Korrektur erwähnen
+-> von den 8092 Plots sind 317 sog. "zero-plots" für welche das Plotvolumen 0 ist
+
+
+------------------------------------------------------------------------
+------ 4) Lagekoordinaten für Plots: ------
+
+Erwähnen weil:
+-> wichtig für Vergleichbarkeit von expl. Variablen und Plotvorratsdichte
+-> erwähnen: nicht wichtig für einphasige Auswertung, aber wichtig bei Erweiterung
+
+Aufn.methode und fehlende Messungen:
+-> Im Rahmen der 3. BWI (? korrekt) alle Plots in RLP mit DGPS vermessen (Median über 100 Messungen).
+-> für 375 der 8092 Plots (ca. 5\%) waren die GPS Messungen leider nicht berfügbar und werden in den
+   Folgeinventuren neu vermessen. Für unsere Auswertungen wurden für diese Plots die "alten" Soll-Koordinaten" übernommen
+
+Abweichungen zwischen alten Soll-Positionen und neuen GPS-Positionen:
+-> ein Vergleich der alten Soll-Koordinaten und der DGPS IST-Koordinaten ergibt, dass
+   eine Abweichung von maximal 25m für 90\% der Plots (das sagt aber noch nichts über
+   die Genauigkeit der DGPS-Koordinaten aus).
+   
+Genauigkeit der DGPS-Messung:  
+-> schwierig abzuschätzen
+->  90\% der DGPS vermessenen Plots haben einen "Idealen" oder "Exzellenten" HDOP-Wert (HDOP aufgezeichnet
+    bei Messung, aber keine Metadaten zur Lagegenauigkeit in [m])
+-> Lambrecht et. al schätzen aufgrund ihrer Koregistrierung im Nationalpark HHW, dass 80\% der DGPS-Messungen 
+   eine Abweichung zwischen 1.4 und 8.7 m haben
+-> eigene Analyse für ganz RLP ergibt, dass die Abweichungen zwischen Soll- und IST-Koordinaten unabhängig von
+   vom HDOP und der Anzahl Messungen ist
+
+Plausibilitätsprüfung(en):
+1) Fehlerhafte Datenablage: für 2 Plots ändert sich fälschlicherweise die Trakt-ID
+2) Trakstruktur: für 4 Plots ist die Traktstruktur nicht stimmig --> siehe Slides
+ --> 6 unplausible Plots wenn man DGPS-Messung vertraut --> diese wurden durch die alten Soll-Koordinaten ersetzt
+ 
+ 
+==> insgesamt wurden also für 375 + 6 = 381 der 8092 Plots die alten Soll-Koordinaten verwendet (4.7\%)
+
+
+% ------------------------------------------------ %
+% Erweiterung des terrestrischen Stichprobennetzes:
+% ------------------------------------------------ %
+
+Das terrestrische Stichprobennetz (2x2km) wurde auf 500x500 meter (4-fach) verdichtet
+
+Regeln:
+1) Alle Punkte müssen innerhalb der obersten definierten Management-Fläche (Forstämter) liegen
+2) Der Wald-Nichtwald-Entscheid muss bei Anwendung des mehrphasigen Verfahrens sowohl auf die terrestrischen als auch
+   die "synthetischen" Inventurpunkte (sprich: ALLE Punkte) angewendet werden können. Daher werden alle Punkte anhand der
+   Geodatenlayer (Woefis, Atkis) maskiert. --> führt zu variabler Anzahl Plots pro Trakt (entspricht Theorie)
+
+Restriktion auf Wald-Layer:
+
+aufgetretene Effekte:
+ -> 2 terrestrische Plots ("63718_3", "60767_4") liegen ausserhalb der foa-geometry --> Datensatz von 8092 auf 8090 reduziert
+ -> es liegen zusätzlich 179 terrestrische Proben ausserhalb der beachteten Gesamtwalddefinition union(Atkis, woefis)-Waldlayers 
+    (179 / 8092 = 2\%)
+ -> für unsere Woefis"wald"-Auswertung: 5791 terrestrische Plots (2055 Cluster) fallen in den Woefis-Wald (5791/8090 = 71.5\%, entspricht ziemlich gut des von der BWI angegebenen Anteils an Gemeinde- und Staatswald:73\%) 
+ 
+ -> Stichpobenzahl insgesamt für woefis-wald: 96854 plots (33365 Cluster)
+    
+
+
+
+% -------------------------------------------- %
+% Aufbereitung der Fernerkundungsdaten
+% -------------------------------------------- %
+
+--> folgt Beschrieb im Modellierungsartikel
+
+--> missing data erwähnen
+
+--> Erwähnen: Im Gegensatz zur Modellierungs-Studie, in der wir die 'zero-plots' wegggelassen haben, schliessen wir diese hier ein 
+     (Grund: bei Berechnung der Punktschätzungen in der angewendeten Software (Verweis) wird die 'zero-mean-property' (zmp) der Residuen 
+             in F und G vorrausgesetzt (dadurch entfällt der Residuenterm). Die zmp wäre ist hier dann aber nur gewährleistet, wenn wir das Modell
+             mit ALLEN terrestrischen Daten fitten, welche später auch in die Schätzungen eingehen)
+      das Weglassen der zero-plots in der Schätzung kommt aber natürlich nicht in Frage! Also ist das Vorgehen hier die einzige Möglichkeit
+      
+    ==> es ergibt sich durch Einbeziehung der zero-plots ein ganz leicht anderes adjusted R2 (0.49 anstatt 0.48), lustigerweise sogar etwas höher als vorher.
+        Erwähnen, dass die Aussagen aus dem Modellierungspaper davon nicht betroffen sind.     
+
+
+
+% -------------------------------------------- %
+% Reg.Modell und Ableitung Hilfsvariablen
+% -------------------------------------------- %
+
+Berechnungszeiten für Woefis-Wald: (96854 plots)
+-> Berechnung Supports: Berechnungszeit für woefis-wald: 67 Minuten
+-> Berechnung CHM-Metriken: 1 Minute
+-> Berechnung TREESPECIES-Metriken: 6 Minute
+-> Berechnung FRACCOVER-Metriken: 4 Minuten
+-> Berechnung wgbz-Metriken: 610.96 Minuten
+
+
+
+
+

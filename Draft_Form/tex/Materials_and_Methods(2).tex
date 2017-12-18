@@ -1,0 +1,572 @@
+
+% ----------------------------------------------------------------------- %
+% ----------------------------------------------------------------------- %
+
+\section{Terrestrial sampling design of the German NFI}
+\label{sec:germanNFI}
+
+The German National Forest Inventory (German NFI) is a periodic inventory that is carried out every 10 years over the entire forest area of Germany. The most recent inventory (BWI3) was conducted in the years 2011 and 2012. While information was originally gathered at a systematic 4x4 km grid, some federal states such as Rhineland-Palatinate have switched to a densified 2x2 km grid. The German NFI uses a cluster sampling design, which means that a sample unit consists of maximal four sample locations (also referred to as \textit{sample plots}) that are arranged in a square (so called \textit{cluster}) with a side length of 150 metres (Picture). The number of plots per cluster can however vary between 1 and 4 depending on forest/non-forest decisions by the field crews on the individual plot level \citep{bwi3_aufn}. In the field survey of the BWI3, sample trees for timber volume estimation are selected according to the angle count sampling technique \citep{bitterlich1984}, using a basal area factor ($BAF$) of 4 that is respectively adjusted for sample trees at the forest boundary by a geometric intersection of the boundary transect with the tree-individual inclusion circle \citep{bwi3_aufn}. A further inventory threshold for a tree to be recorded is a diameter at breast height ($dbh$) of at least 7 cm. For each sample tree that is selected by this procedure, the dbh, the absolute tree height, the tree diameter at 7 m ($D7$) and the tree species is measured and used to calculate a volume estimation on the tree level. These volume estimations are based on the application of tree species specific taper curves that are adjusted to the set of diameters and corresponding height measurements taken from the respective sample tree \citep{kublin2013}.
+
+% ++++++++++++ %
+\section{Double sampling in the infinite population approach}
+\label{sec:inf_pop}
+
+% \subsubsection{One- and Two-Phase Sampling in the Infinite Population Approach}
+
+The estimators used in this study have been proposed by \citep{mandallaz2013a,mandallaz2013b} and build upon the so called infinite population approach (IPA) in order to bridge the inventory procedure and the derived information to the mathematics behind the estimators. Therefore, we shall first provide a short introduction into this general estimation frame. We start by assuming that the population $P$ of trees $i \in 1,2, ..., N$ within a forest of interest $F$ is exactly defined, and each tree $i$ has a directly or indirectly observable response variable $Y_i$ (e.g. its timber volume) that allows to specify the population mean $Y$ (e.g., the average timber volume per unit area) over $F$. If a full census of all tree population individuals is not possible, $Y$ has to be estimated by the conduction of an inventory.  The infinite population approach assumes that the spatial distribution of the local density $Y(x)$ (e.g., the timber volume per unit area) at each point or location $x$ in the forest $F$ is given by a fixed (i.e. non stochastic) piecewise constant function. The population mean $Y$ is thus mathematically equivalent to the integral of the density function surface divided by the forest area $\lambda(F)$, i.e. $Y=\frac{1}{\lambda(F)} \sum_{i=1}^{N}Y_i=\frac{1}{\lambda(F)}\int_{F}Y(x)dx$, and thus the population mean $Y$ corresponds to a spatial mean. Since the local density function is in practice always unknown, one estimates $Y$ by collecting a sample $s_2$ of all local density values by the conduction of a terrestrial inventory at $n_2$ uniformly and independently distributed sample points over $F$. This procedure is often referred to as \textit{one-phase sampling} (OPS). Opposed to the one-phase approach, \textit{two-phase} or \textit{double-sampling} procedures use information from two nested samples (phases). Practically speaking, the terrestrial inventory $s_2$ is embedded in a large phase $s_1$ comprising $n_1$ sample locations that each provide a set of explanatory variables described by the column vector $\pmb{Z}(x)=(z(x)_1, z(x)_2,...,z(x)_p)^{\top}$ at each point $x \in s_1$. These explanatory variables are derived from auxiliary information that is available in high quantity within the forest $F$. For every $x \in s_1$, $\pmb{Z}(x)$ is transformed into a prediction $\hat{Y}(x)$ of $Y(x)$ using the choice of some prediction model. The basic idea of this method is to boost the sample size by providing a large sample of less precise but cheaper predictions of $Y(x)$ in $s_1$ and to correct any possible model bias, i.e., $\EX{(Y(x)-\hat{Y}(x))}$, using the subsample of terrestrial inventory units where the value of $Y(x)$ is observed.
+
+% which in \pkg{forestinventory} is always a linear model fit in $s_2$ using ordinary least squares (OLS).
+%The one-phase and two-phase estimators applied in this study have been implemented in the software-package \textit{forestinventory} \cite{forestinventory} 
+% The local density $Y(x)$ is in practice derived by ...
+% extend the approach to collecting auxiliary information ...
+% say that we also assume that the forest area is well-defined ...
+
+% ----------------------------------------------------------------------- %
+% ----------------------------------------------------------------------- %
+\section{Estimators}
+\label{sec:estimators}
+
+
+% ++++++++++++ %
+\subsection{Design-based SRS estimator for cluster sampling}
+\label{sec:srs_estimator}
+
+The simple random sampling (SRS) estimator for cluster sampling constitutes the \textit{status quo} that is currently applied under the existing one-phase sampling design of the German NFI in order to obtain a point and variance estimate for the mean timber volume of a given estimation unit. In order to provide all estimators in the infinite population framework and ensure a consistent terminology with the two-phase estimators in Section \ref{sec:SAestimators}, we will introduce the SRS estimator that is applied in the BWI3 algorithms \citep{bwi3_ausw} in the form given in \citet{mandallaz2008, mandallaz2016}.\par 
+In order to calculate the local density $Y_{c}(x)$ at the cluster level, a cluster is defined as consisting of $M$ sample locations (in the BWI3, we have $M=4$ ) where $M-1$ sample locations $x_2, ..., x_M$ are created close to the cluster origin $x_1$ by adding a fixed set of spatial vectors $e_2, ..., e_M$ to $x_1$. The actual number of plots per cluster, $M(x)$, is a random variable due to the uniform distribution of $x_l$ ($l=1, ..., M$) in the forest $F$ and forest/non-forest decision for each sample location $x_l$:
+
+\begin{equation}\label{eq:Mx}
+M(x)=\sum_{l=1}^{M}I_{F}(x_l) \hspace{3ex} \text{where} \hspace{3ex} I_F(x_l)=\begin{cases}&1 \text{ if $x_l \in F$}\\
+&0 \text{ if $x_l\not\in F$}
+\end{cases}
+\end{equation}
+
+The local density on cluster level $Y_{c}(x)$, in our case the timber volume per hectare, is then defined as the average of the individual sample plot densities $Y(x_l)$:
+
+\begin{equation}\label{eq:locdens_clust}
+Y_{c}(x) = \frac{\sum_{l=1}^{M} I_{F}(x_{l}) Y(x_l)}{M(x)}
+\end{equation}
+
+The local density $Y(x_l)$ on individual sample plot level was calculated according to the description in \citet{mandallaz2008}, which can be rewritten for angle-count sampling technique applied in the BWI3. The general form of $Y(x)$ in \citet{mandallaz2008} is given as the Horwitz-Thompson estimator 
+
+%\begin{equation}\label{locdens_plot}
+%Y(x)= \sum_{i=1}^{F}\frac{I_{i}(x)Y_i}{\varPi_{i}\lambda(F)} = \sum_{i \in s_{2}(x)}\frac{Y_i}{\varPi_{i}\lambda(F)}
+%\end{equation}
+
+\begin{equation}\label{eq:locdens_plot}
+Y(x_l)=\sum_{i \in s_{2}(x_l)}\frac{Y_i}{\pi_{i}\lambda(F)}
+\end{equation}
+
+where $Y_i$ is in our case the predicted timber volume of the tree $i$ recorded at sample location $x$ in m$^3$. Each tree has an inclusion probability $\pi_{i}$ that is well defined as the proportion of its inclusion circle area $\lambda(K_i)$ within the forest area $\lambda(F)$, i.e. via their geometric intersection:
+
+%with the binary indicator variable $Ii$ for the $i$th tree defined as
+%
+%\begin{equation}\label{1stage}
+%I_i(x)=\begin{cases}&1 \text{ if $x \in K_i$}\\
+%&0 \text{ if $x\not\in K_i$}
+%\end{cases}
+%\end{equation}
+
+\begin{equation}\label{locdens_plot_1}
+\pi_{i} = \frac{\lambda(K_i \cap F)}{\lambda(F)}
+\end{equation}
+
+The radius $R_i$ of the tree-individual inclusion circle $K_i$ is given by $R_i = bhd_{i}/cf_{i,corr}$ (also referred to as \textit{limiting distance}), where $cf_{i,corr}$ is the counting factor corrected for potential boundary effects at the forest border. In case of angle-count sampling, we can rewrite $\pi_{i}$ as
+
+\begin{equation}\label{eq:locdens_plot_2}
+\pi_{i} = \frac{G_i}{cf_{i,corr}\lambda(F)}
+	\end{equation}
+
+since the intersection area $\lambda(K_i \cap F)/\lambda(F)$ can be expressed using the trees basal area $G_i$ (in m$^2$) and the corrected counting factor:
+
+\begin{equation}\label{eq:locdens_plot_3}
+\lambda(K_i \cap F) = \frac{G_i}{cf_{i, corr}} \hspace{3ex} \text{where} \hspace{3ex} cf_{i,corr} = cf\frac{\lambda(K_i)}{\lambda(K_i \cap F)}
+\end{equation}
+
+Using Eq. \ref{eq:locdens_plot_2} in Eq. \ref{eq:locdens_plot} yields the rewritten form of $Y(x_l)$ for angle count sampling that conforms to the definition used in the BWI3 algorithms \citep{bwi3_ausw}:
+
+\begin{equation}\label{eq:locdens_plot_4}
+Y(x_l)= \sum_{i \in s_{2}(x_l)} \frac{cf_{i, corr}Y_i}{G_i} = \sum_{i \in s_{2}(x_l)} nha_{i}{Y_i}
+\end{equation}
+
+where $nha_i$ is the number of trees per hectare represented by tree $i$. The local densities on cluster level can then be used to derive the estimated spatial mean $\hat{Y}_c$ and its estimated variance $\hat{\var}(\hat{Y}_c)$ for any given spatial unit for which $n_2 \geq 2$ ($n_2$ denoting the number of sample units, i.e. clusters):
+
+\begin{subequations}\label{eq:srs_est_cluster}
+	\begin{align}
+\hat{Y}_c &= \frac{\sum_{x \in s_2} M(x) Y_{c}(x)}{\sum_{x \in s_2} M(x)} \\
+\hat{\var}(\hat{Y}_c) &= \frac{1}{n_2(n_2 - 1)}\sum_{x \in s_2}\Big(\frac{M(x)}{\bar{M_2}}\Big)^2(Y_{c}(x) - \hat{Y}_c)^2
+	\end{align}
+\end{subequations}
+
+\newpage
+
+% +++++++++++++++++++++++++++++ %
+\subsection{Design-based small area regression estimators for cluster sampling}
+\label{sec:SAestimators}
+
+All three considered small area estimators have in common that they use ordinary least square (OLS) regression models to produce the predictions of the local density $Y_{c}(x)$ directly on the cluster level $c$. We consider the \textit{internal model approach}, where the vector of estimated regression coefficients on the cluster level is found by "borrowing strength" from the entire terrestrial sample $s_2$ of the current inventory:
+
+\begin{subequations}\label{normequ_simple_cluster}
+	\begin{align}
+\hat{\pmb{\beta}}_{c,s_2} &= \pmb{A}_{c,s_2}^{-1} \Big(\frac{1}{n_2}\sum_{x\in{s_2}}M(x)Y_{c}(x)\pmb{Z}_{c}(x)\Big) \\
+\pmb{A}_{c,s_2} &=\frac{1}{n_2}\sum_{x\in{s_2}}M(x)\pmb{Z}_{c}(x)\pmb{Z}_{c}^{\top}(x)
+	\end{align}
+\end{subequations}
+
+\noindent $\pmb{Z}_{c}(x)$ is the vector of explanatory variables on the cluster level, which is calculated as the weighted average of the explanatory variables $\pmb{Z}(x_l)$ on the individual plot levels $x_1, ..., x_l$ (Eq.\ref{eq:Zc(x)}). The weight $w(x_l)$ is the proportion of the support-area within the forest $F$ used to derive the explanatory variables from the raw auxiliary information.
+
+\begin{equation}\label{eq:Zc(x)}
+\pmb{Z}_{c}(x)=\frac{\sum_{l=1}^{M}I_{F}(x_l)w(x_l)\pmb{Z}(x_l)}{\sum_{l=1}^{M}I_{F}(x_l)w(x_l)}
+\end{equation}
+
+\noindent The estimated design-based variance-covariance matrix $\hat{\pmb{\Sigma}}_{\hat{\pmb{\beta}}_{s_2}}$ accounts for the fact that the regression model is internal by reflecting the dependency of the estimated regression coefficients on the realized sample $s_2$. It is defined as
+
+\begin{equation}\label{eq:varcovarbeta}
+\hat{\pmb{\Sigma}}_{\hat{\pmb{\beta}}_{s_2}}=\pmb{A}_{c,s_2}^{-1}
+\Big(\frac{1}{n_2^2}\sum_{x\in{s_2}}M^{2}(x)\hat{R}_{c}^2(x)\pmb{Z}_{c}(x)\pmb{Z}_{c}^{\top}(x)\Big)
+\pmb{A}_{c,s_2}^{-1}
+\end{equation}
+
+\noindent with $\hat{R}_{c}=Y_{c}(x)-\pmb{Z}_{c}^{\top}(x)\hat{\pmb{\beta}}_{c,s_2}$ being the empirical model residuals at the cluster level, which by construction of OLS satisfy the important \textit{zero mean residual property}, i.e. $\frac{\sum_{x \in s_{2}} M(x) \hat{R}_{c}(x)}{\sum_{x \in s_{2}} M(x)}=0$.\\
+
+ In the following, we will give a short description of each small area estimator and refer to \citet{mandallaz2013a, mandallaz2016, mandallaz2013b} if the reader requires additional details or proofs. The estimators have also been implemented in the R-package \textit{forestinventory} \citep{forestinventory} which was used to compute all estimates in this study.\\
+
+
+
+% ----------------------------- %
+% PSMALL estimator:
+\subsubsection{Pseudo Small Area Estimator (\psmall{})}
+% \textbf{Pseudo Small Area Estimator (\psmall{})}\\
+
+All point information used for small area estimation is now restricted to that available at the sample locations $s_{1,G}$ or $s_{2,G}$ in the small area $G$, with exception of $\hat{\pmb{\beta}}_{c,s_2}$ and $\hat{\pmb{\Sigma}}_{\hat{\pmb{\beta}}_{c,s_2}}$ which are always based on the entire sample $s_2$. We thus first define the following quantities on the small area level:
+
+\begin{subequations}\label{eq:compsG}
+	\begin{align}
+	\hat{\bar{\pmb{Z}}}_{c,G} &= \frac{\sum_{x \in s_{1,G}} M_{G}(x) \pmb{Z}_{c,G}(x)}{\sum_{x \in s_{1,G}} M_{G}(x)} \label{eq:meanZcG} \hspace{3ex} &\text{where} \hspace{3ex}
+	\pmb{Z}_{c,G}(x) =  \frac{\sum_{l=1}^{L} I_{G}(x_l)\pmb{Z}(x_l)}{M_{G}(x)}\\		
+	Y_{c,G}(x) &= \frac{\sum_{l=1}^{L} I_{G}(x_l)\pmb{Y}(x_l)}{M_{G}(x)}  &\text{and} \hspace{3ex}
+	\hat{Y}_{c,G}(x)=\hat{\bar{\pmb{Z}}}_{c,G}^{\top}\hat{\pmb{\beta}}_{c,s_2}\\
+	\bar{\hat{R}}_{2,G} &= \frac{\sum_{x \in s_{2,G}} M_{G}(x) \hat{R}_{c,G}(x)}{\sum_{x \in s_{2,G}} M_{G}(x)} \hspace{3ex} &\text{where} \hspace{3ex}
+	\hat{R}_{c,G}(x) = Y_{c,G}(x)-\hat{Y}_{c,G}(x)
+	\end{align}
+\end{subequations}
+
+Note that the restriction to $G$, i.e. $I_{G}(x_l)=\{0,1\}$, is made on the individual sample plot level $x_l$, and $M_{G}(x) = \sum_{l=1}^{L}I_{G}(x_l)$ thus is the number of sample plots per cluster within the small area. The asymptotically design-unbiased point estimate of \textit{PSMALL} is then defined according to Eq. \ref{eq:psmall_pest}. The first term estimates the small area population mean of $G$ by applying the globally derived regression coefficients to the small area cluster means of the explanatory variables $\hat{\bar{\pmb{Z}}}_{c,G}$. The second term then corrects for a potential bias of the regression model predictions in the small area $G$ by adding the mean of the empirical residuals $\bar{\hat{R}}_{2,G}$ in $G$. This correction insures that the \textit{zero mean residual property} in $F$ also holds within the small area $G$, which is per se not ensured by fitting the regression coefficients with data outside $G$.
+
+\begin{subequations}\label{eq:psmall}
+	\begin{align}
+	\hat{Y}_{c,G,PSMALL} &= \hat{\bar{\pmb{Z}}}_{c,G}^{\top}\hat{\pmb{\beta}}_{c,s_2} + \bar{\hat{R}}_{2,G} \label{eq:psmall_pest} \\
+	\hat{\var}(\hat{Y}_{c,G,PSMALL}) & = \hat{\bar{\pmb{Z}}}_{c,G}^{\top}\hat{\pmb{\Sigma}}_{\hat{\pmb{\beta}}_{c,s_2}}\hat{\bar{\pmb{Z}}}_{c,G}
+	+ \hat{\pmb{\beta}}_{c,s_2}^{\top}\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}}\hat{\pmb{\beta}}_{c,s_2} \nonumber \\
+	& + \frac{1}{n_{2,G}(n_{2,G}-1)}\sum_{x \in s_{2,G}}\Big(\frac{M_{G}(x)}{\bar{M}_{2,G}}\Big)^2(\hat{R}_{c,G}(x) - \bar{\hat{R}}_{2,G})^2
+	\label{eq:psmall_var}
+	\end{align}
+\end{subequations}
+
+The estimated design-based variance of $ \hat{Y}_{c,G,PSMALL}$ is given by Eq. \ref{eq:psmall_var}. Basically, the first term constitutes the variance introduced by the uncertainty in the regression coefficients, whereas the second term expresses the variance caused by estimating the exact auxiliary mean in $G$ using a non-exhaustive sample $s_{1,G}$. The third term is the variance of the model residuals and thus accounts for the inaccuracies of the model predictions. Note that the first term can also be rewritten using g-weights \cite[pg.14]{mandallaz2016} which ensure calibration properties of the auxiliary variables on the terrestrial sample.\\ 
+
+The variance-covariance matrix of the auxiliary vector $\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}}$ is thereby defined as
+	
+\begin{equation}\label{estvarcovaux_G}
+\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}} = \frac{1}{n_{1,G}(n_{1,G}-1)} \sum_{i \in s_{1,G}} \big(\frac{M_{G}(x)}{\bar{M}_{1,G}}\big)^2 (\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})(\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})^{\top}
+\end{equation}
+
+with $\bar{M}_{1,G}=\frac{\sum_{i \in s_{1,G}}M_{G}(x)}{n_{1,G}}$.\\
+
+
+
+% ----------------------------- %
+% PSYNTH estimator:
+\subsubsection{Pseudo Synthetic Estimator (\psynth{})}
+% \textbf{Pseudo Synthetic Estimator (\psynth{})}\\
+
+The \psynth{} estimator is commonly applied when no terrestrial sample is available within the small area $G$ (i.e. $n_{2,G}=0$). The point estimate (Eq. \ref{eq:psynth_pest}) is thus only based on the predictions generated by applying the globally derived regression coefficients to the small area cluster means of the explanatory variables $\hat{\bar{\pmb{Z}}}_{c,G}$. Note that the bias correction term using the empirical residuals (Eq. \ref{eq:psmall_pest}) can no longer be applied. The \psynth{} estimator thus has a potential unobservable design-based bias.
+
+\begin{subequations}\label{eq:psynth}
+	\begin{align}
+	\hat{Y}_{c,G,PSYNTH} & =\hat{\bar{\pmb{Z}}}_{c,G}^{\top}\hat{\pmb{\beta}}_{c,s_2} \label{eq:psynth_pest} \\
+	\hat{\var}(\hat{Y}_{c,G,PSYNTH})& =
+	\hat{\bar{\pmb{Z}}}_{c,G}^{\top}\hat{\pmb{\Sigma}}_{\hat{\pmb{\beta}}_{c,s_2}}
+	\hat{\bar{\pmb{Z}}}_{c,G}
+	+ \hat{\pmb{\beta}}^{\top}_{c,s_2}\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}}\hat{\pmb{\beta}}_{c,s_2} \label{eq:psynth_var}
+	\end{align}
+\end{subequations}
+
+The uncertainty of the model predictions can also no longer be considered in the variance estimation (Eq. \ref{eq:psynth_var}). The synthetic estimator will therefore usually have a smaller variance than estimators incorporating the model uncertainties, but at the cost of a potential bias. Note that the \psynth{} estimator is still design-based, but one purely has to rely on the validity of the regression model within the small area as it is the case in the model-dependent framework.\\
+
+% ----------------------------- %
+% EXTPSYNTH estimator:
+\subsubsection{Extended Pseudo Synthetic Estimator (\extpsynth{})}
+% \textbf{Extended Pseudo Synthetic Estimator (\extpsynth{})}\\
+
+The \extpsynth{} estimator (Eq. \ref{eq:extpsynth}) has been proposed by \cite{mandallaz2013a} as a transformed version of the \psmall{} estimator that has the form of the \psynth{} estimator but remains asymptotically design unbiased. It has the advantage that the mean of the empirical model residuals of the OLS regression model for the entire area $F$ and the small area $G$ are by construction both zero at the same time, i.e. $\bar{\hat{R}}_{c} = \bar{\hat{R}}_{c,G} = 0$. This is realized by \textit{extending} the auxiliary vector $\pmb{Z}_{c}(x)$ by the indicator variable $I_{c,G}$ which takes the value 1 if the entire cluster lies within the small area $G$ and 0 if the entire cluster is outside $G$, i.e. $I_{c,G}(x)=\frac{M_{G}(x)}{M(x)}$. The extended auxiliary vector thus becomes $\pmb{\mathbb{Z}}_{c}^{\top}(x)= (\pmb{Z}_{c}^{\top}(x),I_{c,G}(x))$ and the new regression coefficient using $\pmb{\mathbb{Z}}_{c}(x)$ instead of $\pmb{Z}_{c}(x)$ in Eq. \ref{normequ_simple_cluster} is denoted as $\hat{\pmb{\theta}}_{s_2}$. All remaining components are calculated by plugging in $\pmb{\mathbb{Z}}_{c}(x)$ in Eq. \ref{eq:compsG}. A decomposition of $\hat{\pmb{\theta}}_{s_2}$ reveals that the residual correction term is now included in the regression coefficient $\hat{\pmb{\theta}}_{s_2}$.
+
+\begin{subequations}\label{eq:extpsynth}
+	\begin{align}
+	\hat{Y}_{c,G,EXTPSYNTH} & =\hat{\bar{\pmb{\mathbb{Z}}}}_{c,G}^{\top}\hat{\pmb{\theta}}_{c,s_2} \label{eq:extpsynth_pest} \\
+	\hat{\var}(\hat{Y}_{c,G,EXTPSYNTH})& =
+	\hat{\bar{\pmb{\mathbb{Z}}}}_{c,G}^{\top}\hat{\pmb{\Sigma}}_{\hat{\pmb{\theta}}_{c,s_2}}
+	\hat{\bar{\pmb{\mathbb{Z}}}}_{c,G}
+	+ \hat{\pmb{\theta}}^{\top}_{c,s_2}\hat{\pmb{\Sigma}}_{\hat{\bar{\pmb{\mathbb{Z}}}}_{c,G}}\hat{\pmb{\theta}}_{c,s_2} \label{eq:extpsynth_var}
+	\end{align}
+\end{subequations}
+
+However, it is important to note that $\bar{\hat{R}}_{c,G} = 0$ under the extended regression model only holds if the sample plots $x_1, ..., x_l$ of a cluster are \textit{all} either inside our outside the small area, i.e. $M_G(x)\equiv M(x)$, and thus $I_{c,G}(x)=\frac{M_{G}(x)}{M(x)}$ can only take the values 1 or 0. \citet{mandallaz2016} assumed that the effects on the estimates should be negligible as the number of occasions where $M_{G}(x) < M(x)$ was considered to be small in practical implementations. It was thus a further objective of this study to investigate the actual occurrences and effects of this phenomenon by comparing the estimates of \extpsynth{} to those of \psmall{}. % where the estimates stay unaffected
+
+% ----------------------------- %
+\subsection{Measures of estimation accuracy}
+
+The estimation accuracies were quantified by the \textit{estimation error}, which is the ratio of the standard error and the point estimate:
+
+\begin{equation}\label{eq:error}
+error(\hat{Y})_{[\%]}=\frac{\sqrt{\var(\hat{Y})}}{\hat{Y}}*100
+\end{equation}
+
+We further calculated the 95\% confidence interval for each estimate for visualization purpose. The confidence intervals can also be used for hypothesis testing whether the point estimates of the three estimators for a given small area are statistically different. The confidence intervals under SRS can be obtained as:
+
+\begin{equation}\label{ci_1phase}
+CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
+\hat{Y}+t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+\end{equation}
+
+The confidence intervals for the \psmall{} and \extpsynth{} estimates are calculated as:
+
+\begin{equation}\label{ci_2phase_sae}
+CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
+\hat{Y}+t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+\end{equation}
+
+For the \psynth{} estimates, the confidence intervals are
+
+\begin{equation}\label{ci_2phase_global}
+CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
+\hat{Y}+t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+\end{equation}
+
+In order to address the potential benefits of the small area estimators compared with the SRS approach, we calculated the \textit{relative efficiency} (Eq. \ref{eq:releff}) which can be interpreted as the relative sample size under SRS needed to achieve the variance under the double sampling estimators.
+
+\begin{equation}\label{eq:releff}
+rel.eff_{[\%]}=\frac{\hat{\var}_{SRS}(\hat{Y})}{\hat{\var}_{SAE_{2phase}}(\hat{Y})}\cdot100
+\end{equation}
+
+\newpage
+
+
+
+% ----------------------------------------------------------------------- %
+% ----------------------------------------------------------------------- %
+\section{Case study}
+\label{sec:CaseStudy}
+
+%This section describes the actual implementation of the proposed small area estimators (Section \ref{sec:estimators}) under the cluster design of the German NFI (Section \ref{sec:germanNFI}) in the federal state Rhineland-Palatinate.
+
+\subsection{Study area and small area units}
+\label{sec:studyarea}
+
+The German federal state Rhineland-Palatinate (\textit{RLP}) is located in the western part of Germany and borders Luxembourg, France and Belgium. With 42.3\% (appr. 8400 km$^2$) of the entire state area (19850 km$^2$) covered by forest, RLP is one of the two states with the highest forest coverage among all federal states of Germany \citep{bwi3}. The forests of RLP are further characterized by a pronounced diversity in bioclimatic growing conditions that have strong influence on the local growth dynamics as well as tree species composition \citep{gauer2005} and are further characterized by large variety of forest structures ranging from characteristic oak coppices (Moselle valley), pure spruce, beech and scots pine forests (i.a. Hunsr{\"u}ck and Palatinate forest) up to mixed forests comprising variable proportions of oak, larch, spruce, Scots pine and beech. Around 82\% of the forest area in RLP are mixed forest stands and 69\% of the forest area exhibit a multi-layered vertical structure. The forest area of RLP are divided into 3 ownership classes, i.e. state forest (27\%), communal forest (46\%) and privately owned forest (27\%). The forest service of RLP has the legal mandate to sustainably manage the state and communal forest area (73\% of the entire forest area), including forest planning, harvesting and the sale of wood \citep{lwaldg_rlp}. For this reason, the entire forest area has been spatially organised in 3 main hierarchical management units (Figure \ref{fig:StudyArea}). On the upper level, RLP has been divided into 45 Forst{\"a}mter (\textit{FA}), which are further divided into a total number of 426 Forstreviere (\textit{FR}). The next level are the actual forest stands (104'184 in total) for which expert judgements are conducted by SFIs in a 5- to 10 year period in order to set up management strategies for the upcoming 10 years. The FAs and FRs constituted the small area (SA) units for which design-based small area estimations of the mean standing timber volume were calculated by incorporating the available terrestrial inventory data of the BWI3 in the estimators described in Section \ref{sec:estimators}. The average area of the SA units were 43'777 ha on the FA-level, and 4624 ha on the FR level.
+
+% | managment level | average area (min-max)  | average no cluster (plots) | min no. cluster (plots | max no. cluster (plots |
+%   FA                43'777 ha  (17367 - 125423)     46 (128)         11 (36)            64 (198)
+%   FR                4624 ha   (0.68 - 43284)         5  (14)          0 (0)             13 (34)
+%   stand level       6 ha     (0.03 ha - 73)          0 (0)            0 (0)             2 (4)
+
+
+% Add Graphic 1:
+% - Graphic of RLP with "zoom" in the 3 managament units (or later all together in Graphic
+
+% Add in text:
+% - add information on the (average) spatial area of each sae-level
+
+% ----------------------------------------------------------------------- %
+\subsection{Terrestrial sample}
+
+Rhineland-Palatinate (RLP) is covered by a 2x2 km inventory grid of the German NFI. In the last inventory (BWI3) conducted in the year 2013, timber volume information was derived for 2810 cluster (8092 plots) in the field survey. The local timber volume density on the plot and cluster level for this sample was consequently calculated according to Section \ref{sec:srs_estimator}. In the frame of this survey, the plot center coordinates have been re-measured with differential global satellite navigation system (DGPS) technique. Knowledge about the exact plot positions were considered crucial to provide optimal comparability between the terrestrially observations and the information derived from the auxiliary information. A comparison of the DGPS coordinates with the so-far used target coordinates revealed that 90\% of all horizontal deviations lay in the range of 25 meters. A detailed analysis of horizontal DGPS errors in RLP by \citet{lambrecht2017} indicated that 80\% of the plots should not exceed horizontal DGPS errors of 8 meters. For 162 plots, the DGPS coordinates were replaced by their target coordinates due to missingness or implausible values.
+
+% NOTE:
+% - add table with overview of terrestrial dta attributes (like Johannes)
+%
+
+
+% ----------------------------------------------------------------------- %
+\subsection{Extension to double sampling design}
+
+In order to apply the small area estimators (Section (\ref{sec:SAestimators}), the existing NFI design was extended to a double sampling design by densifying the existing systematic 2x2 km grid to a 500x500 m sample grid that constituted the large first phase $s_1$ in accordance to Section \ref{sec:inf_pop} (Figure \ref{fig:StudyArea}, \textit{right}). The existing terrestrial phase $s_2$ was consequently integrated by replacing the target coordinates of the respective $s_1$ cluster by the terrestrially measured DGPS coordinates. For our study, we restricted the \textit{sampling frame} to the communal and state forest. The forest/non-forest decision for each plot was thereby made by a spatial intersection of the plot center coordinates with a polygon layer of the communal and state forest stands provided by the forest service. The terrestrial sample size was thus reduced to 2055 cluster (5791 plots). Using this stand layer provided the advantage to consistently apply the same forest/non-forest definition to the entire sample $s_1$ in order to decide about excluding or including a plot in the sampling frame.
+
+\begin{figure}[H]
+	\centering
+	\resizebox{0.63\hsize}{!}{\includegraphics*{fig/SAunitsRLP.png}}
+	\caption{\textit{Left}: Study Area with delineated FA forest management units. \textit{Right}: Example for each of the three management units (from top to bottom): FA, FR and forest stand unit with overlayed the extended double sampling cluster design. \textit{Green}: Forest stand polygon layer defining the forest area of this study.}
+	\label{fig:StudyArea}
+\end{figure}
+
+
+
+% NOTES:
+%
+% Add Table:
+% provide table of "forest characteristics" in RLP
+% adress sample sizes before and after extension (table?)
+%
+% move this to discussion:
+% It should however be mentioned that a discrepancy between the terrestrially made forest/non-forest decision and that based on the polygon stand layer can lead to missing responses in the terrestrial sample $s_2$. This occurs if a terrestrial plot $x_l \in s_2$ does not provide the terrestrial response variable although its plot center would theoretically fall within the boundaries of the stand layer. For these cases, it is important to note that according to the double sampling estimator described in Section \ref{sec:SAestimators}, the plots of a cluster can either only belong to the sample $s_2$ or $s_1$. The missing terrestrial plot information $Y(x)$ can thus not be replaced by a prediction $\hat{Y}(x)$, i.e. by establishing a plot $x \in s_1$ instead, and has thus to be treated as a non-response.\par
+%
+%  "This extension led to a considerable increase of the sample size $n_{1,G}$ in the small area units of both, the FA and FR level."
+% - Show (theoretical) increase in sample sizes by extension to 2phase scheme 
+%   --> these sample sizes are in the following reduced by missing rs-info
+%
+% - Add Graphik showing RLP, zoom into 3 management levels including 2-phase sample
+%   (big graphic, can take 1/2 page later)
+
+
+% ----------------------------------------------------------------------- %
+% Table xx provides an overview of the terrestrial sample sizes on these management levels for the state and communal forest areas.
+
+% \input{terrSamplsizeFoaFuWa.tex}
+
+
+% average no. plots / clusters; average area of all three units (divided by state + communal forest & entire forest area)
+
+% --> this is only for communal & state forest area:
+% | managment level | average area (min-max)  | average no cluster (plots) | min no. cluster (plots | max no. cluster (plots |
+%   FA                43'777 ha  (17367 - 125423)     46 (128)         11 (36)            64 (198)
+%   FR                4624 ha   (0.68 - 43284)         5  (14)          0 (0)             13 (34)
+%   stand level       6 ha     (0.03 ha - 73)          0 (0)            0 (0)             2 (4)
+
+% - Verwaltungsebenen: management levels (Forstamt, Revier, Bestände) -> durschnittliche Flächengrössen (für die sollen die sae schätzungen gemacht werden)
+% - evtl bereits Stichprobenzahlen generell und innerhalb der Managementenheiten nennen (das ginge dirket hinsichltich des eigentlichen Themas)
+%   (das generelle Problem der Stichprobenanzahl in diesen Einheiten wurde ja schon in der Einleitung angesprochen, also könnte man
+%    hier direkt ein Beispiel geben) --> hier noch getrennt nach gesamter Wald und nur Woefis-Wald (Tabelle, Grpahik)
+% - warum RLP ? (neues Informationssystem, Interesse an effizienteren Methoden)
+% wir nennen Fortamt einfach 'FA-level' und Forstrevier einfach 'FR-level' :-)
+% Info: 45 Forstämter without Bundesforstamt; 426 Reviere without Bundesforstamt
+% mention that the boundaries of all these management units are well-defined by polygon masks (that were used to extract the sampling
+% frame)
+% ----------------------------------------------------------------------- %
+
+
+\newpage
+% ----------------------------------------------------------------------- %
+% ----------------------------------------------------------------------- %
+\subsection{Auxiliary information}
+\label{sec:auxinfo}
+
+% ----------------------------------------- %
+\subsubsection{LiDAR canopy height model}
+\label{sec:chm}
+
+A prerequisite for the application of the suggested two-phase small area estimators was the identification of suitable auxiliary information that is available over the entire study area. Between the year 2003 and 2013, the topographic survey institution of RLP conducted an airborne laser scanning (LiDAR) acquisition over the entire federal state at leaf-off condition in order to derive a countrywide digital terrain and surface model. For this study, the recorded LiDAR data was used to create a canopy height model (CHM) in raster format, providing discrete information about the canopy surface height of the forest area in a spatial resolution of 5 meters (Figure \ref{fig:Auxvars}, \textit{top}). The CHM was calculated as the difference between the digital terrain model (DTM) and the digital surface model (DSM) that were derived by a Delauney interpolation of the two separated LiDAR point clouds (ground pulses and first pulses from non-ground objects). Based on numerous studies (e.g. \cite{maack2016}), the CHM was considered to provide the most valuable information to be used in the OLS regression model for predicting the timber volume on sample plot level. However, during the extended acquisition period, airborne laser scanning technology evolved significantly, which lead to severe quality variations in the CHM. In particular, the LiDAR acquisition recorded in 2002 and 2003 exhibited a rather poor quality with about only 1 point per 5x5 m$^2$, while more recently acquired datasets contained more than 125 points per 5x5 m$^2$ raster cell. Furthermore, due to sensor failures, CHM information was not available at 16 sample locations (none of them considered terrestrial sample plots of the $s_2$ phase though). These plots were deleted from the sampling frame and its non-available information thus treated as missing at random. This assumption was considered to be reasonable as the respective sample locations did not exclude specific forest structures.
+
+%As explanatory variables, the mean canopy height (\textit{meanheight}) and the standard deviation ($stddev$) were calculated as the mean and standard deviation of all raster values within a predefined square around each sample plot center. The square (i.e. \textit{support} of the explanatory variable, see section \ref{sec:supp}) was previously intersected with the state and communal forest area defined by a polygon mask and thereby corrected for edge effects at the forest border. The tree height is one prominent predictor variable in the taper functions of the \bwi{} that are used to calculate a timber volume value for each sample tree \citep{kublin2003, kublin2013}. A visual inspection of the tree volumes of all sample trees collected in the \bwi{} within RLP against their tree heights also revealed the characteristic shape of an allometric relationship between these variables (Online Resource 1). It was hypothesized that this relationship on single-tree level is also apparent on the aggregated level of a sample plot and cluster, and can be used within the frame of regression modeling.\par
+%
+%The strength of correlation between \textit{meanheight} and timber volume on plot level was expected to show high variation according to the mentioned time-lag up to 10 years between LiDAR acquisition and terrestrial survey. The quality of the height information was also expected to vary according to changing sensor technologies and different point densities used over the years. For these reasons, the LiDAR acquisition year (\textit{lidaryear}) for each sample plot was considered as a potential categorical explanatory variable to explain the variation in the data introduced by these factors. For this purpose, the acquisition year \textit{2008} was further divided into \textit{2008} and \textit{2008\_1}. In the latter, the data quality turned out to be very poor due to sensor failures during the acquisition. Additionally, the years \textit{2006} and \textit{2007} as well as \textit{2012} and \textit{2013} were pooled in order to increase the number of observations per factor level for modelling reasons. As a result, the \textit{lidaryear} variable comprised nine categories (\textit{2002}, \textit{2003}, \textit{2007}, \textit{2008}, \textit{2008\_1}, \textit{2009}, \textit{2010}, \textit{2011} and \textit{2012}).
+
+% ---------------------------------------------- %
+\subsubsection{Tree species map}
+\label{sec:tspecclass}
+
+The second source of auxiliary information was a countrywide satellite-based classification map of the five main tree species (European beech, Sessile and Pedunculate oak, Norway spruce, Douglas fir, Scots pine) described in \citet{stoffels2015} (Figure \ref{fig:Auxvars}, \textit{bottom}). The classified tree species map has a grid size of 5 meters and was calculated from 22 bi-temporal satellite images (SPOT5 and RapidEye) by application of the spatially adaptive classification algorithm described in \citet{stoffels2012}.  As timber volume estimations on the tree level are often based on species-specific biomass and volume equations, the use of tree species information - especially for timber volume estimation - has often been stated as a key factor for improving the estimation precision \cite{white2016}. In this respect, incorporating the tree species map information was particularly attractive as it predicts five of the seven tree species that are used in the BWI3 taper functions \citep{kublin2013} to calculate the timber volume of a sample tree. However, due to unavailable satellite data for the classification, the tree species map excluded one large patch with an area of 415 km$^2$ in the south-west part of RLP covering an entire FA-unit (10 FR units respectively). In 9 additional FR units, the tree species information was also missing for a subset of the sample locations due to two additional patches with an area of 76 km$^2$ and 100 km$^2$ in the northern part of RLP. For these parts, small area estimation was thus restricted to using only the available CHM information in the regression model. With respect to model fitting, the tree species information was missing for 407 (7\%) of the 5791 sample locations. A summary of the sample sizes and missing auxiliary information is again provided in Table \ref{tab:ssize}.
+
+
+% Graphik:
+\begin{figure}[H]
+	\centering
+	\resizebox{0.8\hsize}{!}{\includegraphics*{fig/AuxvarsLOWRES.png}}
+	\caption{Left: CHM (top) and tree species classification map (bottom) available on the federal state level were used as auxiliary information. Right: Magnified illustration of the rectangular supports used to derive the explanatory variables from the auxiliary information.}
+	\label{fig:Auxvars}
+\end{figure}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Sample size for each phase in entire study area. $n_{\{1,2\},plots}$: number of plots. $n_{\{1,2\}}$: number of cluster}
+		\vspace{0.2cm}
+		\label{tab:ssize}
+		{\small %
+		\begin{tabular}{l|r|r|r|r}
+			\hline
+			\multicolumn{1}{c|}{\textit{Sampling frame}} & \multicolumn{1}{c|}{\textbf{$n_{1,plot}$}}  & \multicolumn{1}{c|}{\textbf{$n_1$}}  & \multicolumn{1}{c|}{\textbf{$n_{2,plot}$}}  & \multicolumn{1}{c}{\textbf{$n_2$}} \\ % <-- added & and content for each column
+			\hline \hline
+			communal and state forest & 96'854 & 33'365 & 5791 & 2055\\ % <--
+			\hspace{5mm} \footnotesize missing CHM & \footnotesize 16 & \footnotesize 9 & \footnotesize 0 & \footnotesize 0\\ % <--
+			\hspace{5mm} \footnotesize missing TSPEC & \footnotesize 6910  & \footnotesize 3465 & \footnotesize 407 & \footnotesize 380\\ % <--
+			\hspace{5mm} \footnotesize missing CHM \textit{and} TSPEC & \footnotesize 2 & \footnotesize 1 & \footnotesize 0 & \footnotesize 0\\ % <--
+			\hspace{5mm} \footnotesize missing CHM \textit{or} TSPEC & \footnotesize 6924 & \footnotesize 3473 & \footnotesize 407 & \footnotesize 380\\ % <--
+			\hline \hline
+		\end{tabular}
+	} %
+	\end{center}
+\end{table}
+
+
+%\begin{table}[H]
+%	\begin{center}
+%		\caption{Sample size for each phase in entire study area.}
+%		\label{tab:ssize}
+%		\begin{tabular}{l|r|r|r|r}
+%			\hline
+%			\textit{Sampling frame} & \textbf{$n_{1,plot}$} & \textbf{$n_1$} & \textbf{$n_{2,plot}$} & \textbf{$n_2$}\\ % <-- added & and content for each column
+%			\hline \hline
+%			communal and state forest & 96'854 & 33'365 & 5791 & 2055\\ % <--
+%			\hspace{5mm} \small missing CHM & \small 16 & \small 9 & \small 0 & \small 0\\ % <--
+%			\hspace{5mm} \small missing TSPEC & \small 6910  & \small 3465 & \small 407 & \small 380\\ % <--
+%			\hspace{5mm} \small missing CHM \textit{and} TSPEC & \small 2 & \small 1 & \small 0 & \small 0\\ % <--
+%			\hspace{5mm} \small missing CHM \textit{or} TSPEC & \small 6924 & \small 3473 & \small 407 & \small 380\\ % <--
+%			\hline
+%			Total for estimation & 89'930 & 29'892 & 5384 & 1675\\ % <--			
+%		\end{tabular}
+%	\end{center}
+%\end{table}
+
+
+% ---------------------------------------------- %
+\subsection{Calculation of the auxiliary variables}
+\label{sec:expvarcalc}
+
+\subsubsection{LiDAR canopy height model}
+
+From the CHM, the mean canopy height (\textit{meanheight}) and the standard deviation (\textit{stddev}) was calculated by evaluating the raster values around each sample location within a predefined rectangular square (support) with a side length of 12 meters that was centered around the sample plot centers. Each support was previously intersected with the forest polygon layer in order to evaluate auxiliary information only within the forest definition. The percentage of the non-intersected support within the forest layer was used as the weight $w(x_l)$ introduced in  Eq. \ref{eq:Zc(x)}. Furthermore, the year of the LiDAR acquisition (\textit{lidaryear}) was derived as an additional categorical variable to account for the time-lag between the CHM information and the terrestrial survey as well as to explain heterogeneity in the data introduced by the varying LiDAR quality. Adjustments were made to the original acquisition years by introducing an additional factor level \textit{2008\_1} for a subset of the 2008 acquisition where the quality turned out to be considerably poor due to a sensor error. In addition, the years 2006 and 2007 as well as 2012 and 2013 were pooled in order to increase the number of observations per factor level, resulting in nine categories in total (\textit{2002}, \textit{2003}, \textit{2007}, \textit{2008\_1}, \textit{2008}, \textit{2009}, \textit{2010}, \textit{2011} and \textit{2012}).
+
+\subsubsection{Tree species map}
+
+The tree species map information was used to predict the main tree species of a sample plot (\textit{treespecies}). This implied two consecutive processing steps. In the \textit{first} step, one of the five tree species was assigned to a sample location if 100\% of the raster values within the same support as used for the CHM were classified as that species. Otherwise, the sample location was assigned the value 'mixed'. It should be mentioned that the support size and the percentage threshold are parameters that can be optimised in order to achieve the best variance decomposition and thus improvement in model accuracy when using the categorical \textit{treespecies} variable in a regression model. \citet{hill2017a} conducted a detailed analysis of how to optimally derive the auxiliary variables for the present data set and identified the above described settings as the most suitable. It was additionally shown that using the random forest algorithm by \citet{breiman2001} for a calibration of the predicted main plot species on the actual main taper-function species derived from the terrestrial inventory data could boost the classification accuracy in the classes \textit{Scots pine} and \textit{Douglas Fir}, which performed considerably worse than the remaining species (Table \ref{tab:classacc}). The calibration was able to considerably mitigate the effects of misclassification on the regression coefficients and thus allowed for an increase in model accuracy. In a \textit{second} step, we thus provided the random forest algorithm in the statistical software R \citep{R} with the actual main taper-function species derived from the terrestrial inventory data as response variable as well as a full set of $p$ predictor variables that comprised the initial prediction of the main plot tree species (\textit{treespecies}), the mean canopy height (\textit{meanheight}) and standard deviation ($stddev$) derived from the CHM, the proportion of coniferous trees estimated from the tree species classification map ($prop.conif$) and the bioclimatic growing region ($wgb$) at the sample location. The algorithm was grown with 2000 trees, considering $\sqrt{p} \approx$ 3 of the predictors for each split. The resulting random forest model was consequently applied at all sample locations $s_1$ to provide the \textit{treespecies} variable.
+
+\begin{table}[H]
+	\begin{center}
+	\caption{Classification accuracies of the \textit{treespecies} variable before and after calibration. $n_{ref}$: number of terrestrial reference plots. $n_{class}$: number of classified plots.}
+	\vspace{0.2cm}
+	\label{tab:classacc}
+ {\small %
+	\begin{tabular}{c|c|c|c|c|c|c|c} %8cols
+		\hlineB{1}
+		\multirow{2}{*}{Main plot species} & \multicolumn{2}{c|}{Producer's accuracy[\%]} & \multicolumn{2}{c|}{User's accuracy[\%]} & \multirow{2}{*}{nref} & \multicolumn{2}{c}{nclass} \\ 
+		\cline{2-3} \cline{4-5} \cline{7-8} & uncalib & calib & uncalib & calib & & uncalib & calib \\
+		\hline \hline	
+		 Beech       & 29.56 & 22.31 & 46.11 & 47.02 & 883 & 566 & 419 \\
+		 Douglas Fir & 33.04 & 24.78 & 47.50 & 48.72 & 230 & 160 & 117 \\
+		 Oak         & 47.75 & 11.07 & 24.34 & 48.48 & 289 & 567 & 66 \\
+		 Spruce      & 43.63 & 53.15 & 60.81 & 61.13 & 651 & 467 & 566 \\
+		 Scots Pine  & 55.87 & 22.91 & 29.59 & 46.07 & 179 & 338 & 89 \\
+		 Mixed       & 66.40 & 84.49 & 63.69 & 64.53 & 3152 & 3286 & 4127 \\
+		\hline
+		 & \multicolumn{4}{l|}{Overall accuracy: 54.83\% (61.96\%)} & 5384 & \multicolumn{2}{c}{5384} \\
+		 \hline \hline
+	\end{tabular}
+}%
+	\end{center}
+\end{table}
+
+
+
+% ---------------------------------------------- %
+\subsection{Regression Model}
+\label{sec:regmod}
+
+% NOTES:
+% - model formulation was based on the following considerations: a) The mean canopy height has the heighest explanatory power. Since the strength of correlation between meanheight and the timber volume on plot level showed high variation according to the time-lag of up to 10 years between the LiDAR acquisition and the BWI3 terrestrial inventory. and the varying LiDAR quality, the 
+%
+%
+%
+%
+%
+
+
+% MENTION:
+% - objective: find regression model (formula) to be applied in the sae estimators
+% - Specialty here: in the sae estimators, the predictions are generated on the cluster level (thus the regression coefficients are found on the cluster level)
+%   (--> and even more important: the residuals considered in the variance est. are also on the cluster level)
+%  ==> so for model selection, we looked at the global model performance on the plot as well as the cluster level
+%  ==> we also performed individual paramater t-test for each variable on the plot and cluster level. In order to  
+%
+% - important to recall that the design-based estimators, in which the regression model is used, do not impose any assumptions on the regression model as is the case in the model-dependent estimation framework.
+%
+% - no terrestrial data removed from the dataset for modelling, as all terrestrial data are used in the internal model (no choice, its specified by the estimators) 
+%
+% - mention sample sizes here: Due to missingness in the rs-data, the auxiliary variables were calculated for 89'930 sample plots (5384 terrestrial ...)
+%
+% - Model Validation (compare several models in table --> Alex)
+%
+% - Design-based Model Inference (new, use design-based var-covar-matrix)
+%
+% - idea: make a design-based inference of the regression coefficients on cluster level on the robust reg.coef-matrix
+%   "whereas the regression analysis in hill et al. 2017a" was carried out on the sample plot level, we here extend
+%    the analysis to the cluster level, as this is actually the level the estimators use the regression model predictions"
+%
+
+
+
+% ---------------------------------------------- %
+\subsubsection{Design-Based Model Inference}
+\label{sec:edbinf}
+
+
+
+
+
+
+\newpage
+
+
+
+% ======================================================================================================================== %
+% NOTES:
+% - Study Area **
+%   o characteristics of forests, e.g. structural & species diversity
+%   o introduce forest districts, show example and quickly mention their reasoning  
+% 
+% - The German NFI *
+%   o cluster sampling, angle-cound sampling, CF-correction at the forest border
+%     no. of plots (clusters) original according to BWI-survey
+%   o plot locations by DGPS, and expected accuracy and pre-processing (plausibility analyses
+%     and replacing by old coordinates if necessary)
+%
+% - Estimators **
+%   o one-phase estimator: write down estimator in HT-style (evtl. Derivation of CF-correction in
+%     Appendix)
+%   o two-phase psmall cluster
+%   o two-phase psynth extended cluster
+%   o two-phase psynth cluster
+%   (briefly explain:
+%    o the estimator like in jss-article, pronounce difference between psmall
+%      and psynthext in case of cluster sampling --> special case and research question:
+%      how often does it occur and does it make a difference?
+%    o explain difference between external and internal model --> this can be the reasoning for
+%      using Daniels estimators for our objective: a) "db" --> we do not depent on the model which
+%      is a huge advantage if we have medium-level quality data; b) "cluster" --> provided by Daniels
+%      estimators in combination with c) "iternal" model building --> g-weight property and
+%      considering dependency of regression coefs on the sample 
+%
+% - Extension of terrestrial sample grid **
+%   o rules (?), new sample sizes globally and within saes
+%
+%
+% - Auxililary information and variable derivation **
+%   o document missing data at 1-phase grid (separate into s1 and s2) 
+%   o maybe: "due to missing remote sensing information at some sample points, the original sample sizes (s2, s1) 
+%             were shrinked down to the numbers shwn in table XX" (-> table showing the actual sample sizes)
+%  
+% - Model building **
+%   o refer to calibration method in previous article
+%   o refer to comprehensice model evaluations in previous article
+%   o present final model
+%
+%
+% 1) Preprocessing of terrestrial inventory data
+% 2) Preprocessing of auxiliary information
+% 3) Extention to 2-phase sample grid
+% 4) Model building
+%
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

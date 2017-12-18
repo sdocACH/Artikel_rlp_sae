@@ -1,0 +1,172 @@
+
+\section{Introduction} % article
+\label{sec:intro}
+
+The German National Forest Inventory (NFI) provides reliable evidence-based and accurate information of the current state and the development of Germanys forest over time. The NFI thereby has to satisfy various information needs and amongst others reports to public and state forestry administrations, wood-based industries and the public on the national level, as well as to the Food and Agriculture Organization of the United Nations (FAO) and United Nations Framework Convention on Climate Change (UNFCC) on the international level \citep{polley2010intomppo}. At the current time, the inventory design of the German NFI solely rests upon a terrestrial inventory that is carried out at sample locations systematically distributed over the entire forest state area of Germany. As this implies covering a large area of 114'191 ha \citep{bwi3}, the sample size has been chosen according to satisfy high estimation accuracies for forest attributes on the national and federal state level. This however leads to very low sampling intensities and consequently, sample sizes often drop dramatically when entering spatial units below the federal state level. This is particularly true for forest management levels such as forest districts for which the estimations uncertainties often turn out be unacceptably large due to the limitation of available inventory data. For this reason, the German NFI data have not yet been extensively used for operational forest planning on these management levels. As a consequence, the management strategies in most German federal states are based on expert judgements from time-consuming standwise inventories (SFI). As such ocular SFI estimates are prone to systematic deviations \cite{kulievsis2016} and do not provide any measure of uncertainty, some German federal states (e.g. Lower-Saxony) have established a regional Forest District Inventory (FDI) carried out independently from the NFI \citep{bockmann1998} in order base their decisions also on quantitative and precise inventory information.\par
+
+However, due to high financial costs of FDIs on the one hand, and limited financial and staff resources on the other hand, there has been an increasing need for alternative, more efficient inventory methods that increase estimation precision at identical costs, or maintain estimation precision at lower costs \citep{vonluepke2013}. The incorporation of additional inexpensive auxiliary information, e.g. from remote sensing data, stand maps or past inventory data, via data assimilation approaches has frequently been addressed as a key to improve information precision and thus the quality of forest planning results \citep{saad2017}. A data assimilation method which has become particular attractive with respect to forest inventories is multi-phase sampling. Multi-phase sampling methods use auxiliary information in two basic ways, i.e. either to create a balanced terrestrial sample design \citep{grafstrom2017a} or to predict the terrestrial target variable by the use of some prediction model. The basic idea of the latter is to boost the sample size in the inventory area by creating an additional large sample of predictions at locations where the terrestrial information has not been gathered.\par
+
+Estimators using multi-phase sampling designs consider either one additional sample of auxiliary information, so called two-phase or double sampling \citep{gregoire2007, mandallaz2008}, or even two nested samples of auxiliary information with different sample sizes, so called three-phase or triple-sampling \citep{mandallaz2013c}. Recent studies have already illustrated that the extension of existing terrestrial inventories to double-or triple sampling designs can lead to an enormous increase in efficiency in terms of cost-saving and estimation precision. \citet{bockmann1998, saborowski2010} optimized the FDI of Lower Saxony (Germany) to a double-sampling for stratification inventory that uses aerial images as auxiliary information for strata-classification in the large inventory phase. \citet{vonLuepke2012} recently suggested an extension of to a three-phase design that indicated a possible reduction of terrestrial sample sizes for intermediate inventories when using updates of past inventory data as additional auxiliary information. \citet{massey2014a} 
+
+
+
+suggested an extension of the Swiss National Forest Inventory 
+
+
+
+
+% -- SAE with NFI data:
+% have demonstrated the huge potential of double- and triple sampling 
+%
+%There are few studies were NFI data have been used in multi-phase sampling procedures in order to provide small area estimations. (Breidenbach, Magnussen)
+%
+
+% -- What we doin this article:
+%
+%
+%
+
+
+
+
+
+
+
+% NOTES:
+%
+% overall focus (how to set iz up): -> make efficient use of the German NFI data on local forest management levels
+% 
+% -> limited resources --> need for more efficient methods in terms of cost reduction while mainntaining or increasing
+%                          the amount and quality of information
+%
+% -> switch to "attractive" methods: incorporation of auxiliary information (DA-assimilation -> Saad et al.), explain method with respect of sae estimation
+%    
+% -> review of studies, where mphase-methods have been applied to:
+%    - regional forest inventories:
+%      o v.Lübke: changing the FDI Lower-Saxony to a three-phase design 
+%    
+%   - national forest inventories:
+%     o Breidenbach (sae-estimation!)
+%     o Grafström 
+%
+% -> what do we do (New)?
+%
+%    o we will demonstrate how the German NFI data can be combined with auxiliary information for design-based two-phase sae estimators
+%      in order to produce estimations of the standing timber volume within two important management (FD-)levels
+%
+%    o we will therefore extend the German NFI to a two-phase sampling design, where the German NFI data are used as 
+%      the terrestrial phase information
+%
+%   o we will use double-sampling for regression within strata
+%
+%    o we will illustrate the implementation and evaluate the potential of the proposed estimation method
+%      in the federal German state of Rhineland-Palatinate (sae estiamtions for 42 and 392 forest district units respectively)
+%
+%    o we will compare the performance of different sae design-based estimators (psmall, extpsynth, psynth)
+%
+% -> what unanswered questions do we address:
+%    o adress strength and weaknessess of the implementation (quality requirements / restrictions of auxiliary data, ...)
+%    o which estimation accuracies on FD-levels can be achieved by using the German NFI data within two-phase sae estimators ?
+%
+% - 1) Niki: three-phase sampling for regression within strata applied in the FDI in Lower-Saxony
+%
+% - 2) Massey: three-phase sampling for the Swiss NFI under the new annual sampling design
+%
+% - 3) Breidenbach: 
+%
+%
+
+
+
+
+
+% - Problem statement: Large scale inventories, such as the German NFI, provide high accuracies on national as well as federal state level. However, the uncertainty of estimations on smaller scale management levels (destricts) often turns out be unaccepably large due to limited sample size. Thus, the NFI data have not yet been extensively used in and for operational forest planning
+%
+% - Promising solution: Multi-phase sampling procedures try to overcome the lack of terrestrial information by using an additional large sample of predictions based on remote sensing data. These techniques can particularly be efficient for domains where the terrestrial sample size is considerably small (small area estimation problem).
+%
+% - Review: Whats has practically, i.e. implementation of such procedures in practice, been done in this frame internationally, especially in terms of large scale applications? Switzerland: [Alex], Norway: [...], Germany: [has it been done on federal state level?; if not, then we are the first to implement and "test" such a procdure]
+%
+% - gap of knowledge: 
+%   a) (locally in RLP): are mphase-procedures an alternative of enlarging the terrestrial sample
+%      (Betriebsinventur)? (general question)
+%   b) (locally in RLP): Can mp-estimations support the "waldbegang"? (specific question in RLP)
+%   c) (internationally): Is an evaluation from large scale implementations missing?
+%      (i.e. challenges regarding implementation & data availability; effects that occur; ...)
+%
+% - The aim of this article was (thus) to:
+% a) investigate whether the German NFI data can provide accectable estimation precision for small domains (i.e. forest districts) when incorporated in multi-phase estimation procedures using the example of timber volume estimation
+% b) integrate available remote sensing data sources
+% c) address challenges that occure when transferring the methodology of mutli-phase estimators to large scale real world inventories [...]
+%
+% - compare the performance of different design-based estimators (psmall, extpsynth, psynth)
+%   (adress differences between psmall and extpsynth under cluster sampling)
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%Forest inventory methods have long been an integral instrument to investigate the current state and the development of forests within reoccurring time periods. They provide reliable and evidence based information when it comes to define and locate management actions and to adapt forest management strategies according to guidelines on national- and international level. Methods that have recently become particularly attractive are so called \textit{double-sampling} \citep{mandallaz2008} and \textit{mapping} \citep{beaudoin2014} procedures. The core concept of these methods is to use predictions of the terrestrial target variable at additional sample locations where the terrestrial information has not been gathered. These predictions are produced by models that use explanatory variables derived from \textit{auxiliary information}, mostly spatially exhaustive remote sensing data, in the inventory area. The specific scope of double-sampling methods is to enlarge the terrestrial sample size by a much larger sample of predictions of the target variable in order to gain higher estimation precision without performing additional expensive terrestrial measurements. Among a broad range of concepts and methods for double sampling procedures \citep{gregoire2007, kohl2006, schreuder1993}, model-based and model-assisted regression estimators have been widely used \citep{breidenbach2012, mandallaz2013b, magnussen2014, massey2014a}. While double-sampling methods provide reliable estimations for a given spatial unit, e.g. a forest district, they do not provide information about the spatial distribution of the estimated quantity within this area. For this reason, the same modelling technique as used in the double-sampling procedures have also been intensively used to produce exhaustive prediction maps that provide pixelwise estimations of a target variable in high spatial resolution \citep{vanaardt2008, latifi2010, hill2014, nink2015}.\par
+%
+%To allow for an area-wide application of the prediction model, both double sampling- and mapping methods require that the remote sensing data are available over the entire inventory area. This is usually not a limiting factor in \textit{small-scale} applications. In an optimal case, the remote sensing data are in principle collected in accordance to the specific study objective. Quality standards that have often been addressed are that \textit{a)} the remote sensing data should be acquired close to or even at the time of the terrestrial inventory in order to ensure best possible comparability between the target variable on the ground and the remote sensing derived variables \citep{mcroberts2015}; \textit{b)} the remote sensing technology and its spectral and spatial resolution should specifically been chosen according to the modelling purpose \citep{kohl2006}; and \textit{c)} the variation in quality of the remote sensing data over the inventory area should be minimized in order to avoid artificial noise in the data \citep{naesset2014inmaltamo}. Despite the increasing availability and decreasing costs of remote sensing data \citep{white2016}, these quality standards of the remote sensing data can often not be guaranteed for \textit{large-scale} applications \citep{maack2016}, and trade-offs must be coped with \citep{jakubowski2013}. The prime objective is then to produce the best possible prediction model given the restrictions imposed by the actually available remote sensing information. The exploration of scarcely used remote sensing products and the optimization of prediction models under severe quality restrictions in the remote sensing data are thus one of the challenges in large-scale model-supported inventory applications.\par
+%
+%Among the still rarely used remote sensing data in large scale applications, the use of tree species information in prediction models - especially for timber volume estimation - has been stated as one of the most promising but often missing information \citep{koch2010, white2016}. As timber volume estimations on single tree level in forest inventories are often based on species-specific biomass and volume equations \citep{zianis2005}, the application of species specific models is expected to be a key factor for improving estimation precision \citep{white2016}. \citet{straub2009} and \citet{latifi2012} already reported a notable gain in model performances when they used a stratification according to broadleaf and coniferous tree species on sample plot level in addition to canopy height metrics for timber volume estimations. One of the rare examples for using more species specific information is \citep{packalen2006} who applied a separate prediction of the sample plot timber volume for Scots pine, Norway spruce and a deciduous-species group. However, studies are necessary especially for countries whose forests are characterized by a larger variety of tree species that may also occur in mixed and uneven-aged stands \citep{mcroberts2010}. The area-wide tree species information in most studies were obtained from satellite- and airborne remote sensing sensors based on automatic classifcation methods. Whereas the presence of misclassifications has already been addressed \citep{latifi2012}, an issue that has so far been neglected is how misclassifications actually affect the prediction model \citep{gustafson2003}.\par
+%
+%A frequently encountered problem in large scale forest inventories is the lack of temporal synchronicity between the remote sensing acquisition and the terrestrial survey. As a result, the available remote sensing data might exhibit notable time-lags to the date of the terrestrial inventory. This has often been addressed as a major drawback, especially for the application of model-assisted change estimation \citep{massey2015b}.\\
+%
+%Our study is embedded in the current implementation of model-assisted regression estimators \citep{mandallaz2013a, mandallaz2013b, mandallaz2013c} for estimating the standing timber volume within various forest management units over the entire state of Rhineland-Palatinate (RLP, Germany). With respect to this overall objective, the aim of this study was to derive an ordinary least square regression model to generate predictions of the standing timber volume associated to a sample location of the Third German National Forest Inventory (BWI3) over the entire federal state forest area (6155 km$^2$). Both a merged LiDAR dataset from different acquisition years and a satellite-based tree species classification map (which predicts the five major tree species of RLP), was available for the entire inventory area and consequently used to derive predictor variables. The major limiting factors for using these data in a regression analysis are \textbf{(i)} variation in the LiDAR data quality as well as time-lags of up to 10 years between the LiDAR acquisitions and the terrestrial survey, \textbf{(ii)} misclassifications in the tree species classification map and \textbf{(iii)} the ambiguous choice of a suitable extraction area (\textit{support}) for each remote sensing information under angle count sampling in the terrestrial survey (variable sample plot sizes).\par
+%
+%For this reason, we address the following specific research questions:
+%
+%\begin{enumerate}
+% \item How can tree species map information be optimally used within a timber volume regression model? Which effects do misclassifications have on the model properties and how can these effects be minimized?
+% \item What is the effect of quality restrictions and substantial time-lags between the LiDAR- and terrestrial data acquisition on the regression model, and can we account for the this type of noise in the data?
+% \item Does support-size influence model accuracy? What is the optimal support size for each remote sensing information and what are the determining factors?
+%\end{enumerate}

@@ -1,0 +1,187 @@
+
+\section{Introduction} % article
+\label{sec:intro}
+
+The German National Forest Inventory (NFI) provides reliable evidence-based and accurate information of the current state and the development of Germanys forest over time. The NFI thereby has to satisfy various information needs and amongst others reports to public and state forestry administrations, wood-based industries and the public on the national level, as well as to the Food and Agriculture Organization of the United Nations (FAO) and United Nations Framework Convention on Climate Change (UNFCC) on the international level \citep{polley2010intomppo}. At the current time, the inventory design of the German NFI solely rests upon a terrestrial cluster inventory that is carried out at sample locations systematically distributed over the entire forest state area of Germany. As this implies covering a large area of 114'191 ha \citep{bwi3}, the sample size has been chosen according to satisfy high estimation accuracies for forest attributes on the national and federal state level. This however leads to very low sampling intensities and consequently, sample sizes often drop dramatically when entering spatial units below the federal state level. This is particularly true for forest management levels such as forest districts for which the estimation uncertainties turn out be unacceptably large due to the very limited number of sample plots within these units. For this reason, the German NFI data have not yet been extensively incorporated in operational forest planning on forest district management levels. In most German federal states, management strategies are thus still based on expert judgements from time-consuming standwise inventories (SFI), which are prone to systematic deviations \cite{kulievsis2016} and do not provide any measure of uncertainty.\par
+
+Some German federal states, such as Lower Saxony, have approached this problem by establishing a regional Forest District Inventory (FDI) with a much higher sampling density than used by the NFI in order to base their regional management strategies on quantitative and accurate information \citep{bockmann1998}. However, such FDIs are cost-intensive and, facing increasing restrictions in budget and staff resources, there has been a need for more cost-efficient inventory methods \citep{vonluepke2013}. One method which has proven to be efficient is double-or two-phase sampling \citep{sarndal2003, gregoire2007, kohl2006, mandallaz2008}. Double sampling incorporates inexpensive auxiliary information and can be used to either increase estimation precision under given terrestrial sample size, or maintain estimation precision under reduced terrestrial sample size. A double sampling for stratification procedure has e.g. been used in the FDI of Lower Saxony \citep{saborowski2010}, and \citet{grafstrom2017a} lately illustrated how to use the auxiliary information to determine optimised balanced terrestrial sample designs. Recent studies have lately extended double-sampling to triple-sampling estimation methods using auxiliary information in two different sampling intensities. An example can be found in \citet{vonLuepke2012} who illustrated an extension of the existing two-phase FDI Lower Saxony to a three-phase design that uses updates of past inventory data as additional auxiliary information and allows for a significant reduction of the terrestrial sample size in intermediate inventories. An other example is \citet{massey2014a} who developed a triple-sampling extension based on the ideas of \citet{mandallaz2013c} for the Swiss NFI that can significantly reduce the increase in estimation uncertainty caused by the new annual inventory design.\par
+
+Two-phase and three-phase samplings techniques have also been used in the service of small area estimation (SAE). SAE techniques particular address the situation where the number of samples within a subunit, so-called small area (SA), of the entire sampling frame is too small to provide reliable estimates for that unit. A broad range of SA estimators used in forest inventories \citep{kohl2006} originally comes from official statistics. A commonly applied SAE method is thereby known as indirect estimation \citep{rao2015}, where statistical models are used to convert auxiliary information into predictions of the target variable that is rarely or not available in the small area. The statistical models are thereby often developed by "borrowing strength" from data outside the small area. There are numerous applications of SAE in forestry \citep{breidenbach2012, goerndt2011, steinmann2013, mandallaz2013b}, and most of the studies use unit-level models, i.e. the statistical models are fitted using data from inventory plots. Especially unit-level models for timber volume estimation under the use of various remote sensing data have been intensively investigated with respect to timber volume prediction \citep{koch2010, naesset2014inmaltamo}. There are also few studies that have investigated area level-models, where the auxiliary information is only provided on the SA-level \citep{magnussen2017}. Some studies have illustrated that even NFI data of low sampling densities can be used in small area estimation procedures to provide estimations of acceptable accuracy on much smaller management levels. One example is \citet{breidenbach2012} who used data from the Norwegian NFI for SAE estimations of standing timber volume for 14 municipalities where the number of NFI samples within these areas were between 1 and 35. Estimation errors under the applied model-based and design-based SAE estimators turned to be markedly smaller than achieved under simple random sampling (SRS). Another example is \citet{magnussen2014} who recently used the Swiss NFI data for SAE estimation of timber volume within 108 Swiss forest districts with sample sizes between 9 and 206. Despite these promising results, a similar study in Germany using the German NFI data for SAE estimation has not yet been conducted.\par
+
+The aim of this study was to investigate whether the German NFI data can provide acceptable estimation precision on two forest district levels when incorporated in small area estimation procedures. We therefore conducted a study in the German federal state Rhineland-Palatinate where we extended the German NFI to a double-sampling design and applied three types of design-based small area regression estimators in order to derive point and variance estimates of mean standing timber volume for 42 and 392 forest districts respectively. The SA-estimators we considered were the \textit{pseudo-small}, \textit{extended pseudo-synthetic} and the \textit{pseudo-synthetic} design-based small area estimator suggested by \citet{mandallaz2013a, mandallaz2013b}. Auxiliary information were obtained from a countrywide airborne Laser scanning (LiDAR) canopy height model (CHM) and a tree species classification map and used for regression within tree species strata. The estimation accuracies were compared to those achieved under SRS sampling. The chosen double-sampling estimators were favoured for several reasons: \textbf{(i)} the design-based frame considerably relaxes requirements on the regression model which seemed appropriate facing severe quality restrictions in the LiDAR data; \textbf{(ii)} the estimators can consider \textit{non-exhaustive}, i.e. non wall-to-wall, auxiliary information; \textbf{(iii)} all estimators are explicitly formulated for cluster sampling which has not yet been the case for frequently used model-dependent estimators; and \textbf{(iv)} the asymptotically unbiased g-weight variance accounts for the design-dependency of the regression coefficients on the sample (\textit{internal model approach}) and is also robust to heteroscedasticity of the model residuals.\par
+
+The results from this study were considered to provide valuable information whether the suggested procedure a) might be a cost-saving alternative to a regional FDI and b) can be used as a reliable validation for SDI data. A secondary objective was to address the potential effects of auxiliary data quality on estimation precision, and to identify challenges when transferring the existing German NFI design into the suggested double sampling estimation procedure.
+
+
+
+%
+%
+%
+%
+%Most SA estimators applied in these studies are model-based (model-dependent), i.e. the reliability of the estimates rely on the fact the statistical model adequately specifies the underlying stochastic process that determines the realized distribution of the target variable over the forest area. This can lead to high requirements on the model and imply extensive modelling techniques of correlation structures.
+%
+%Few SA estimators that have been a
+%
+%All applied SAE-estimators have in common that they use the so-called finite population approach which implies that the inventory area consists of a well-defined finite population of sample units. 
+%
+%
+%A difference to most SA-estimators that have so far been applied is a) ours are design-based, b) ours use the infinite population
+%approach, c) ours are also specified for the special case of cluster sampling. The advantage of the design-based approach is that ..., whereas ...
+%
+%
+%
+%
+% As SAE methods coming from official statistics are commonly based on list-sampling, the underlying population are considered to be finite which can arise some ambiguities when applied to forest inventories. \citet{mandallaz2013a, mandallaz2013b, mandallaz2013c} recently provided a comprehensive set of small area estimators especially developed for forest inventories under both double- and triple sampling designs in the infinite population approach which is well suited for forest inventories \citep{saborowski2010}.\par
+%
+%- area-level or unit-level SAE (most are unit-level, i.e. based on plot-observation), but also example of area-level
+%  studies (johannes, steen).
+%- borrowing strength method
+%
+%
+%
+%- classification of sae-methodology not consistent: in Rao, we read about
+%  a) direct estimation:
+%     o estimation is purely based on data, either yi or auxiliary data, within the small area
+%     o 3 types: 1) only yi data, 2) yi data and aux.data that are available in entire population (GREG),
+%                3) auxdata only available in small area
+%     o assumes / requires a sufficiently large sample size in the small area
+%     o in Rao, "borrowing strength" for the reg-coefficients ("survey estimator") is classified as
+%       a direct estimator as it does not increase sample size in the sa
+%  b) indirect estimation:
+%     o becomes necessary if the direct estimators lead to unacceptably large standard errors
+%       due to too small sample sizes in the sa
+%     o increase the effective sample size in the small area (Rao, p.20)
+%     o largely based on sample survey data in combination with auxiliary information
+%     o 1) synthetic estimation (with or without auxiliary information) 
+%          - uses an direct estimator for a large area AS an indirect estimator for the small area,
+%            assumes that small area has the same characteristics as large area, if not -> design-biased
+%     o 2) composite estimators: weighted average between synthetic estimator and direct estimator 
+%     o choice of models, that provide a link to the small area through additional auxiliary data
+%       - mixed models that can consider between area variation by including random area-specific effects
+%       - the aim of the modelling is to find the EBLUP, i.e. the best linear unbiased prediction(s). This
+%         is done by using the frame of linear mixed models that can e.g. consider spatial dependence random sa effects ...
+%         (e.g. gls, ...) 
+%       - 2 kind of models: 1) area level models, 2) unit level models 
+%       - EBLUP-estimator is a composite estimator (see Breidenbach) that uses a bias correction term
+%
+%- sae in forest inventory studies:
+%  o numerous applications of SAE in forestry: 
+%  o most of the studies use unit level models, i.e. the linking models are fitted using data from inventory plots
+%    - especially unit-level models for timber volume estimation have been intensively investigated, and the
+%      rapidly increasing availability of remote sensing data has made their application also possible for
+%      large areas
+%  o there are also few studies that use area level models: e.g. \cite{magnussen2017}
+%  o some studies have illustrated that the value of NFI data can be increased by using them in sae techniques to provide
+%    estimations of acceptable accuracy on much smaller management levels. ... \cite{breidenbach2012}, \cite{magnussen2014},
+%    \cite{steinmann2013},...
+%
+%          
+%- differences:
+%  o most indirect sae estimators applied in forest inventory are model-based (model-dependent), i.e. relies on the fact
+%    the model adequately specifies the underlying stochastic process that determines the realized distribution of the
+%    target variable over the forest area. Additionally, most estimators use the finite population framework
+%  o Daniel: sae estimators derived in the design-based framework. Advantage: Design-unbiasedness does not depend on the correct
+%    specification of the model. This can particularly be an advantage if the auxiliary data are of medium to low quality and
+%    a good model fit might be infeasible (?). The estimators are also derived in the infinite population approach. Also, we do
+%    have the estimators for cluster sampling.
+%  o design-based sae estimator have scarcely been used in forest inventory, no example for application to cluster sampling 
+%    until now 
+          
+          
+          
+%       
+%
+%
+%There are numerous studies that have used the sparse grid of NFI data in small area estimation procedures to provide estimations of acceptable accuracy on much smaller management levels. One example is \citet{breidenbach2012} who use data from the Norwegian NFI and applied the synthetic and generalized regression estimator as well as the EBLUP for SAE estimations of standing timber volume for 14 municipalities where the number of NFI samples within these areas were between 1 and 35. Two recent studies by \citet{magnussen2014} and \citet{steinmann2013} used the Swiss NFI data for SAE estimation of timber volume and proportion of forest on Forest District level, with terrestrial sample sizes ranging between .... . In all three studies, the most valuable auxiliary information was derived from LiDAR- or photogrammetrical height models.
+%
+%Despite these promising results, a similar study in Germany using the German NFI data for SAE estimation has not yet been conducted.
+%
+%The aim of this study was 
+%
+%--> We will do this: ....
+%
+%--> Estimators: We will use the 3 SAE estimators 
+
+
+%
+%
+%
+%
+%
+%
+%
+
+% Especially the increasing availability of high quality auxiliary data (LiDAR- or photogrammetrical height information, satellite)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+%There exist a broad range of literature covering SAE estimation methods in official statistics \cite{rao2015} as well as forest inventory \citep{kohl2006}.
+%
+%
+%
+%Mandallaz recently provided a comprehensive set of small area estimators especially developed for forest inventories under both double- and triple sampling designs in the infinite population approach (citations) which has frequently stated to be very well suited for forest inventories (saborowski2010).
+%
+%
+%There has been an extensive literature covering SAE estimation procedures in official statistics (Rao) which have also been adjusted and applied to small area estimation problems in forest inventories (Breidenbach). As these methods are based on list-sampling, the underlying population are considered to be finite which can arise some .... when applied to forest inventories. 
+%
+%Mandallaz recently provided a comprehensive set of small area estimators particularly developed for forest inventories under both double- and triple sampling designs in the infinite population approach (citations) which has often been stated to be better suited for forest inventories (saborowski2010).
+%
+%
+%
+%
+%A method which has gained much attention is double-sampling and there is a broad range of literature describing double-sampling estimation in official statistics as well as forest inventory \citep{sarndal2003, gregoire2007, kohl2006, schreuder1993}. Double sampling procedures use inexpensive auxiliary information, often provided by spatially exhaustive remote sensing data, in order optimise the terrestrial sample design \citep{grafstrom2017a} or to create a large sample of predictions of the terrestrial target variable additional to the terrestrial observations
+%
+%
+%
+%
+%
+%An alternative way to approach the SAE problem if a densified regional inventory is not feasible is the application of Small Area Estimation procedures. In this case, 
+%
+%Double and triple sampling methods can also be used to tackle the small area estimation problem. 
+%
+%There has been an extensive literature covering SAE estimation procedures in official statistics (Rao) which have also been adjusted and applied to small area estimation problems in forest inventories (Breidenbach). As these methods are based on list-sampling, the underlying population are considered to be finite which can arise some .... when applied to forest inventories. Mandallaz recently provided a comprehensive set of small area estimators especially developed for forest inventories under both double- and triple sampling designs in the infinite population approach (citations) which has frequently stated to be very well suited for forest inventories (saborowski2010).
+%
+%There are few studies that used the sparse grid of NFI data in small area estimation procedures to provide estimations of acceptable accuracy on much smaller management levels. One example is Breidenbach (2012) who applied ... for 14 municipalities where the number of NFI samples within these areas were between 1 and 35.
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

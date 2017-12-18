@@ -1,0 +1,248 @@
+\documentclass[a4paper, 12pt, titlepage]{scrartcl} % tech.report
+\usepackage{authblk}
+
+%============================================ Define Titlepage =====================================================%
+     
+\author[*$\dag$]{\large Andreas Hill}
+\author[*]{\large Daniel Mandallaz}
+\author[**]{\large Joachim Langshausen}
+\affil[*]{\normalsize Department of Environmental Systems Science, ETH Zurich}
+\affil[**]{\normalsize Forest Service Rhineland-Palatinate}       
+\renewcommand\Authands{, } 
+ 
+% \date{\vspace{-0.3cm} \large \today \vspace{1.1cm}}
+\date{\vspace{-0.8ex}}
+\title{\LARGE A double-sampling extension of the German National Forest Inventory for design-based small area regression estimation of timber volume resources on forest district levels \\ \vspace{2ex}
+  \large Large scale application to the federal state of Rhineland-Palatinate \vspace{-1ex}}
+\subject{\vspace{-1.5cm} Article Draft \vspace{0.2cm} \vspace{-0.5cm}}
+
+
+
+% alternative title(s):
+% - Implementation of design-based small area estimations on forest district level in Rhineland-Palatinate (Germany) by combining remote sensing information with data of the Third German National Forest Inventory
+%
+% Large scale implementation of design-based small area estimations on forest district level in Rhineland-Palatinate using data of the Third German National Forest Inventory
+% Implementation of design-based small area estimations on forest district level in Rhineland-Paltinate (Germany) by
+% combining remote sensing information with data of the Third German National Forest Inventory
+%
+% Large-scale implementation of design-based small area estimations on forest district level by
+% combining remote sensing data with data of the Third German National Forest Inventory
+%
+% A double-sampling extension of the Third German National Forest Inventory for small area estimations of timber volume resources on forest district level with a large scale application to the federal state of Rhineland-Palatinate
+%
+%
+
+%============================================ Load Packages ========================================================%
+\usepackage{hyperref}
+\usepackage{natbib}
+ \hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}%package zum einbinden von Bildern
+\usepackage{fancyhdr}
+\usepackage{amsmath} %Paket für erweiterte math. Formeln
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage{booktabs}%Weitere Optionen für Tabellen
+\usepackage{array} 
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{boldline}
+\usepackage[explicit]{titlesec}
+\usepackage{listings} %für R-Skripte
+\usepackage{color}
+\usepackage{pdfpages} % to include pdfs
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{caption} % define font-size for captions
+\usepackage[font=footnotesize]{subcaption}
+\usepackage{rotating}
+\usepackage{longtable} 
+\usepackage{dcolumn} 
+\usepackage{pictex}
+\usepackage{tikz} 
+ \usetikzlibrary{external}       % function to externalize tics-graphic buildings
+ \tikzset{external/force remake} % overwrites existing externalized pdfs
+ \tikzexternalize[prefix=cache/] % All externalized pdf are saved in folder 'cache'
+ \tikzexternaldisable % Only externalise on-demand
+
+ 
+% comment out to disable line-numbering:
+%\usepackage{lineno}
+%\linenumbers
+
+
+%\bibliographystyle{ieeetr}
+%\bibliographystyle{apasoft}
+\bibliographystyle{spbasic}
+%\bibliographystyle{spmpsci}
+
+
+%============================================ Define Settings ========================================================%
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.2,0.7,0.25}
+
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  %frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text 
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; 
+                                   %  also try caption instead of title
+}
+
+\titlespacing{\section}{50pt}{2em}{2em} % {left}{before-sep}{after-sep}
+\titlespacing{\subsection}{14pt}{2em}{1.5em}
+\titlespacing{\subsubsection}{12pt}{2em}{1em}
+
+%\setcounter{page}{1} % Setzt Seitenzahl gleich 1
+\setlength{\parindent}{1em} % Einzug bei neuen Absätzen
+
+%============================================ Define personal commands=============================================%
+
+% remind myself of something:
+\newcommand{\note}[1]{\color{red}(#1!)\color{black}}
+\newcommand{\missref}{\note{[REF]}}
+\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}}
+
+% reocurring terms:
+\newcommand{\adjrsq}{adjusted $R^2$}
+\newcommand{\rmsecv}{RMSE$_{cv}$}
+\newcommand{\mha}{m$^3$/ha}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\EX}{\mathbb{E}}
+\newcommand{\psynth}{\textit{PSYNTH}}
+\newcommand{\psmall}{\textit{PSMALL}}
+\newcommand{\extpsynth}{\textit{EXTPSYNTH}}
+
+%============================================ Start Document =======================================================%
+
+\begin{document}\sloppy
+
+%============================================ SetUp directories ====================================================%
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\vspace*{\fill}
+\begin{tabular}{lll}
+
+\small Corresponding author$^\dag$: & \small \underline{andreas.hill@usys.ethz.ch} \\
+\small Co-authors: & \small \underline{daniel.mandallaz@env.ethz.ch}, \underline{joachim.langshausen@wald-rlp.de} \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+\small Publication date: & \small \today \\
+\end{tabular}
+\newpage
+
+%  Abstract
+\input{tex/Abstract}\thispagestyle{empty} \newpage\cleardoublepage
+
+% begin roman pagenumbering
+\pagenumbering{Roman}
+
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\pagestyle{fancy} %Kopfzeile und Fusszeile
+\fancyfoot[C]{\thepage}
+\setlength{\headsep}{15mm}
+
+%============================================ Test temp ===============================================%
+
+%\input{tex/test_temp}\newpage\cleardoublepage
+
+
+%============================================ Introduction ========================================================%
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{tex/Introduction(2)}\newpage\cleardoublepage
+
+
+%============================================ Materials and Methods ===============================================%
+
+\input{tex/Materials_and_Methods(2)}\newpage\cleardoublepage
+
+
+%============================================ Results =============================================================%
+
+%\input{tex/Results}\newpage\cleardoublepage
+
+
+%============================================ Discussion ==========================================================%
+
+%\input{tex/Discussion}\newpage\cleardoublepage
+
+%==================================== Conclusion & Outlook ==========================================================%
+
+%\input{tex/Conclusions}\newpage\cleardoublepage
+
+
+%============================================ Acknowledgements ==========================================================%
+
+%\input{tex/Acknowledgements}\newpage\cleardoublepage
+
+
+%============================================ Appendices ==========================================================%
+
+%\input{tex/Appendices}\newpage\cleardoublepage
+
+
+%============================================ Literature ==========================================================%
+
+\bibliography{bib/literaturerRLPsae}\newpage\cleardoublepage
+    
+
+%==================================================================================================================%
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
