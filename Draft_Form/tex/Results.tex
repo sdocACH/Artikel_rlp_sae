@@ -70,7 +70,7 @@ On both small area levels, the \psynth{} estimator resulted in much smaller esti
 \subsection{Comparison of \psmall{} and \extpsynth{}}
 \label{sec:comp}
 
-As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{} and \extpsynth{} were found to be very similar, with \psmall{} showing marginally higher estimation errors. In order to investigate the differences between \psmall{} and \extpsynth{}, we compared the g-weight variances of both estimators for all 321 FR units (fig. \ref{fig:compvar}, left). As obvious, \psmall{} yielded slightly larger variances for the vast majority of the estimates. As addressed in section \ref{sec:extpsynth}, one possible explanation for such differences was the effect of one or more cluster not entirely being included in a small area unit, as this would constitute a violation of the \extpsynth{} estimator. This violation was actually observed in 155 of the 312 FR units (48\%). However, the affected FR units (depicted in red color, fig. \ref{fig:compvar}) did not show a significant divergence from the \psmall{} variances with respect to the remaining unaffected FR units. For this reason, the variance differences between the two estimators were expected to occur for the following reasons: as depicted in \citet[pp.17--18]{mandallaz2016}, the mathematical formulations of the \psmall{} and \extpsynth{} estimator are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area. An additional comparison of the absolute differences in the g-weight variance (fig. \ref{fig:compvar}, right) revealed that large differences in fact particularly occurred for small area units with small terrestrial sample sizes ($n_{2,G} \leq 5$). The differences decreased with increasing sample size and thus confirmed the asymptotic relationship between the two estimators. A comparison of the confidence intervals of \psmall{} and \extpsynth{} revealed that the variance differences did not lead to statistically significant point estimates.\par
+As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{} and \extpsynth{} were found to be very similar, with \psmall{} showing marginally higher estimation errors. In order to investigate the differences between \psmall{} and \extpsynth{}, we compared the g-weight variances of both estimators for all 321 FR units (fig. \ref{fig:compvar}, left). As obvious, \psmall{} yielded slightly larger variances for the vast majority of the estimates. As addressed in section \ref{sec:extpsynth}, one possible explanation for such differences was the effect of one or more cluster not entirely being included in a small area unit, as this would constitute a violation of the \extpsynth{} estimator. This violation was actually observed in 155 of the 321 FR units (48\%). However, the affected FR units (depicted in red color, fig. \ref{fig:compvar}) did not show a significant divergence from the \psmall{} variances with respect to the remaining unaffected FR units. For this reason, the variance differences between the two estimators were expected to occur for the following reasons: as depicted in \citet[pp.17--18]{mandallaz2016}, the mathematical formulations of the \psmall{} and \extpsynth{} estimator are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area. An additional comparison of the absolute differences in the g-weight variance (fig. \ref{fig:compvar}, right) revealed that large differences in fact particularly occurred for small area units with small terrestrial sample sizes ($n_{2,G} \leq 5$). The differences decreased with increasing sample size and thus confirmed the asymptotic relationship between the two estimators. A comparison of the confidence intervals of \psmall{} and \extpsynth{} revealed that the variance differences did not lead to statistically significant point estimates.\par
 
 %As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{} and \extpsynth{} were found to be very similar, with \psmall{} showing marginally higher estimation errors. Differences between the two estimators were expected to occur for the following reasons: 1) as depicted in \citet[pp.17--18]{mandallaz2016}, the mathematical formulations of the \psmall{} and \extpsynth{} estimator are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area. Therefore, differences between the estimators were particularly expected for small area units with low terrestrial sampling intensities. 2) As addressed in section \ref{sec:extpsynth}, the case of one or more cluster not entirely being included in a small area unit would constitute a violation of the \extpsynth{} estimator. Effects of this violation on the estimates had yet not been investigated and also lead to a divergence between \psmall{} and \extpsynth{}.\par
 %
@@ -107,31 +107,16 @@ As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{}
 \newpage
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
-\subsection{Gain and Relative Efficiency}
-\label{sec:gain_releff}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Variance reduction of SRS estimator}
+\label{sec:gain_eval}
 
 
 
 
 \begin{figure}[H]
 	\centering
-	\resizebox{0.7\hsize}{!}{\includegraphics{fig/compare_onephase_psmall.png}}
-	\caption{Cumulative distribution of variance reduction by the PSMALL compared to the SRS estimator for the  45 FA and 321 FR units.}
+	\resizebox{0.7\hsize}{!}{\includegraphics{fig/compare_onephase_extpsynth_psmall.png}}
+	\caption{Cumulative distribution of variance reduction by the PSMALL and EXTPSYNTH compared to the SRS estimator for the  45 FA and 321 FR units.}
 	\label{fig:gain}
 \end{figure}
 
@@ -147,11 +132,22 @@ As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{}
 \end{figure}
 
 
+%% NOTES:
+% - 
+%
+%
+%
+%
+%
+%
+%
+
+
+
 
 
 
 \newpage
-
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
 \subsection{Effect of regression model accuracy}
