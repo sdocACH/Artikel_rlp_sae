@@ -3,10 +3,20 @@
 
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
-\subsection{Feasibility of estimations}
+\subsection{General estimation results}
 \label{sec:feasest}
 
-% Alternative section title: General estimation results
+On FA level, 
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -18,9 +28,28 @@
 % - 1) address feasibility of estimations for each estimator
 % - 2) give general overview about estimation results (see Breidenbach) before going into more detail
 %
+
+% Feasibility: 
+% FA-level: for 44 out of 45 FA-units, the full model could be applied. For one remaining, only the model without tree species was applied.
+% 
+% FR-level: 
 %
+% mathemat. feasibility:
+% - op-estimation feasible for 388 of the 405 fu-units. --> for 17 fus not possible due to n2G < 2
+% - psmall / extpsynth possible for 386 of the 405 units (for 19 fus not possible). Reason: for 19 fus we have n2G < 2
+% - psynth not possible for 403 of 405. For 2 units not possible due to n1G < 2 (these two are included in the 19 above).
+%    -> basically, for these 2 fu-units, none of the estimators could produce estimations due to n1G < 2
+%  
+%  restriction of unbiased estimtors to n2G >= 4: 
+% - psmall / extpsynth: 65 of the 386 fu-units have n2G < 4, so theyx cancel out. Thus we have 19 + 65 = 84 fu-units for which no psmall & extpsynth estimations were deliverable.
+%   ==> Thus, we have unbiase estimations for 321 of 405 fu units (79%)
 
-
+% Some stats:
+%
+%
+%
+%
+%
 
 
 
@@ -30,7 +59,7 @@
 \newpage
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
-\subsection{Comparison of estimation errors}
+\subsection{Estimation errors}
 \label{sec:esterr}
 
 On both small area levels, the design-unbiased estimators \psmall{} and \extpsynth{} led to a substantial reduction in the estimation errors compared to the SRS estimator (fig. \ref{fig:disterrors}). On the FA level, the SRS estimator yielded an estimation error of 6.7\% on average compared to 5.2\% and 4.8\% under the \extpsynth{} and \psmall{} estimator. The cumulative error distribution (fig. \ref{fig:disterrors}, left) reveals that under the SRS estimator, errors $\leq$ 5\% were achieved for 17\% of the FA units (8 of 45). This proportion could be increased to 62\% (28 FA units) and 73\% (33 FA units) by application of \psmall{} and \extpsynth{}. 95\% of all estimates exhibited errors $\leq$ 9.5\% under the SRS estimator and $\leq$ 6.6\% when using \psmall{} or \extpsynth{}. Estimation errors higher than 10\% only appeared twice for each of the unbiased estimators.\par
@@ -70,7 +99,7 @@ On both small area levels, the \psynth{} estimator resulted in much smaller esti
 \subsection{Comparison of \psmall{} and \extpsynth{}}
 \label{sec:comp}
 
-As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{} and \extpsynth{} were found to be very similar, with \psmall{} showing marginally higher estimation errors. In order to investigate the differences between \psmall{} and \extpsynth{}, we compared the g-weight variances of both estimators for all 321 FR units (fig. \ref{fig:compvar}, left). As obvious, \psmall{} yielded slightly larger variances for the vast majority of the estimates. As addressed in section \ref{sec:extpsynth}, one possible explanation for such differences was the effect of one or more cluster not entirely being included in a small area unit, as this would constitute a violation of the \extpsynth{} estimator. This violation was actually observed in 155 of the 321 FR units (48\%). However, the affected FR units (depicted in red color, fig. \ref{fig:compvar}) did not show a significant divergence from the \psmall{} variances with respect to the remaining unaffected FR units. For this reason, the variance differences between the two estimators were expected to occur for the following reasons: as depicted in \citet[pp.17--18]{mandallaz2016}, the mathematical formulations of the \psmall{} and \extpsynth{} estimator are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area. An additional comparison of the absolute differences in the g-weight variance (fig. \ref{fig:compvar}, right) revealed that large differences in fact particularly occurred for small area units with small terrestrial sample sizes ($n_{2,G} \leq 5$). The differences decreased with increasing sample size and thus confirmed the asymptotic relationship between the two estimators. A comparison of the confidence intervals of \psmall{} and \extpsynth{} revealed that the variance differences did not lead to statistically significant point estimates.\par
+As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{} and \extpsynth{} were found to be very similar, with \psmall{} showing marginally higher estimation errors. In order to investigate the differences between \psmall{} and \extpsynth{}, we compared the g-weight variances of both estimators for all 321 FR units (fig. \ref{fig:compvar}, left). As obvious, \psmall{} yielded slightly larger variances for the vast majority of the estimates. As addressed in section \ref{sec:extpsynth}, one possible explanation for such differences was the effect of one or more cluster not entirely being included in a small area unit, as this would constitute a violation of the \extpsynth{} estimator. This violation was actually observed in 155 of the 321 FR units (48\%). However, the affected FR units (depicted in red color, fig. \ref{fig:compvar}) did not show a significant divergence from the \psmall{} variances with respect to the remaining unaffected FR units. The variance differences between the two estimators were expected to occur for the following reason: as depicted in \citet[pp.17--18]{mandallaz2016}, the mathematical formulations of the \psmall{} and \extpsynth{} estimator are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area. An additional comparison of the absolute differences in the g-weight variance (fig. \ref{fig:compvar}, right) revealed that large differences did in fact particularly occur for small area units with small terrestrial sample sizes ($n_{2,G} \leq 5$). The differences decreased with increasing sample size and thus confirmed the asymptotic relationship between the two estimators. However, a comparison of the confidence intervals of \psmall{} and \extpsynth{} revealed that the variance differences did not lead to statistically significant point estimates.\par
 
 %As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{} and \extpsynth{} were found to be very similar, with \psmall{} showing marginally higher estimation errors. Differences between the two estimators were expected to occur for the following reasons: 1) as depicted in \citet[pp.17--18]{mandallaz2016}, the mathematical formulations of the \psmall{} and \extpsynth{} estimator are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area. Therefore, differences between the estimators were particularly expected for small area units with low terrestrial sampling intensities. 2) As addressed in section \ref{sec:extpsynth}, the case of one or more cluster not entirely being included in a small area unit would constitute a violation of the \extpsynth{} estimator. Effects of this violation on the estimates had yet not been investigated and also lead to a divergence between \psmall{} and \extpsynth{}.\par
 %
@@ -107,7 +136,8 @@ As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{}
 \newpage
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
-\subsection{Variance reduction of SRS estimator}
+\subsection{Reduction of variance by two-phase estimators}
+% \subsection{Variance reduction of SRS estimator}
 \label{sec:gain_eval}
 
 
@@ -144,39 +174,6 @@ As obvious from figure \ref{fig:disterrors}, the error distribution of \psmall{}
 
 
 
-
-
-
-\newpage
-% ----------------------------------------------------------------------- %
-% ----------------------------------------------------------------------- %
-\subsection{Effect of regression model accuracy}
-\label{sec:modacc_eff}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{figure}[H]
-	\centering
-	\resizebox{1\hsize}{!}{\includegraphics{fig/modcom_errors_fu.png}}
-	\caption{}
-	\label{fig:compmods}
-\end{figure}
 
 
 

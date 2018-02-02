@@ -247,7 +247,7 @@ CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqr
 In order to address the potential benefits of the small area estimators compared with the SRS approach, we calculated the \textit{relative efficiency} (Eq. \ref{eq:releff}) which can be interpreted as the relative sample size under SRS needed to achieve the variance under the double sampling estimators.
 
 \begin{equation}\label{eq:releff}
-rel.eff_{[\%]}=\frac{\hat{\var}_{SRS}(\hat{Y})}{\hat{\var}_{SAE_{2phase}}(\hat{Y})}\cdot100
+rel.eff=\frac{\hat{\var}_{SRS}(\hat{Y})}{\hat{\var}_{SAE_{2phase}}(\hat{Y})}
 \end{equation}
 
 \newpage
@@ -264,12 +264,12 @@ rel.eff_{[\%]}=\frac{\hat{\var}_{SRS}(\hat{Y})}{\hat{\var}_{SAE_{2phase}}(\hat{Y
 \subsection{Study area and small area units}
 \label{sec:studyarea}
 
-The German federal state Rhineland-Palatinate (\textit{RLP}) is located in the western part of Germany and borders Luxembourg, France and Belgium. With 42.3\% (appr. 8400 km$^2$) of the entire state area (19850 km$^2$) covered by forest, RLP is one of the two states with the highest forest coverage among all federal states of Germany \citep{bwi3}. The forests of RLP are further characterized by a pronounced diversity in bioclimatic growing conditions that have strong influence on the local growth dynamics as well as tree species composition \citep{gauer2005} and are further characterized by large variety of forest structures ranging from characteristic oak coppices (Moselle valley), pure spruce, beech and scots pine forests (i.a. Hunsr{\"u}ck and Palatinate forest) up to mixed forests comprising variable proportions of oak, larch, spruce, Scots pine and beech. Around 82\% of the forest area in RLP are mixed forest stands and 69\% of the forest area exhibit a multi-layered vertical structure. The forest area of RLP are divided into 3 ownership classes, i.e. state forest (27\%), communal forest (46\%) and privately owned forest (27\%). The forest service of RLP has the legal mandate to sustainably manage the state and communal forest area (73\% of the entire forest area), including forest planning, harvesting and the sale of wood \citep{lwaldg_rlp}. For this reason, the entire forest area has been spatially organised in 3 main hierarchical management units (Figure \ref{fig:StudyArea}). On the upper level, RLP has been divided into 45 Forst{\"a}mter (\textit{FA}), which are further divided into a total number of 426 Forstreviere (\textit{FR}). The next level are the actual forest stands (104'184 in total) for which expert judgements are conducted by SFIs in a 5- to 10 year period in order to set up management strategies for the upcoming 10 years. The FAs and FRs constituted the small area (SA) units for which design-based small area estimations of the mean standing timber volume were calculated by incorporating the available terrestrial inventory data of the BWI3 in the estimators described in Section \ref{sec:estimators}. The average area of the SA units were 43'777 ha on the FA-level, and 4624 ha on the FR level.
+The German federal state Rhineland-Palatinate (\textit{RLP}) is located in the western part of Germany and borders Luxembourg, France and Belgium. With 42.3\% (appr. 8400 km$^2$) of the entire state area (19850 km$^2$) covered by forest, RLP is one of the two states with the highest forest coverage among all federal states of Germany \citep{bwi3}. The forests of RLP are further characterized by a pronounced diversity in bioclimatic growing conditions that have strong influence on the local growth dynamics as well as tree species composition \citep{gauer2005} and are further characterized by large variety of forest structures ranging from characteristic oak coppices (Moselle valley), pure spruce, beech and scots pine forests (i.a. Hunsr{\"u}ck and Palatinate forest) up to mixed forests comprising variable proportions of oak, larch, spruce, Scots pine and beech. Around 82\% of the forest area in RLP are mixed forest stands and 69\% of the forest area exhibit a multi-layered vertical structure. The forest area of RLP are divided into 3 ownership classes, i.e. state forest (27\%), communal forest (46\%) and privately owned forest (27\%). The forest service of RLP has the legal mandate to sustainably manage the state and communal forest area (73\% of the entire forest area), including forest planning, harvesting and the sale of wood \citep{lwaldg_rlp}. For this reason, the entire forest area has been spatially organised in 3 main hierarchical management units (Figure \ref{fig:StudyArea}). On the upper level, RLP has been divided into 45 Forst{\"a}mter (\textit{FA}), which are further divided into a total number of 405 Forstreviere (\textit{FR}). The next level are the forest stands (104'184 in total) for which expert judgements are conducted by SFIs in a 5- to 10 year period in order to set up management strategies for the upcoming 10 years. The FAs and FRs constituted the small area (SA) units for which design-based small area estimations of the mean standing timber volume were calculated by incorporating the available terrestrial inventory data of the BWI3 in the estimators described in Section \ref{sec:estimators}. The average area of the SA units were 43'777 ha on the FA-level, and 4624 ha on the FR level.
 
 % | managment level | average area (min-max)  | average no cluster (plots) | min no. cluster (plots | max no. cluster (plots |
-%   FA                43'777 ha  (17367 - 125423)     46 (128)         11 (36)            64 (198)
-%   FR                4624 ha   (0.68 - 43284)         5  (14)          0 (0)             13 (34)
-%   stand level       6 ha     (0.03 ha - 73)          0 (0)            0 (0)             2 (4)
+%   FA                43'777 ha  (17367 - 125423)     46 (128)                            11 (36)            64 (198)
+%   FR                4624 ha   (0.68 - 43284)         5  (14)                            0 (0)             13 (34)
+%   stand level       6 ha     (0.03 ha - 73)          0 (0)                              0 (0)             2 (4)
 
 
 % Add Graphic 1:
@@ -278,28 +278,27 @@ The German federal state Rhineland-Palatinate (\textit{RLP}) is located in the w
 % Add in text:
 % - add information on the (average) spatial area of each sae-level
 
+% Notes to myself:
+% - in the original forstrevier layer, we have 427 FR units but 21 of them are not covered by woefis-layer (so no state- and communal forest), and 1 is the "Bundesforstamt" not considered by us
+
 % ----------------------------------------------------------------------- %
 \subsection{Terrestrial sample}
 
-Rhineland-Palatinate (RLP) is covered by a 2x2 km inventory grid of the German NFI. In the last inventory (BWI3) conducted in the year 2013, timber volume information was derived for 2810 cluster (8092 plots) in the field survey. The local timber volume density on the plot and cluster level for this sample was consequently calculated according to Section \ref{sec:srs_estimator}. In the frame of this survey, the plot center coordinates have been re-measured with differential global satellite navigation system (DGPS) technique. Knowledge about the exact plot positions were considered crucial to provide optimal comparability between the terrestrially observations and the information derived from the auxiliary information. A comparison of the DGPS coordinates with the so-far used target coordinates revealed that 90\% of all horizontal deviations lay in the range of 25 meters. A detailed analysis of horizontal DGPS errors in RLP by \citet{lambrecht2017} indicated that 80\% of the plots should not exceed horizontal DGPS errors of 8 meters. For 162 plots, the DGPS coordinates were replaced by their target coordinates due to missingness or implausible values.
-
-% NOTE:
-% - add table with overview of terrestrial dta attributes (like Johannes)
-%
-
-
-% ----------------------------------------------------------------------- %
-\subsection{Extension to double sampling design}
-
-In order to apply the small area estimators (Section (\ref{sec:SAestimators}), the existing NFI design was extended to a double sampling design by densifying the existing systematic 2x2 km grid to a 500x500 m sample grid that constituted the large first phase $s_1$ in accordance to Section \ref{sec:inf_pop} (Figure \ref{fig:StudyArea}, \textit{right}). The existing terrestrial phase $s_2$ was consequently integrated by replacing the target coordinates of the respective $s_1$ cluster by the terrestrially measured DGPS coordinates. For our study, we restricted the \textit{sampling frame} to the communal and state forest. The forest/non-forest decision for each plot was thereby made by a spatial intersection of the plot center coordinates with a polygon layer of the communal and state forest stands provided by the forest service. The terrestrial sample size was thus reduced to 2055 cluster (5791 plots). Using this stand layer provided the advantage to consistently apply the same forest/non-forest definition to the entire sample $s_1$ in order to decide about excluding or including a plot in the sampling frame.
+Rhineland-Palatinate (RLP) is covered by a 2x2 km inventory grid of the German NFI. In the last inventory (BWI3) conducted in the year 2013, timber volume information was derived for 2810 cluster (8092 plots) in the field survey. The local timber volume density on the plot and cluster level for this sample was consequently calculated according to Section \ref{sec:srs_estimator}. In the frame of this survey, the plot center coordinates were re-measured with differential global satellite navigation system (DGPS) technique. Knowledge about the exact plot positions were considered crucial to provide optimal comparability between the terrestrially observations and the information derived from the auxiliary information. A comparison of the DGPS coordinates with the so-far used target coordinates revealed that 90\% of all horizontal deviations lay in the range of 25 meters. A detailed analysis of horizontal DGPS errors in RLP by \citet{lambrecht2017} indicated that 80\% of the plots should not exceed horizontal DGPS errors of 8 meters. For 162 plots, the DGPS coordinates were replaced by their target coordinates due to missingness or implausible values. The terrestrial sample size $n_{2,G}$ within the FA units was 46 cluster on average and ranged between 11 and 64. Within the FR units, $n_{2,G}$ was considerably smaller with an average of 5 cluster and a range between 0 and 13.
 
 \begin{figure}[H]
 	\centering
-	\resizebox{0.63\hsize}{!}{\includegraphics*{fig/SAunitsRLP.png}}
+	\resizebox{0.8\hsize}{!}{\includegraphics*{fig/SAunitsRLP.png}}
 	\caption{\textit{Left}: Study Area with delineated FA forest management units. \textit{Right}: Example for each of the three management units (from top to bottom): FA, FR and forest stand unit with overlayed the extended double sampling cluster design. \textit{Green}: Forest stand polygon layer defining the forest area of this study.}
 	\label{fig:StudyArea}
 \end{figure}
 
+% ----------------------------------------------------------------------- %
+\subsection{Extension to double sampling design}
+
+In order to apply the small area estimators (Section (\ref{sec:SAestimators}), the existing NFI design was extended to a double sampling design by densifying the existing systematic 2x2 kilometer grid to a grid size of 500x500 meters that constituted the large first phase $s_1$ in accordance to Section \ref{sec:inf_pop} (Figure \ref{fig:StudyArea}, \textit{right}). The existing terrestrial phase $s_2$ was consequently integrated by replacing the target coordinates of the respective $s_1$ cluster by the terrestrially measured DGPS coordinates. For our study, we restricted the \textit{sampling frame} to the communal and state forest. The forest/non-forest decision for each plot was thereby made by a spatial intersection of the plot center coordinates with a polygon layer of the communal and state forest stands provided by the forest service. Using this stand layer provided the advantage to consistently apply the same forest/non-forest definition to the entire sample $s_1$ in order to decide about excluding or including a plot in the sampling frame. The terrestrial sample size $n_2$ was thus reduced to 2055 cluster (5791 plots). Table \ref{tab:fieldata} provides a short descriptive summary about the volume densities and the main attributes of the NFI plots located in the state and communal forest sampling frame. The densification led to an average sample size $n_{1,G}$ of 759  cluster (range: 246 -- 1022) in the FA units, and 88 cluster (range: 1 -- 194) in the FR units.
+
+\input{tab/table_fieldmeasuredvals.tex}
 
 
 % NOTES:
@@ -345,7 +344,6 @@ In order to apply the small area estimators (Section (\ref{sec:SAestimators}), t
 % ----------------------------------------------------------------------- %
 
 
-\newpage
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
 \subsection{Auxiliary information}
@@ -365,58 +363,40 @@ A prerequisite for the application of the suggested two-phase small area estimat
 \subsubsection{Tree species map}
 \label{sec:tspecclass}
 
-The second source of auxiliary information was a countrywide satellite-based classification map of the five main tree species (European beech, Sessile and Pedunculate oak, Norway spruce, Douglas fir, Scots pine) described in \citet{stoffels2015} (Figure \ref{fig:Auxvars}, \textit{bottom}). The classified tree species map has a grid size of 5 meters and was calculated from 22 bi-temporal satellite images (SPOT5 and RapidEye) by application of the spatially adaptive classification algorithm described in \citet{stoffels2012}.  As timber volume estimations on the tree level are often based on species-specific biomass and volume equations, the use of tree species information - especially for timber volume estimation - has often been stated as a key factor for improving the estimation precision \cite{white2016}. In this respect, incorporating the tree species map information was particularly attractive as it predicts five of the seven tree species that are used in the BWI3 taper functions \citep{kublin2013} to calculate the timber volume of a sample tree. However, due to unavailable satellite data for the classification, the tree species map excluded one large patch with an area of 415 km$^2$ in the south-west part of RLP covering an entire FA-unit (10 FR units respectively). In 9 additional FR units, the tree species information was also missing for a subset of the sample locations due to two additional patches with an area of 76 km$^2$ and 100 km$^2$ in the northern part of RLP. For these parts, small area estimation was thus restricted to using only the available CHM information in the regression model. With respect to model fitting, the tree species information was missing for 407 (7\%) of the 5791 sample locations. A summary of the sample sizes and missing auxiliary information is again provided in Table \ref{tab:ssize}.
+The second source of auxiliary information was a countrywide satellite-based classification map of the five main tree species (European beech, Sessile and Pedunculate oak, Norway spruce, Douglas fir, Scots pine) described in \citet{stoffels2015} (Figure \ref{fig:Auxvars}, \textit{bottom}). The classified tree species map has a grid size of 5 meters and was calculated from 22 bi-temporal satellite images (SPOT5 and RapidEye) by application of a spatially adaptive classification algorithm described in \citet{stoffels2012}.  As timber volume estimations on the tree level are often based on species-specific biomass and volume equations, the use of tree species information - especially for timber volume estimation - has often been stated as a key factor for improving the estimation precision \cite{white2016}. In this respect, incorporating the tree species map information was particularly attractive as it predicts five of the seven tree species that are used in the BWI3 taper functions \citep{kublin2013} to calculate the timber volume of a sample tree. However, due to unavailable satellite data for the classification, the tree species map excluded one large patch with an area of 415 km$^2$ in the south-west part of RLP covering an entire FA-unit (10 FR units respectively). In 9 additional FR units, the tree species information was also missing for a subset of the sample locations due to two additional patches with an area of 76 km$^2$ and 100 km$^2$ in the northern part of RLP. For these parts, small area estimation was thus restricted to using only the available CHM information in the regression model. With respect to model fitting, the tree species information was missing for 407 (7\%) of the 5791 sample locations. A summary of the sample sizes and missing auxiliary information is again provided in Table \ref{tab:ssize}.
 
-
-% Graphik:
-\begin{figure}[H]
-	\centering
-	\resizebox{0.8\hsize}{!}{\includegraphics*{fig/AuxvarsLOWRES.png}}
-	\caption{Left: CHM (top) and tree species classification map (bottom) available on the federal state level were used as auxiliary information. Right: Magnified illustration of the rectangular supports used to derive the explanatory variables from the auxiliary information.}
-	\label{fig:Auxvars}
-\end{figure}
-
-
+% neu:
 \begin{table}[H]
 	\begin{center}
 		\caption{Sample size for each phase in entire study area. $n_{\{1,2\},plots}$: number of plots. $n_{\{1,2\}}$: number of cluster}
 		\vspace{0.2cm}
 		\label{tab:ssize}
 		{\small %
-		\begin{tabular}{l|r|r|r|r}
-			\hline
-			\multicolumn{1}{c|}{\textit{Sampling frame}} & \multicolumn{1}{c|}{\textbf{$n_{1,plot}$}}  & \multicolumn{1}{c|}{\textbf{$n_1$}}  & \multicolumn{1}{c|}{\textbf{$n_{2,plot}$}}  & \multicolumn{1}{c}{\textbf{$n_2$}} \\ % <-- added & and content for each column
-			\hline \hline
-			communal and state forest & 96'854 & 33'365 & 5791 & 2055\\ % <--
-			\hspace{5mm} \footnotesize missing CHM & \footnotesize 16 & \footnotesize 9 & \footnotesize 0 & \footnotesize 0\\ % <--
-			\hspace{5mm} \footnotesize missing TSPEC & \footnotesize 6910  & \footnotesize 3465 & \footnotesize 407 & \footnotesize 380\\ % <--
-			\hspace{5mm} \footnotesize missing CHM \textit{and} TSPEC & \footnotesize 2 & \footnotesize 1 & \footnotesize 0 & \footnotesize 0\\ % <--
-			\hspace{5mm} \footnotesize missing CHM \textit{or} TSPEC & \footnotesize 6924 & \footnotesize 3473 & \footnotesize 407 & \footnotesize 380\\ % <--
-			\hline \hline
-		\end{tabular}
-	} %
+			\begin{tabular}{l|r|r|r|r}
+				\hline
+				\multicolumn{1}{c|}{\textit{Sampling frame}} & \multicolumn{1}{c|}{\textbf{$n_{1,plot}$}}  & \multicolumn{1}{c|}{\textbf{$n_1$}}  & \multicolumn{1}{c|}{\textbf{$n_{2,plot}$}}  & \multicolumn{1}{c}{\textbf{$n_2$}} \\ % <-- added & and content for each column
+				\hline \hline
+				communal and state forest & 96'854 & 33'365 & 5791 & 2055\\ % <--
+				\hspace{5mm} \footnotesize missing CHM & \footnotesize 18 & \footnotesize 10 & \footnotesize 0 & \footnotesize 0\\ % <--
+				\hspace{5mm} \footnotesize missing TSPEC & \footnotesize 7060  & \footnotesize 3587 & \footnotesize 414 & \footnotesize 385\\ % <--
+				\hspace{5mm} \footnotesize missing CHM \textit{and} TSPEC & \footnotesize 3 & \footnotesize 2 & \footnotesize 0 & \footnotesize 0\\ % <--
+				\hspace{5mm} \footnotesize missing CHM \textit{or} TSPEC & \footnotesize 7075 & \footnotesize 3595 & \footnotesize 414 & \footnotesize 385\\ % <--
+				\hline \hline
+			\end{tabular}
+		} %
 	\end{center}
 \end{table}
 
 
-%\begin{table}[H]
-%	\begin{center}
-%		\caption{Sample size for each phase in entire study area.}
-%		\label{tab:ssize}
-%		\begin{tabular}{l|r|r|r|r}
-%			\hline
-%			\textit{Sampling frame} & \textbf{$n_{1,plot}$} & \textbf{$n_1$} & \textbf{$n_{2,plot}$} & \textbf{$n_2$}\\ % <-- added & and content for each column
-%			\hline \hline
-%			communal and state forest & 96'854 & 33'365 & 5791 & 2055\\ % <--
-%			\hspace{5mm} \small missing CHM & \small 16 & \small 9 & \small 0 & \small 0\\ % <--
-%			\hspace{5mm} \small missing TSPEC & \small 6910  & \small 3465 & \small 407 & \small 380\\ % <--
-%			\hspace{5mm} \small missing CHM \textit{and} TSPEC & \small 2 & \small 1 & \small 0 & \small 0\\ % <--
-%			\hspace{5mm} \small missing CHM \textit{or} TSPEC & \small 6924 & \small 3473 & \small 407 & \small 380\\ % <--
-%			\hline
-%			Total for estimation & 89'930 & 29'892 & 5384 & 1675\\ % <--			
-%		\end{tabular}
-%	\end{center}
-%\end{table}
+% Graphik:
+\begin{figure}[H]
+	\centering
+	\resizebox{0.9\hsize}{!}{\includegraphics*{fig/AuxvarsLOWRES.png}}
+	\caption{Left: CHM (top) and tree species classification map (bottom) available on the federal state level were used as auxiliary information. Right: Magnified illustration of the rectangular supports used to derive the explanatory variables from the auxiliary information.}
+	\label{fig:Auxvars}
+\end{figure}
+
+
 
 
 % ---------------------------------------------- %
