@@ -167,10 +167,10 @@ The estimated design-based variance of $ \hat{Y}_{c,G,PSMALL}$ is given by Eq. \
 The variance-covariance matrix of the auxiliary vector $\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}}$ is thereby defined as
 	
 \begin{equation}\label{estvarcovaux_G}
-\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}} = \frac{1}{n_{1,G}(n_{1,G}-1)} \sum_{i \in s_{1,G}} \big(\frac{M_{G}(x)}{\bar{M}_{1,G}}\big)^2 (\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})(\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})^{\top}
+\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}} = \frac{1}{n_{1,G}(n_{1,G}-1)} \sum_{x \in s_{1,G}} \big(\frac{M_{G}(x)}{\bar{M}_{1,G}}\big)^2 (\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})(\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})^{\top}
 \end{equation}
 
-with $\bar{M}_{1,G}=\frac{\sum_{i \in s_{1,G}}M_{G}(x)}{n_{1,G}}$.\\
+with $\bar{M}_{1,G}=\frac{\sum_{x \in s_{1,G}}M_{G}(x)}{n_{1,G}}$.\\
 
 
 
@@ -288,7 +288,7 @@ Rhineland-Palatinate (RLP) is covered by a 2x2 km inventory grid of the German N
 
 \begin{figure}[H]
 	\centering
-	\resizebox{0.8\hsize}{!}{\includegraphics*{fig/SAunitsRLP.png}}
+	\resizebox{0.85\hsize}{!}{\includegraphics*{fig/SAunitsRLP.png}}
 	\caption{\textit{Left}: Study Area with delineated FA forest management units. \textit{Right}: Example for each of the three management units (from top to bottom): FA, FR and forest stand unit with overlayed the extended double sampling cluster design. \textit{Green}: Forest stand polygon layer defining the forest area of this study.}
 	\label{fig:StudyArea}
 \end{figure}
