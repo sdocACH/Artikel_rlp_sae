@@ -442,50 +442,37 @@ The tree species map information was used to predict the main tree species of a 
 \subsection{Regression Model}
 \label{sec:regmod}
 
-% NOTES:
-% - model formulation was based on the following considerations: a) The mean canopy height has the heighest explanatory power. Since the strength of correlation between meanheight and the timber volume on plot level showed high variation according to the time-lag of up to 10 years between the LiDAR acquisition and the BWI3 terrestrial inventory. and the varying LiDAR quality, the 
-%
-%
-%
-%
-%
-
-
-% MENTION:
-% - objective: find regression model (formula) to be applied in the sae estimators
-% - Specialty here: in the sae estimators, the predictions are generated on the cluster level (thus the regression coefficients are found on the cluster level)
-%   (--> and even more important: the residuals considered in the variance est. are also on the cluster level)
-%  ==> so for model selection, we looked at the global model performance on the plot as well as the cluster level
-%  ==> we also performed individual paramater t-test for each variable on the plot and cluster level. In order to  
-%
-% - important to recall that the design-based estimators, in which the regression model is used, do not impose any assumptions on the regression model as is the case in the model-dependent estimation framework.
-%
-% - no terrestrial data removed from the dataset for modelling, as all terrestrial data are used in the internal model (no choice, its specified by the estimators) 
-%
-% - mention sample sizes here: Due to missingness in the rs-data, the auxiliary variables were calculated for 89'930 sample plots (5384 terrestrial ...)
-%
-% - Model Validation (compare several models in table --> Alex)
-%
-% - Design-based Model Inference (new, use design-based var-covar-matrix)
-%
-% - idea: make a design-based inference of the regression coefficients on cluster level on the robust reg.coef-matrix
-%   "whereas the regression analysis in hill et al. 2017a" was carried out on the sample plot level, we here extend
-%    the analysis to the cluster level, as this is actually the level the estimators use the regression model predictions"
-%
-
-% Feasibility: 
-% FA-level: for 44 out of 45 FA-units, the full model could be applied. For one remaining, only the model without tree species was applied.
-% FR-level: for xx out of the 405 FR-units, the full model could be applied. For one remaining, only the model without tree species was applied.
-%
-% ==> show specs for both regression models
 
 
 
 
-%% ---------------------------------------------- %
-%\subsubsection{Design-Based Model Inference}
-%\label{sec:edbinf}
-%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\input{tab/mod_r2_lyearstrata_table.tex}
+
+
+
+\input{tab/modacc_modterms.tex}
+
+
+
+
+
+
 
 
 
@@ -548,6 +535,42 @@ The tree species map information was used to predict the main tree species of a 
 
 
 
+% NOTES:
+% - model formulation was based on the following considerations: a) The mean canopy height has the heighest explanatory power. Since the strength of correlation between meanheight and the timber volume on plot level showed high variation according to the time-lag of up to 10 years between the LiDAR acquisition and the BWI3 terrestrial inventory. and the varying LiDAR quality, the 
+%
+%
+%
+%
+%
+
+
+% MENTION:
+% - objective: find regression model (formula) to be applied in the sae estimators
+% - Specialty here: in the sae estimators, the predictions are generated on the cluster level (thus the regression coefficients are found on the cluster level)
+%   (--> and even more important: the residuals considered in the variance est. are also on the cluster level)
+%  ==> so for model selection, we looked at the global model performance on the plot as well as the cluster level
+%  ==> we also performed individual paramater t-test for each variable on the plot and cluster level. In order to  
+%
+% - important to recall that the design-based estimators, in which the regression model is used, do not impose any assumptions on the regression model as is the case in the model-dependent estimation framework.
+%
+% - no terrestrial data removed from the dataset for modelling, as all terrestrial data are used in the internal model (no choice, its specified by the estimators) 
+%
+% - mention sample sizes here: Due to missingness in the rs-data, the auxiliary variables were calculated for 89'930 sample plots (5384 terrestrial ...)
+%
+% - Model Validation (compare several models in table --> Alex)
+%
+% - Design-based Model Inference (new, use design-based var-covar-matrix)
+%
+% - idea: make a design-based inference of the regression coefficients on cluster level on the robust reg.coef-matrix
+%   "whereas the regression analysis in hill et al. 2017a" was carried out on the sample plot level, we here extend
+%    the analysis to the cluster level, as this is actually the level the estimators use the regression model predictions"
+%
+
+% Feasibility: 
+% FA-level: for 44 out of 45 FA-units, the full model could be applied. For one remaining, only the model without tree species was applied.
+% FR-level: for xx out of the 405 FR-units, the full model could be applied. For one remaining, only the model without tree species was applied.
+%
+% ==> show specs for both regression models
 
 
 

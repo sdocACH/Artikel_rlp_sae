@@ -1,0 +1,25 @@
+% latex table generated in R 3.4.2 by xtable 1.8-2 package
+% Sun Jan 07 17:11:26 2018
+\begin{table*}[!htbp]
+	\begin{center}
+	\caption{Accuracy metrics for submodels of final OLS regression model. Interaction terms are indicated by ':'. () give the respective values on the cluster level.} 
+	\label{tab:modacc_modterms}
+    {\small %
+	\begin{tabular}{llccc}
+  \hline
+model terms & model & $R^2_{adj}$ & $RMSE_{cv}$ & $RMSE_{cv}\%$ \\ 
+  \hline
+meanheight + stddev + meanheight$^2$ +  & full model &  0.48 & 140.62  & 46.69 \\
+treespecies + ALSyear + & & (0.53) &  (101.61) & (33.57) \\ 
+meanheight:treespecies + \\ meanheight:ALSyear + meanheight:stddev + \\ stddev:ALSyear &&& \\ \\
+meanheight + stddev + meanheight$^2$ + & reduced model  & 0.45  & 145.62 & 48.35 \\
+ALSyear + meanheight:ALSyear + & & (0.49) & (106.08) & (35.40) \\
+meanheight:stddev + stddev:ALSyear &&& \\ \\
+\hline
+\hline
+\end{tabular}
+}%
+\end{center}
+\end{table*}
+%\endgroup
+
