@@ -295,6 +295,7 @@ Rhineland-Palatinate (RLP) is covered by a 2x2 km inventory grid of the German N
 
 % ----------------------------------------------------------------------- %
 \subsection{Extension to double sampling design}
+\label{ext_to_2phase}
 
 In order to apply the small area estimators (Section (\ref{sec:SAestimators}), the existing NFI design was extended to a double sampling design by densifying the existing systematic 2x2 kilometer grid to a grid size of 500x500 meters that constituted the large first phase $s_1$ in accordance to Section \ref{sec:inf_pop} (Figure \ref{fig:StudyArea}, \textit{right}). The existing terrestrial phase $s_2$ was consequently integrated by replacing the target coordinates of the respective $s_1$ cluster by the terrestrially measured DGPS coordinates. For our study, we restricted the \textit{sampling frame} to the communal and state forest. The forest/non-forest decision for each plot was thereby made by a spatial intersection of the plot center coordinates with a polygon layer of the communal and state forest stands provided by the forest service. Using this stand layer provided the advantage to consistently apply the same forest/non-forest definition to the entire sample $s_1$ in order to decide about excluding or including a plot in the sampling frame. The terrestrial sample size $n_2$ was thus reduced to 2055 cluster (5791 plots). Table \ref{tab:fieldata} provides a short descriptive summary about the volume densities and the main attributes of the NFI plots located in the state and communal forest sampling frame. The densification led to an average sample size $n_{1,G}$ of 759  cluster (range: 246 -- 1022) in the FA units, and 88 cluster (range: 1 -- 194) in the FR units.
 
@@ -346,24 +347,20 @@ In order to apply the small area estimators (Section (\ref{sec:SAestimators}), t
 
 % ----------------------------------------------------------------------- %
 % ----------------------------------------------------------------------- %
-\subsection{Auxiliary information}
+\subsection{Auxiliary data}
 \label{sec:auxinfo}
 
 % ----------------------------------------- %
 \subsubsection{LiDAR canopy height model}
 \label{sec:chm}
 
-A prerequisite for the application of the suggested two-phase small area estimators was the identification of suitable auxiliary information that is available over the entire study area. Between the year 2003 and 2013, the topographic survey institution of RLP conducted an airborne laser scanning (LiDAR) acquisition over the entire federal state at leaf-off condition in order to derive a countrywide digital terrain and surface model. For this study, the recorded LiDAR data was used to create a canopy height model (CHM) in raster format, providing discrete information about the canopy surface height of the forest area in a spatial resolution of 5 meters (Figure \ref{fig:Auxvars}, \textit{top}). The CHM was calculated as the difference between the digital terrain model (DTM) and the digital surface model (DSM) that were derived by a Delauney interpolation of the two separated LiDAR point clouds (ground pulses and first pulses from non-ground objects). Based on numerous studies (e.g. \cite{maack2016}), the CHM was considered to provide the most valuable information to be used in the OLS regression model for predicting the timber volume on sample plot level. However, during the extended acquisition period, airborne laser scanning technology evolved significantly, which lead to severe quality variations in the CHM. In particular, the LiDAR acquisition recorded in 2002 and 2003 exhibited a rather poor quality with about only 1 point per 5x5 m$^2$, while more recently acquired datasets contained more than 125 points per 5x5 m$^2$ raster cell. Furthermore, due to sensor failures, CHM information was not available at 16 sample locations (none of them considered terrestrial sample plots of the $s_2$ phase though). These plots were deleted from the sampling frame and its non-available information thus treated as missing at random. This assumption was considered to be reasonable as the respective sample locations did not exclude specific forest structures.
-
-%As explanatory variables, the mean canopy height (\textit{meanheight}) and the standard deviation ($stddev$) were calculated as the mean and standard deviation of all raster values within a predefined square around each sample plot center. The square (i.e. \textit{support} of the explanatory variable, see section \ref{sec:supp}) was previously intersected with the state and communal forest area defined by a polygon mask and thereby corrected for edge effects at the forest border. The tree height is one prominent predictor variable in the taper functions of the \bwi{} that are used to calculate a timber volume value for each sample tree \citep{kublin2003, kublin2013}. A visual inspection of the tree volumes of all sample trees collected in the \bwi{} within RLP against their tree heights also revealed the characteristic shape of an allometric relationship between these variables (Online Resource 1). It was hypothesized that this relationship on single-tree level is also apparent on the aggregated level of a sample plot and cluster, and can be used within the frame of regression modeling.\par
-%
-%The strength of correlation between \textit{meanheight} and timber volume on plot level was expected to show high variation according to the mentioned time-lag up to 10 years between LiDAR acquisition and terrestrial survey. The quality of the height information was also expected to vary according to changing sensor technologies and different point densities used over the years. For these reasons, the LiDAR acquisition year (\textit{lidaryear}) for each sample plot was considered as a potential categorical explanatory variable to explain the variation in the data introduced by these factors. For this purpose, the acquisition year \textit{2008} was further divided into \textit{2008} and \textit{2008\_1}. In the latter, the data quality turned out to be very poor due to sensor failures during the acquisition. Additionally, the years \textit{2006} and \textit{2007} as well as \textit{2012} and \textit{2013} were pooled in order to increase the number of observations per factor level for modelling reasons. As a result, the \textit{lidaryear} variable comprised nine categories (\textit{2002}, \textit{2003}, \textit{2007}, \textit{2008}, \textit{2008\_1}, \textit{2009}, \textit{2010}, \textit{2011} and \textit{2012}).
+A prerequisite for the application of the suggested two-phase small area estimators was the identification of suitable auxiliary data available over the entire study area. Between the year 2003 and 2013, the topographic survey institution of RLP conducted an airborne laser scanning (ALS) acquisition over the entire federal state at leaf-off condition in order to derive a countrywide digital terrain and surface model. For this study, the recorded LiDAR data was used to create a canopy height model (CHM) in raster format, providing discrete information about the canopy surface height of the forest area in a spatial resolution of 5 meters (Figure \ref{fig:Auxvars}, \textit{top}). The CHM (Fig. \ref{fig:Auxvars}, \textit{top}) was calculated as the difference between the digital terrain model (DTM) and the digital surface model (DSM) that were derived by a Delauney interpolation of the ground and first ALS pulses respectively. A more detailed description of the procedure can be found in \citet{hill2017a}. The CHM was considered to provide the most valuable information to be used in the OLS regression model for predicting the timber volume on sample plot and cluster level. However, the extended acquisition period of the ALS campaign led to substantial time gaps to the BWI3 survey of up to 10 years. In addition, the CHM exhibited severe quality variations in the CHM du to evolving ALS technology over the years. LiDAR acquisition recorded in 2002 and 2003 particularly showed a rather poor quality with about only 0.04 point per m$^2$, while more recently acquired datasets contained more than 5 points per m$^2$. Furthermore CHM information was not available at 16 sample locations due to sensor failures. These plots were deleted from the sampling frame and its non-available information thus treated as missing at random. This assumption was considered to be reasonable as the respective sample locations did not exclude specific forest structures.
 
 % ---------------------------------------------- %
 \subsubsection{Tree species map}
 \label{sec:tspecclass}
 
-The second source of auxiliary information was a countrywide satellite-based classification map of the five main tree species (European beech, Sessile and Pedunculate oak, Norway spruce, Douglas fir, Scots pine) described in \citet{stoffels2015} (Figure \ref{fig:Auxvars}, \textit{bottom}). The classified tree species map has a grid size of 5 meters and was calculated from 22 bi-temporal satellite images (SPOT5 and RapidEye) by application of a spatially adaptive classification algorithm described in \citet{stoffels2012}.  As timber volume estimations on the tree level are often based on species-specific biomass and volume equations, the use of tree species information - especially for timber volume estimation - has often been stated as a key factor for improving the estimation precision \cite{white2016}. In this respect, incorporating the tree species map information was particularly attractive as it predicts five of the seven tree species that are used in the BWI3 taper functions \citep{kublin2013} to calculate the timber volume of a sample tree. However, due to unavailable satellite data for the classification, the tree species map excluded one large patch with an area of 415 km$^2$ in the south-west part of RLP covering an entire FA-unit (10 FR units respectively). In 9 additional FR units, the tree species information was also missing for a subset of the sample locations due to two additional patches with an area of 76 km$^2$ and 100 km$^2$ in the northern part of RLP. For these parts, small area estimation was thus restricted to using only the available CHM information in the regression model. With respect to model fitting, the tree species information was missing for 407 (7\%) of the 5791 sample locations. A summary of the sample sizes and missing auxiliary information is again provided in Table \ref{tab:ssize}.
+Additional auxiliary data was derived from a countrywide satellite-based classification map predicting the five main tree species \citep{stoffels2015}, i.e. European beech, Sessile and Pedunculate oak, Norway spruce, Douglas fir and Scots pine (Fig. \ref{fig:Auxvars}, \textit{bottom}). The tree species map has a grid size of 5 meters and was calculated from 22 bi-temporal satellite images (SPOT5 and RapidEye) by application of a spatially adaptive classification algorithm \citep{stoffels2012}. As timber volume estimations on the tree level are often based on species-specific biomass and volume equations, the use of tree species information has often been stated as a key factor for improving the precision of timber volume estimates \cite{white2016}. In this respect, incorporating the tree species map was particularly attractive as it predicts five of the seven tree species that are used in the BWI3 taper functions \citep{kublin2013} to calculate the timber volume of a sample tree. However, due to unavailable satellite data, the tree species map excluded one large patch with an area of 415 km$^2$ in the south-west part of RLP covering an entire FA unit (10 FR units respectively). In 9 additional FR units, the tree species information was also missing for a subset of the sample locations due to two additional patches with an area of 76 km$^2$ and 100 km$^2$ in the northern part of RLP. For these 19 FR units, small area estimation was thus restricted to using only the available CHM information in the regression model. With respect to fitting the internal model for estimation, the tree species information was missing for 411 (7\%) of the 5791 sample locations. A summary of the sample sizes and missing auxiliary data for both the CHM and the tree species map is provided in Table \ref{tab:ssize}.
 
 % neu:
 \begin{table}[H]
@@ -376,7 +373,7 @@ The second source of auxiliary information was a countrywide satellite-based cla
 				\hline
 				\multicolumn{1}{c|}{\textit{Sampling frame}} & \multicolumn{1}{c|}{\textbf{$n_{1,plot}$}}  & \multicolumn{1}{c|}{\textbf{$n_1$}}  & \multicolumn{1}{c|}{\textbf{$n_{2,plot}$}}  & \multicolumn{1}{c}{\textbf{$n_2$}} \\ % <-- added & and content for each column
 				\hline \hline
-				communal and state forest & 96'854 & 33'365 & 5791 & 2055\\ % <--
+				communal and state forest & 96'854 & 33'365 & 5791 & 2055\\
 				\hspace{5mm} \footnotesize missing CHM & \footnotesize 18 & \footnotesize 10 & \footnotesize 0 & \footnotesize 0\\ % <--
 				\hspace{5mm} \footnotesize missing TSPEC & \footnotesize 7060  & \footnotesize 3587 & \footnotesize 414 & \footnotesize 385\\ % <--
 				\hspace{5mm} \footnotesize missing CHM \textit{and} TSPEC & \footnotesize 3 & \footnotesize 2 & \footnotesize 0 & \footnotesize 0\\ % <--
@@ -392,7 +389,7 @@ The second source of auxiliary information was a countrywide satellite-based cla
 \begin{figure}[H]
 	\centering
 	\resizebox{0.9\hsize}{!}{\includegraphics*{fig/AuxvarsLOWRES.png}}
-	\caption{Left: CHM (top) and tree species classification map (bottom) available on the federal state level were used as auxiliary information. Right: Magnified illustration of the rectangular supports used to derive the explanatory variables from the auxiliary information.}
+	\caption{Left: CHM (top) and tree species classification map (bottom) available on the federal state level were used as auxiliary information. Right: Magnified illustration of the supports used to derive the explanatory variables from the auxiliary data.}
 	\label{fig:Auxvars}
 \end{figure}
 
@@ -400,16 +397,18 @@ The second source of auxiliary information was a countrywide satellite-based cla
 
 
 % ---------------------------------------------- %
-\subsection{Calculation of the auxiliary variables}
+\subsection{Calculation of the explanatory variables}
 \label{sec:expvarcalc}
 
-\subsubsection{LiDAR canopy height model}
+\subsubsection{ALS canopy height model}
 
-From the CHM, the mean canopy height (\textit{meanheight}) and the standard deviation (\textit{stddev}) was calculated by evaluating the raster values around each sample location within a predefined rectangular square (support) with a side length of 12 meters that was centered around the sample plot centers. Each support was previously intersected with the forest polygon layer in order to evaluate auxiliary information only within the forest definition. The percentage of the non-intersected support within the forest layer was used as the weight $w(x_l)$ introduced in  Eq. \ref{eq:Zc(x)}. Furthermore, the year of the LiDAR acquisition (\textit{lidaryear}) was derived as an additional categorical variable to account for the time-lag between the CHM information and the terrestrial survey as well as to explain heterogeneity in the data introduced by the varying LiDAR quality. Adjustments were made to the original acquisition years by introducing an additional factor level \textit{2008\_1} for a subset of the 2008 acquisition where the quality turned out to be considerably poor due to a sensor error. In addition, the years 2006 and 2007 as well as 2012 and 2013 were pooled in order to increase the number of observations per factor level, resulting in nine categories in total (\textit{2002}, \textit{2003}, \textit{2007}, \textit{2008\_1}, \textit{2008}, \textit{2009}, \textit{2010}, \textit{2011} and \textit{2012}).
+Continuous explanatory variables derived from the CHM were the mean canopy height (\textit{meanheight}) and the standard deviation (\textit{stddev}). The quantities were calculated by evaluating the raster values around each sample location within a predefined circle (\textit{support}) with a radius of 12 meters. In order to correct for edge effects at the forest border, each support area was previously intersected with the state and communal forest area, which was defined by a polygon mask provided by the state forest service. The percentage of the support within the forest layer was used as the weight $w(x_l)$ introduced in Eq. \ref{eq:Zc(x)} in order to derive the weighted mean of the explanatory variables on the cluster level. Restricting the auxiliary data evaluation to the forest area was primarily a means to optimize the coherence between explanatory variables computed at the forest boundary and the corresponding local density, but also supports the consistency with the sampling frame (section \ref{ext_to_2phase}). In particular, the BWI3 survey applies an edge correction at the forest border at the individual tree level by intersection of the trees' inclusion circle with the forest border. An adjustment for the fact that part of a trees' inclusion circle is outside the forest area is then realized by increasing its counting factor, which would otherwise lead to an underestimation of the local density. Since the ALS height values will usually drop to around zero outside the forest area, neglecting the edge correction of the support attenuates the mean canopy height value towards zero and thus increases the discrepancy to the local density.\par
+We further derived the year of the ALS acquisition (\textit{ALSyear}) as an additional categorical variable which was used to account for the time-lag between the CHM information and the terrestrial survey as well as to explain heterogeneity in the data introduced by the varying ALS quality. Adjustments were made to the original acquisition years by introducing an additional factor level \textit{2008\_1} for a subset of the 2008 acquisition where the quality turned out to be considerably poor due to a sensor error. In addition, the years 2006 and 2007 as well as 2012 and 2013 were pooled in order to increase the number of observations per factor level, resulting in nine categories in total (\textit{2002}, \textit{2003}, \textit{2007}, \textit{2008\_1}, \textit{2008}, \textit{2009}, \textit{2010}, \textit{2011} and \textit{2012}).
+
 
 \subsubsection{Tree species map}
 
-The tree species map information was used to predict the main tree species of a sample plot (\textit{treespecies}). This implied two consecutive processing steps. In the \textit{first} step, one of the five tree species was assigned to a sample location if 100\% of the raster values within the same support as used for the CHM were classified as that species. Otherwise, the sample location was assigned the value 'mixed'. It should be mentioned that the support size and the percentage threshold are parameters that can be optimised in order to achieve the best variance decomposition and thus improvement in model accuracy when using the categorical \textit{treespecies} variable in a regression model. \citet{hill2017a} conducted a detailed analysis of how to optimally derive the auxiliary variables for the present data set and identified the above described settings as the most suitable. It was additionally shown that using the random forest algorithm by \citet{breiman2001} for a calibration of the predicted main plot species on the actual main taper-function species derived from the terrestrial inventory data could boost the classification accuracy in the classes \textit{Scots pine} and \textit{Douglas Fir}, which performed considerably worse than the remaining species (Table \ref{tab:classacc}). The calibration was able to considerably mitigate the effects of misclassification on the regression coefficients and thus allowed for an increase in model accuracy. In a \textit{second} step, we thus provided the random forest algorithm in the statistical software R \citep{R} with the actual main taper-function species derived from the terrestrial inventory data as response variable as well as a full set of $p$ predictor variables that comprised the initial prediction of the main plot tree species (\textit{treespecies}), the mean canopy height (\textit{meanheight}) and standard deviation ($stddev$) derived from the CHM, the proportion of coniferous trees estimated from the tree species classification map ($prop.conif$) and the bioclimatic growing region ($wgb$) at the sample location. The algorithm was grown with 2000 trees, considering $\sqrt{p} \approx$ 3 of the predictors for each split. The resulting random forest model was consequently applied at all sample locations $s_1$ to provide the \textit{treespecies} variable.
+The tree species map information was used to predict the main tree species of the sample trees at each sample plot (\textit{treespecies}) as an additional categorical variable. This implied two consecutive processing steps. In the \textit{first} step, one of the five tree species was assigned to a sample location if 100\% of the raster values within the edge-corrected support were classified as that species. Otherwise, the sample location was assigned the value 'mixed'. Likewise for the CHM variables, the support radius was 12 meters although the use of different support sizes for each explanatory variable would be in agreement with the two-phase estimators presented in section \ref{sec:SAestimators}. When using the \textit{treespecies} variable in a regression model, the support size and the percentage threshold particularly constitute parameters to be optimized in order to achieve an optimal variance decomposition of the data that subsequently leads to the best possible model accuracy. A detailed analysis and description of the optimal processing parameters for the explanatory variables of the present data set is provided in \citet{hill2017a}. In this study, the authors also applied a calibration model to the initially derived \textit{treespecies} variable that successfully removed the effects of misclassification errors on the regression model coefficients and increased the model accuracy. The calibration model consists of a decision tree from a random forest algorithm \citet{breiman2001} that was trained to predict the actual main plot tree species (known for all terrestrial plots) based on available auxiliary variables. These variables were the predicted \textit{treespecies} variable, the mean canopy height and standard deviation of the CHM, as well as the proportion of coniferous trees estimated from the classification map and the growing region derived from a polygon map. The algorithm was grown with 2000 trees considering $\sqrt{p} \approx$ 3 of the predictors for each split. In a \textit{second} step, we thus applied this calibration model to the \textit{treespecies} variable derived at all sample locations $s_1$. Table \ref{tab:classacc} gives the classification accuracies of the \textit{treespecies} variable before and after calibration.
 
 \begin{table}[H]
 	\begin{center}
@@ -417,7 +416,7 @@ The tree species map information was used to predict the main tree species of a 
 	\vspace{0.2cm}
 	\label{tab:classacc}
  {\small %
-	\begin{tabular}{c|c|c|c|c|c|c|c} %8cols
+	\begin{tabular}{l|c|c|c|c|c|c|c} %8cols
 		\hlineB{1}
 		\multirow{2}{*}{Main plot species} & \multicolumn{2}{c|}{Producer's accuracy[\%]} & \multicolumn{2}{c|}{User's accuracy[\%]} & \multirow{2}{*}{nref} & \multicolumn{2}{c}{nclass} \\ 
 		\cline{2-3} \cline{4-5} \cline{7-8} & uncalib & calib & uncalib & calib & & uncalib & calib \\
@@ -442,31 +441,39 @@ The tree species map information was used to predict the main tree species of a 
 \subsection{Regression Model}
 \label{sec:regmod}
 
+The model selection constituted a major part of the current study, especially because several issues such as a) the heterogeneity in the remote sensing data, b) the identification of the optimal support sizes under angle count sampling and c) the incorporation of tree species information had to be addressed and investigated in order to identify the most accurate regression model realizable under the given data. We will here thus only provide a shortened summary of the extensive analysis carried out and refer to the study of \citet{hill2017a} if the reader is interested in more detailed information on the subjects.\par
+
+The model with highest \adjrsq{} and lowest RMSE was achieved with the variables \meanheight{}, \meanheight{}$^2$, \stddev{} and \alsyear{} from the ALS data as well as the \treespecies{} variable from the classification map as main effect terms. Additionally, interaction terms between \meanheight{} and \alsyear{}, \stddev{} and \alsyear{} , \meanheight{} and \stddev{}, and \meanheight{} and \treespecies{} were included. The model yielded an \adjrsq{} of 0.48 and an RMSE of 140.62 \mha{} (46.7\%) on the plot level (table \ref{tab:modacc_modterms}, full model). While the study of \citet{hill2017a} only provide the model evaluations on the plot level, the two-phase estimators described in section \ref{sec:SAestimators} derive and apply the regression coefficients and the residuals on the aggregated cluster level. We thus re-evaluated the model as used in the estimators also on the cluster level and found the model accuracies to be higher than on the plot level (\adjrsq{} of 0.53 and RMSE of 101.61 \mha{} and 33.6\%). A substantial improvement of the model accuracy was achieved by the stratification to ALS acquisition years, which otherwise considerably lowered the \adjrsq{} due to increased unexplained variation in the data. An additional evaluation of the model residuals within each ALS acquisition year stratum (table \ref{tab:adj_r2_within}) revealed that a) the model accuracy substantially varied between the strata and b) high \adjrsq{} values of 0.59 even up to 0.66 on the cluster level were particularly achieved in acquisition year strata close to the date of the terrestrial survey (2010--2012). This effect was substantially diminished when dropping the \alsyear{} variable from the model.\par
+
+As depicted in section \ref{sec:tspecclass}, the information of the tree species classification map was missing within 1 FA and 19 FR units. For these small area units, we applied the regression model without the \treespecies{} variable (table \ref{tab:modacc_modterms}, reduced model). However, the model accuracy of the full and reduced model were found to be very similar on both the plot and cluster level. We thus assumed that the application of the reduced model would not cause substantially larger estimation errors as compared to the full model and subsequently performed a joint evaluation of the estimation results in section \ref{sec:Res}.
+
+% Table 1:
+\input{tab/modacc_modterms.tex}
+
+Discuss outliers etc. here ...
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% Table 2:
 \input{tab/mod_r2_lyearstrata_table.tex}
 
 
 
-\input{tab/modacc_modterms.tex}
+%% NOTES:
+%
+% - we will here thus only provide a shortened summary of the regression model and refer to the study of \citet{hill2017a} if the reader is interested in more detailed information on the subjects.
+%
+% - 
+% - differences: zero-plots included (basically, we here HAVE to use ALL plots for the regression model calibration --> because we use an internal model)
+%   --> comment on the (non) removal of outliers / leverage plots: see review-answers --> plots stay in dataset with exception of truly erroneous local density variables
+%       'plots kept in the sampling frame (i.e. they are used as x e s2 in the estimators) MUST also be kept in the modelling frame --> to insure the zero-mean-residual assumption'
+%       (important: also leverage plots or "outliers" might have a good reason to be kept in the sampling / modelling frame --> think of sherman tree)
+%
+% for discussion: better than removing plots would be the the use of disturbance classes (Massey --> change estimation) in order to decrease the impact on plots where major cuttings took place
+% between the ALS acquisition and the terrestrial survey. However, this is not possible if one height acquisition is available
+
+
+
+
 
 
 
@@ -479,9 +486,6 @@ The tree species map information was used to predict the main tree species of a 
 
 
 \newpage
-
-
-
 % ======================================================================================================================== %
 % NOTES:
 % - Study Area **
