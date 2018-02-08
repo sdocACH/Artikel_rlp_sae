@@ -411,30 +411,56 @@ We further derived the year of the ALS acquisition (\textit{ALSyear}) as an addi
 
 The tree species map information was used to predict the main tree species of the sample trees at each sample plot (\textit{treespecies}) as an additional categorical variable. This implied two consecutive processing steps. In the \textit{first} step, one of the five tree species was assigned to a sample location if 100\% of the raster values within the edge-corrected support were classified as that species. Otherwise, the sample location was assigned the value 'mixed'. Likewise for the CHM variables, the support radius was 12 meters although the use of different support sizes for each explanatory variable would be in agreement with the two-phase estimators presented in section \ref{sec:SAestimators}. When using the \textit{treespecies} variable in a regression model, the support size and the percentage threshold particularly constitute parameters to be optimized in order to achieve an optimal variance decomposition of the data that subsequently leads to the best possible model accuracy. A detailed analysis and description of the optimal processing parameters for the explanatory variables of the present data set is provided in \citet{hill2017a}. In this study, the authors also applied a calibration model to the initially derived \textit{treespecies} variable that successfully removed the effects of misclassification errors on the regression model coefficients and increased the model accuracy. The calibration model consists of a decision tree from a random forest algorithm \citet{breiman2001} that was trained to predict the actual main plot tree species (known for all terrestrial plots) based on available auxiliary variables. These variables were the predicted \textit{treespecies} variable, the mean canopy height and standard deviation of the CHM, as well as the proportion of coniferous trees estimated from the classification map and the growing region derived from a polygon map. The algorithm was grown with 2000 trees considering $\sqrt{p} \approx$ 3 of the predictors for each split. In a \textit{second} step, we thus applied this calibration model to the \textit{treespecies} variable derived at all sample locations $s_1$. Table \ref{tab:classacc} gives the classification accuracies of the \textit{treespecies} variable before and after calibration.
 
+
 \begin{table}[H]
 	\begin{center}
-	\caption{Classification accuracies of the \textit{treespecies} variable before and after calibration. $n_{ref}$: number of terrestrial reference plots. $n_{class}$: number of classified plots.}
-	\vspace{0.2cm}
-	\label{tab:classacc}
- {\small %
-	\begin{tabular}{l|c|c|c|c|c|c|c} %8cols
-		\hlineB{1}
-		\multirow{2}{*}{Main plot species} & \multicolumn{2}{c|}{Producer's accuracy[\%]} & \multicolumn{2}{c|}{User's accuracy[\%]} & \multirow{2}{*}{nref} & \multicolumn{2}{c}{nclass} \\ 
-		\cline{2-3} \cline{4-5} \cline{7-8} & uncalib & calib & uncalib & calib & & uncalib & calib \\
-		\hline \hline	
-		 Beech       & 29.56 & 22.31 & 46.11 & 47.02 & 883 & 566 & 419 \\
-		 Douglas Fir & 33.04 & 24.78 & 47.50 & 48.72 & 230 & 160 & 117 \\
-		 Oak         & 47.75 & 11.07 & 24.34 & 48.48 & 289 & 567 & 66 \\
-		 Spruce      & 43.63 & 53.15 & 60.81 & 61.13 & 651 & 467 & 566 \\
-		 Scots Pine  & 55.87 & 22.91 & 29.59 & 46.07 & 179 & 338 & 89 \\
-		 Mixed       & 66.40 & 84.49 & 63.69 & 64.53 & 3152 & 3286 & 4127 \\
-		\hline
-		 & \multicolumn{4}{l|}{Overall accuracy: 54.83\% (61.96\%)} & 5384 & \multicolumn{2}{c}{5384} \\
-		 \hline \hline
-	\end{tabular}
-}%
+		\caption{Classification accuracies of the \textit{treespecies} variable before and after calibration. $n_{ref}$: number of terrestrial reference plots. $n_{class}$: number of classified plots.}
+		\vspace{0.2cm}
+		\label{tab:classacc}
+		{\small %
+			\begin{tabular}{l|c|c|c|c} %8cols
+				\hlineB{1}
+				Main plot species & Producer's accuracy[\%] & User's accuracy[\%] & nref & nclass \\
+				\hline \hline	
+				Beech       & 22.31 & 47.02 & 883 & 419 \\
+				Douglas Fir & 24.78 & 48.72 & 230 & 117 \\
+				Oak         & 11.07 & 48.48 & 289 & 66 \\
+				Spruce      & 53.15 & 61.13 & 651 & 566 \\
+				Scots Pine  & 22.91 & 46.07 & 179 & 89 \\
+				Mixed       & 84.49 & 64.53 & 3152 & 4127 \\
+				\hline
+				& \multicolumn{2}{l|}{Overall accuracy: 61.96\%} & 5384 & 5384 \\
+				\hline \hline
+			\end{tabular}
+		}%
 	\end{center}
 \end{table}
+
+
+%\begin{table}[H]
+%	\begin{center}
+%	\caption{Classification accuracies of the \textit{treespecies} variable before and after calibration. $n_{ref}$: number of terrestrial reference plots. $n_{class}$: number of classified plots.}
+%	\vspace{0.2cm}
+%	\label{tab:classacc}
+% {\small %
+%	\begin{tabular}{l|c c|c c|c|c c} %8cols
+%		\hlineB{1}
+%		\multirow{2}{*}{Main plot species} & \multicolumn{2}{c|}{Producer's accuracy[\%]} & \multicolumn{2}{c|}{User's accuracy[\%]} & \multirow{2}{*}{nref} & \multicolumn{2}{c}{nclass} \\ 
+%		\cline{2-3} \cline{4-5} \cline{7-8} & uncalib & calib & uncalib & calib & & uncalib & calib \\
+%		\hline \hline	
+%		 Beech       & 29.56 & 22.31 & 46.11 & 47.02 & 883 & 566 & 419 \\
+%		 Douglas Fir & 33.04 & 24.78 & 47.50 & 48.72 & 230 & 160 & 117 \\
+%		 Oak         & 47.75 & 11.07 & 24.34 & 48.48 & 289 & 567 & 66 \\
+%		 Spruce      & 43.63 & 53.15 & 60.81 & 61.13 & 651 & 467 & 566 \\
+%		 Scots Pine  & 55.87 & 22.91 & 29.59 & 46.07 & 179 & 338 & 89 \\
+%		 Mixed       & 66.40 & 84.49 & 63.69 & 64.53 & 3152 & 3286 & 4127 \\
+%		\hline
+%		 & \multicolumn{4}{l|}{Overall accuracy: 54.83\% (61.96\%)} & 5384 & \multicolumn{2}{c}{5384} \\
+%		 \hline \hline
+%	\end{tabular}
+%}%
+%	\end{center}
+%\end{table}
 
 
 
@@ -444,26 +470,36 @@ The tree species map information was used to predict the main tree species of th
 
 The model selection constituted a major part of the current study, especially because sophisticated challenges such as a) the heterogeneity in the remote sensing data, b) the identification of the optimal support sizes under angle count sampling and c) the incorporation of tree species information had to be addressed and investigated in order to identify the most accurate regression model realizable under the given data. We will here thus only provide a shortened summary of the extensive analysis carried out and refer to the study of \citet{hill2017a} if the reader is interested in more detailed information on the subjects.\par
 
-The model with highest \adjrsq{} and lowest RMSE was achieved with the variables \meanheight{}, \meanheight{}$^2$, \stddev{} and \alsyear{} derived from the ALS data as well as the \treespecies{} variable derived from the classification map as main effect terms. Additionally, interaction terms between \meanheight{} and \alsyear{}, \stddev{} and \alsyear{} , \meanheight{} and \stddev{}, and \meanheight{} and \treespecies{} were included. The model yielded an \adjrsq{} of 0.48 and an RMSE of 140.62 \mha{} (46.7\%) on the plot level (table \ref{tab:modacc_modterms}, full model). While the study of \citet{hill2017a} only provide the model evaluations on the plot level, the two-phase estimators described in section \ref{sec:SAestimators} derive and apply the regression coefficients and the residuals on the aggregated cluster level. We thus re-evaluated the model as used in the estimators also on the cluster level and found the model accuracies to be higher than on the plot level (\adjrsq{} of 0.53 and RMSE of 101.61 \mha{} and 33.6\%). A stratification to the ALS acquisition years substantially improved the model accuracy and thus proved to be an effective means in accounting for the artificially introduced noise in the data set due to ALS quality variations and time-gaps between the ALS and the terrestrial survey. However, the stratification led to highly unbalanced datasets when stratifying according to the \treespecies{} variable. For this reason, a species individual modelling within each \alsyear{} stratum remained infeasible, but might have further improved the model accuracy. An additional evaluation of the model residuals within each ALS acquisition year stratum (table \ref{tab:adj_r2_within}) revealed that the model accuracies substantially varied between the strata (table \ref{tab:adj_r2_within}). \adjrsq{} values above the average  were particularly achieved in ALS acquisition years close to the terrestrial survey date (0.59 even up to 0.66 on the cluster level). This effect was substantially diminished when dropping the \alsyear{} variable from the model term.\par
+The model with highest \adjrsq{} and lowest RMSE was achieved with the variables \meanheight{}, \meanheight{}$^2$, \stddev{} and \alsyear{} derived from the ALS data as well as the \treespecies{} variable derived from the classification map as main effect terms. Additionally, interaction terms between \meanheight{} and \alsyear{}, \stddev{} and \alsyear{}, \meanheight{} and \stddev{}, and \meanheight{} and \treespecies{} were included. The model yielded an \adjrsq{} of 0.48 and an RMSE of 140.62 \mha{} (46.7\%) on the plot level (table \ref{tab:modacc_modterms}, full model). While the study of \citet{hill2017a} only provide the model evaluations on the plot level, the two-phase estimators described in section \ref{sec:SAestimators} derive and apply the regression coefficients and the residuals on the aggregated cluster level. We thus re-evaluated the model as used in the estimators also on the cluster level and found the model accuracies to be higher than on the plot level (\adjrsq{} of 0.53 and RMSE of 101.61 \mha{} and 33.6\%). A stratification to the ALS acquisition years substantially improved the model accuracy and thus proved to be an effective means in accounting for the artificially introduced noise in the data set due to ALS quality variations and time-gaps between the ALS and the terrestrial survey. However, the stratification led to a highly unbalanced dataset when stratifying according to the \treespecies{} variable. For this reason, a species individual modeling within each \alsyear{} stratum remained infeasible, but might have further improved the model accuracy. An additional evaluation of the model residuals within each ALS acquisition year stratum revealed that the model accuracies substantially varied between the strata (table \ref{tab:adj_r2_within}). Values above the overall \adjrsq{} were particularly achieved in ALS acquisition years close to the terrestrial survey date (0.59 to 0.66 on the cluster level). This effect was substantially diminished when dropping the \alsyear{} variable from the model term.\par
 
 As depicted in section \ref{sec:tspecclass}, the information of the tree species classification map was missing within 1 FA and 19 FR units. For these small area units, we applied the regression model without the \treespecies{} variable (table \ref{tab:modacc_modterms}, reduced model). However, the model accuracy of the full and reduced model were found to be very similar on both the plot and cluster level. We thus assumed that the application of the reduced model would not cause substantially larger estimation errors as compared to the full model and subsequently performed a joint evaluation of the estimation results in section \ref{sec:Res}.
 
 % Table 1:
 \input{tab/modacc_modterms.tex}
 
-It should be mentioned that there is a major difference between the external and internal model approach concerning the treatment of outliers or leverage points for model fitting. In order to ensure the zero-mean-residual property of the \psmall{} and \extpsynth{} estimator under the internal model approach (section \ref{sec:psmall} and \ref{sec:extpsynth}), all observations of the terrestrial sample locations $x \in s_2$ used for estimation must also be included in the modelling frame. Excluding an observation from the model fit thus requires deleting it also from the sampling frame, which has to be regarded as an interference with the random sampling process the design-based inference relies on. For this reason, a removal of potential outliers or leverage points is, strictly speaking, only justified if the terrestrial response value or the explanatory variable value turns out to be truly erroneous (e.g. typos or erroneous measurements). If this is not the case, the removal of outliers or influential data points might increase the model fit, but to the cost of possible bias for the estimates (bias-variance trade-off). 
-
-We conducted a leverage and outlier detection on the plot level for the full regression model applying the usual criteria of \textit{Leverages} and \textit{Cook's Distance} as amongst others described in \citet{fahrmeir2013}. The Cook's Distance values $D_i$ did not exceed a value of 0.019, and thus were far apart from the often cited critical threshold of $D_i > 0.5$. However, the critical threshold of $2p/n$ for the leverage values (i.e. twice the average of the hat matrix' diagonal entries) was exceeded by 10\% (568) of the (5377) observations. 
-
-
-
-We conducted an Influence Analysis, i.e. leverage / outlier detection, for the 'final model'. We here considered the usually applied criteria of \textit{Leverages} and \textit{Cook's Distance} as amongst others described in Fahrmeir 2013 \{Regression: models, methods and applications. \textit{Springer Science \& Business Media}. page 164-167\}. The critical threshold of $2p/n$ (i.e. twice the average of the hat matrix' diagonal entries), was exceeded by 10\% of the observations. However, only 3\% of these leverage points were assigned to studentized residuals > 1 or < -1. Leaving these 3\% of points out and recalculating the final model lead to a $R^{2}_{adj}$ of 0.494 compared to 0.485 when including them in the regression. The Cook's Distance values $D_i$ did not exceed a value of 0.019, and thus were far apart from the often cited critical threshold of $D_i > 0.5$. Based on these findings, we decided not to remove observations from the modelling data set. We added a paragraph commenting on this issue of influential data points in section 3.3 'Final Regression Model', page 9 RHS line 690-707.
-
-
-
+Concerning the treatment of outliers or leverage points for model fitting, it should be noted that there is a major difference between the external and internal model approach. In order to ensure the zero-mean-residual property of the \psmall{} and \extpsynth{} estimator under the internal model approach (section \ref{sec:psmall} and \ref{sec:extpsynth}), all observations of the terrestrial sample $s_2$ used for estimation must also be included in the modeling frame. Thus, excluding an observation from the model fit does also require its deletion from the sampling frame, which has to be regarded as an interference with the random sampling process the design-based inference relies on. For this reason, a removal of potential outliers or leverage points is, strictly speaking, only justified if the terrestrial response value or the explanatory variable value turns out to be truly erroneous (e.g. typos or measurement errors). If this is not the case, the removal of outliers or influential data points might increase the model fit, but to the cost of possible bias for the estimates. With respect to these considerations, we conducted an analysis of influential observations \citep[pp. 160--167]{fahrmeir2013} on the plot level for the full regression model. In order to identify implausible observations in the explanatory data, we calculated the \textit{leverage} values and found that the critical threshold of $2p/n$ (i.e. twice the average of the hat matrix' diagonal entries) was exceeded by 10\% of all observations. Further investigation revealed that several leverage points showed unusually large \meanheight{} values associated to their respective timber volume density values. These implausible height values particularly occured in ALSyear acquisition years differing from the terrestrial survey date and were thus much more likely caused by harvesting activities in the sample plot area than erroneous ALS data. A deletion of these plots from the sampling frame was thus not justified due to the reasons given before. Also the remaining leverage points could not be definitely attributed to erroneous auxiliary data and were kept in the data set. The same was true for 10 observation with exceptionally large local density values that were identified as \textit{outliers}.
 
 % Table 2:
 \input{tab/mod_r2_lyearstrata_table.tex}
+
+
+%% Notes on leverages:
+%
+% - 568 plots exceed the critical threshold of 2p/n
+% - 1/5 (20\%) 
+% - leverages that can indeed be assumed to have a significant influence on the regression coefficients particularly were 
+%   a) per se small \meanheight{} values associated to small timber volume densities
+%   b) unusually large \meanheight{} values associated to small timber volume values. These implausible height values particularly occured in ALSyear acquisition years differing from the terrestrial survey. These leverage points were thus much more likely caused by harvesting activities in the sample plot area than erroneous ALS data. A deletion of these plots from the sampling / modelling frame was thus not justified due to the reasons given before. However, fitting the model without these plots turned out not to have any influence on the regression coefficients and the overall model accuracy. 
+
+% x-values at the boundaries (small and large values) usually have a high leverage. It does not mean that they are invalid / erroneous.
+
+
+%We conducted an Influence Analysis, i.e. leverage / outlier detection, for the 'final model'. We here considered the usually applied criteria of \textit{Leverages} and \textit{Cook's Distance} as amongst others described in Fahrmeir 2013 \{Regression: models, methods and applications. \textit{Springer Science \& Business Media}. page 164-167\}. The critical threshold of $2p/n$ (i.e. twice the average of the hat matrix' diagonal entries), was exceeded by 10\% of the observations. However, only 3\% of these leverage points were assigned to studentized residuals > 1 or < -1. Leaving these 3\% of points out and recalculating the final model lead to a $R^{2}_{adj}$ of 0.494 compared to 0.485 when including them in the regression. The Cook's Distance values $D_i$ did not exceed a value of 0.019, and thus were far apart from the often cited critical threshold of $D_i > 0.5$. Based on these findings, we decided not to remove observations from the modelling data set. We added a paragraph commenting on this issue of influential data points in section 3.3 'Final Regression Model', page 9 RHS line 690-707.
+
+
+
+
+
 
 
 
