@@ -1,31 +1,51 @@
 \section{Discussion} %article
 \label{sec:Dis}
 
-%\subsection{Stratification according to Tree Species and LiDAR Acquisitions}
+% ----------------------------------------------------------------------- %
+% ----------------------------------------------------------------------- %
+%\subsection{Stratification according to ALS Acquisition Years and Tree Species}
 %\label{sec:strat_dis}
 
 
 % NOTES:
+%
+% - extension to change estimation
+%   o BDOM more frequently updated, max. 1 year time gap between CHM and BWI3 survey
+%   o also treespecies classific. frequently updated using sentinel 2 data
+%   o the gain in model accuracy will certainly considerably increase if the ALSyear stratification becomes unnecessary Value increase also in combination with
+%     further explanatory variables such as growing conditions
+%
+% - transfer of the suggested procedure to FDI inventories: maybe possible to get qunatified data for stands with acceptable estimation errors? (would be of high interest)
+%
+% - main findings:
+%   o FA-level: 
+%     + problem of large estiamtion errors solved on FA-level (average error of 5\%, 95\% <= 6.6%)
+%
+%   o FR-level:
+%     + in most FR units (95\%), errors could be limited to 20\% compared to 40\% under SRS (status quo)
+%     + however, the FA error level could not be achieved, due to much smaller sample sizes on the FR level
+%     + 
+%
+%
+% - the extpsynth estimator seems to generally produce slightly smaller variances and est. errors than psmall. This most probably caused marginally smaller residuals in the small area unit due to the adjustment of the intercept (which is primarily a means to ensure the zero-mean-residual property). Our analysis indicated that the difference between the two estimators get negligible for sample sizes > 10 due to their asymptotic relationship. Reassuringly, violations of the extpsynth estimator by one or more clusters not entirely included in G did not have an impact on the estimates.
+%
+% - our advice: if possible, calculate both estimators (two opinions). Differences might reveal undetected patterns in the data.
+%
+% - the decision wether the errors are acceptable cannot be answered here but (in our opinion) depend on the question whether ... decisions can be made based on the provided Confidence Intervals.
+% - in a next step, we will investigate whether the derived confidence intervals are sufficient to be used as a validation for the stand-wise inventories (Kuliesis et al.)
+% 
+%
+%
+%
+%
+%
+%
 %
 % - Kuliesis et al.:  --> "NFI [provide reliable estimates for the most important attributes and] can be used 
 %                          as a tool for validation of all other inventories", i.e. stand-wise inventories
 %                     ==> in our case, we can say that we illustrated how the German NFI data can now be used
 %                         for this purpose, i.e. providing of reliable data to validate the stand-wise inventories
 %
-%
-% --> Extension to at least partially exhaustive estimator (three-phase non-exhaustive) if auxiliary data are really exhaustively
-%     available
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-
 
 
 

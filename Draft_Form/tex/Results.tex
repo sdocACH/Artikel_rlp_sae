@@ -119,7 +119,7 @@ Figure \ref{fig:disterrors} reveals that the error distribution of \psmall{} and
 \subsection{Reduction of SRS variance by \psmall{} and \extpsynth{}}
 \label{sec:gain_eval}
 
-A direct comparison of the achieved variances within the small area units revealed that the application of the design-unbiased estimators (\psmall{} and \extpsynth{}) led to a reduction of the SRS variance in all FA units. In 75\% of the FA units, the \extpsynth{} estimator was able to reduce the SRS variance by up to 54.1\% (fig. \ref{fig:gain}). The reduction in variance was also expressed in the relative efficiency values, which were 2.02 on average and ranged between 1.18 and 4.13 on the FA level. On FR-level, the reduction in variance and the relative efficiencies reached even higher values (table \ref{tab:gain}). The \psmall{} estimator again yielded slightly lower variance reductions and relative efficiencies due to the smaller variances produced by the \extpsynth{} estimator (section \ref{sec:comp}). However, cases also occurred on the FR level where one or both two-phase estimators produced larger variance values than under the SRS estimator. This particularly happened in 19\% (61) of the FR units under the \extpsynth{}, and in 24\% (76) of the FR units under the \psmall{} estimator.
+A direct comparison of the realized variances within the small area units revealed that the application of the design-unbiased estimators (\psmall{} and \extpsynth{}) led to a reduction of the respective SRS variance in all FA units. In 75\% of the FA units, the \extpsynth{} estimator was able to reduce the SRS variance by up to 54.1\% (fig. \ref{fig:gain}). The reduction in variance was also expressed in the relative efficiency values, which were 2.02 on average and ranged between 1.18 and 4.13 on the FA level. On FR-level, the reduction in variance and the relative efficiencies reached even higher values (table \ref{tab:gain} and fig. \ref{fig:gain}). The \psmall{} estimator again yielded slightly lower variance reductions and relative efficiencies due to the generally smaller variances of the \extpsynth{} estimator (section \ref{sec:comp}).
 
 \begin{figure}[H]
 	\centering
@@ -127,11 +127,6 @@ A direct comparison of the achieved variances within the small area units reveal
 	\caption{Cumulative distribution of variance reduction by the PSMALL and EXTPSYNTH compared to the SRS estimator for the  45 FA and 321 FR units.}
 	\label{fig:gain}
 \end{figure}
-
-
-One possible reason for an increased variance by the two-phase estimators was supposed to be a poor performance of the regression model within the small area unit. In order to investigate this hypothesis, we analyzed the three variance terms of the  \psmall{} estimator (eq. \ref{eq:psmall_var}), i.e. the variance introduced by the uncertainty of the regression coefficients (term 1), the variance caused by estimating the auxiliary means (term 2), and the variance of the model residuals that expresses the model performance within the small area (term 3). Figure \ref{fig:fail1} illustrates the reduction or increase of the SRS variance by \psmall{} for all FR units in dependence of the residual variance term proportion on the g-weight variance. Two issues become obvious: firstly, the residual term generally constitutes the dominating part of the g-weight variance for all \psmall{} estimates (around 84\% on average). FR units for which the \psmall{} estimator produced larger variances than the SRS estimator did not differ distinctly from the pattern of the remaining FR units. The same was also found when looking at the absolute residual term values (fig. \ref{fig:fail2}). Secondly, FR units with the highest variance increases compared to SRS were particularly observed under small terrestrial sample sizes $n_{2,G} = 4$. The average increase in variance for $n_{2,G} = 4$ was 272\% compared to 62\% for $n_{2,G} > 4$. In comparison, the average reduction in SRS variances was around 50\% for both sampling sizes $n_{2,G} = 4$ and $n_{2,G} > 4$. These findings suggest that moderate or poor model fits within a small area can cause the \psmall{} and \extpsynth{} estimator to produce higher variances than the SRS estimator particularly under small terrestrial sample sizes. However, small terrestrial sample sizes can also have the effect that the SRS estimator might not reflect the actual variation of the local density within a small area. In this case, the two-phase variance estimate might be larger but more realistic. Whereas a visual analysis of aerial images, remote sensing data or stand maps might give some evidence for this hypothesis, a definite proof is practically infeasible.
-
-
 
 \begin{table}[H]
 	\begin{center}
@@ -145,29 +140,41 @@ One possible reason for an increased variance by the two-phase estimators was su
 				\cline{4-9} & & & mean & min & max & mean & min & max \\
 				\hline \hline
 				\multirow{2}{*}{FA} & PSMALL    & ($N_u$=45)  & 33.51 &  2.6 & 72.5 & 1.74 & 1.03 & 3.64 \\
-				                    & EXTPSYNTH & ($N_u$=45)  & 43.30 & 15.7 & 75.8 & 2.03  & 1.18 & 4.13 \\
+				& EXTPSYNTH & ($N_u$=45)  & 43.30 & 15.7 & 75.8 & 2.03  & 1.18 & 4.13 \\
 				\hlineB{2}          
 				\multirow{2}{*}{FR} & PSMALL    & ($N_u$=321) & 12.48 & -1203.9 & 96.8 & 2.54 & 0.08 & 31.61  \\
-				                    & EXTPSYNTH & ($N_u$=321) & 24.75 & -892.7  & 97.0 & 2.95 & 0.10 & 33.70 \\
+				& EXTPSYNTH & ($N_u$=321) & 24.75 & -892.7  & 97.0 & 2.95 & 0.10 & 33.70 \\
 				\hline \hline
 			\end{tabular}
 		}%
 	\end{center}
 \end{table}
 
+However, cases also occurred on the FR level where one or both two-phase estimators produced larger variance values than under the SRS estimator. This particularly happened in 19\% (61) of the FR units under the \extpsynth{}, and in 24\% (76) of the FR units under the \psmall{} estimator. One possible reason for this was supposed to be a large residual variance due to a poor performance of the regression model within the small area unit. In order to investigate this hypothesis, we analyzed the three variance terms of the \psmall{} estimator (eq. \ref{eq:psmall_var}), i.e. the variance introduced by the uncertainty of the regression coefficients (term 1), the variance caused by estimating the auxiliary means (term 2), and the variance of the model residual (term 3).  The latter particularly expresses the model performance within the small area unit. Figure \ref{fig:fail} illustrates the percentage reduction or increase of the SRS variance when compared to the \psmall{} variance for all FR units in dependence on a) the impact of residual variance on the g-weight variance, and b) the terrestrial sample size $n_{2,G}$.\par
+
+Obviously, the residual term generally constitutes the dominating part of the \psmall{} g-weight variance (around 84\% on average). However, a high proportion of the residual variance term seems not to be the driver for large \psmall{} variances, as apparent from Fig. \ref{fig:fail} (\textit{right}). The FR units where the \psmall{} estimator produced larger variances than the SRS estimator did not systematically differ from the majority of the FR units where \psmall{} performed better than SRS. However, FR units with exceptionally large variance increases compared to SRS particularly occurred under small terrestrial sample sizes of $n_{2,G} = 4$ (fig. \ref{fig:fail}, \textit{left}). These FR units exhibited a 272\% average increase of the SRS variance, compared to 62\% for the critical FR units with $n_{2,G} > 4$. In comparison, the achievable reduction in SRS variances compared to SRS were not considerably impacted by the terrestrial sample size (fig. \ref{fig:fail}, \textit{right}). The average reduction of these units was around 50\% under sampling sizes of both $n_{2,G} = 4$ and $n_{2,G} > 4$. 
 
 \begin{figure}[H]
 	\centering
-	\resizebox{0.8\hsize}{!}{\includegraphics{fig/eval_2phase_fail_1.png}}
+	\resizebox{1\hsize}{!}{\includegraphics{fig/eval_2phase_fail_11.png}}
 	\caption{}
-	\label{fig:fail1}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\resizebox{0.8\hsize}{!}{\includegraphics{fig/eval_2phase_fail_2.png}}
-	\caption{}
-	\label{fig:fail2}
+	\label{fig:fail}
 \end{figure}
 
 
+
+
+% discussion: This also underlined why the \psynth{} estimator, which does not take the residual variation into account, produced substantially smaller variances than the design-unbiased estimator. 
+% These findings suggest that moderate or poor model fits within a small area can cause the \psmall{} and \extpsynth{} estimator to produce higher variances than the SRS estimator particularly under small terrestrial sample sizes.
+
+
+
+%\begin{figure}[H]
+%	\centering
+%	\resizebox{1\hsize}{!}{\includegraphics{fig/eval_2phase_fail.png}}
+%	\caption{}
+%	\label{fig:fail1}
+%\end{figure}
+
+
+% However, small terrestrial sample sizes can also have the effect that the SRS estimator might not reflect the actual variation of the local density within a small area. In this case, the two-phase variance estimate might be larger but more realistic. Whereas a visual analysis of aerial images, remote sensing data or stand maps might give some evidence for this hypothesis, a definite proof is practically infeasible.
