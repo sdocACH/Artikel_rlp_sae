@@ -316,8 +316,6 @@ In order to apply the small area estimators (Section (\ref{sec:SAestimators}), t
 % - Show (theoretical) increase in sample sizes by extension to 2phase scheme 
 %   --> these sample sizes are in the following reduced by missing rs-info
 %
-% - Add Graphik showing RLP, zoom into 3 management levels including 2-phase sample
-%   (big graphic, can take 1/2 page later)
 
 
 % ----------------------------------------------------------------------- %
@@ -419,7 +417,7 @@ The tree species map information was used to predict the main tree species of th
 		\label{tab:classacc}
 		{\small %
 			\begin{tabular}{l|c|c|c|c} %8cols
-				\hlineB{1}
+				\hline
 				Main plot species & Producer's accuracy[\%] & User's accuracy[\%] & nref & nclass \\
 				\hline \hline	
 				Beech       & 22.31 & 47.02 & 883 & 419 \\
@@ -428,7 +426,7 @@ The tree species map information was used to predict the main tree species of th
 				Spruce      & 53.15 & 61.13 & 651 & 566 \\
 				Scots Pine  & 22.91 & 46.07 & 179 & 89 \\
 				Mixed       & 84.49 & 64.53 & 3152 & 4127 \\
-				\hline
+				\hlineB{2}
 				& \multicolumn{2}{l|}{Overall accuracy: 61.96\%} & 5384 & 5384 \\
 				\hline \hline
 			\end{tabular}
@@ -436,7 +434,7 @@ The tree species map information was used to predict the main tree species of th
 	\end{center}
 \end{table}
 
-
+%% Here is the table with calibrated and uncalibrated values:
 %\begin{table}[H]
 %	\begin{center}
 %	\caption{Classification accuracies of the \textit{treespecies} variable before and after calibration. $n_{ref}$: number of terrestrial reference plots. $n_{class}$: number of classified plots.}
@@ -493,16 +491,6 @@ Concerning the treatment of outliers or leverage points for model fitting, it sh
 
 % x-values at the boundaries (small and large values) usually have a high leverage. It does not mean that they are invalid / erroneous.
 
-
-%We conducted an Influence Analysis, i.e. leverage / outlier detection, for the 'final model'. We here considered the usually applied criteria of \textit{Leverages} and \textit{Cook's Distance} as amongst others described in Fahrmeir 2013 \{Regression: models, methods and applications. \textit{Springer Science \& Business Media}. page 164-167\}. The critical threshold of $2p/n$ (i.e. twice the average of the hat matrix' diagonal entries), was exceeded by 10\% of the observations. However, only 3\% of these leverage points were assigned to studentized residuals > 1 or < -1. Leaving these 3\% of points out and recalculating the final model lead to a $R^{2}_{adj}$ of 0.494 compared to 0.485 when including them in the regression. The Cook's Distance values $D_i$ did not exceed a value of 0.019, and thus were far apart from the often cited critical threshold of $D_i > 0.5$. Based on these findings, we decided not to remove observations from the modelling data set. We added a paragraph commenting on this issue of influential data points in section 3.3 'Final Regression Model', page 9 RHS line 690-707.
-
-
-
-
-
-
-
-
 %% NOTES:
 %
 % - differences: zero-plots included !!! (basically, we here HAVE to use ALL plots for the regression model calibration --> because we use an internal model)
@@ -512,19 +500,6 @@ Concerning the treatment of outliers or leverage points for model fitting, it sh
 %
 % for discussion: better than removing plots would be the the use of disturbance classes (Massey --> change estimation) in order to decrease the impact on plots where major cuttings took place
 % between the ALS acquisition and the terrestrial survey. However, this is not possible if one height acquisition is available
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 \newpage

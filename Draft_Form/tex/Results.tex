@@ -82,9 +82,9 @@ On both small area levels, the \psynth{} estimator resulted in much smaller esti
 \subsection{Comparison of \psmall{} and \extpsynth{}}
 \label{sec:comp}
 
-Figure \ref{fig:disterrors} reveals that the error distribution of \psmall{} and \extpsynth{} are very similar, with \psmall{} showing marginally higher estimation errors. In order to investigate the differences between \psmall{} and \extpsynth{}, we compared the g-weight variances of both estimators for all 321 FR units (fig. \ref{fig:compvar}, left). As obvious, \psmall{} yielded slightly larger variances for the vast majority of the estimates. As addressed in section \ref{sec:extpsynth}, one possible explanation for such differences was the effect of one or more cluster not entirely being included in a small area unit, as this would constitute a violation of the \extpsynth{} estimator. This violation was actually observed in 155 of the 321 FR units (48\%). However, the affected FR units (depicted in red diamonds, fig. \ref{fig:compvar}) did not show a significant divergence from the \psmall{} variances with respect to the remaining unaffected FR units. The variance differences between the two estimators were thus due to the mathematical formulations of the \psmall{} and \extpsynth{} estimator, which are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area \citep[pp.17--18]{mandallaz2016}. An additional comparison of the absolute differences in the g-weight variance (fig. \ref{fig:compvar}, right) revealed that large divergences did in fact particularly occur for small area units with small terrestrial sample sizes ($n_{2,G} \leq 5$). The differences decreased with increasing sample size and thus confirmed the asymptotic relationship between the two estimators. However, a comparison of the confidence intervals of \psmall{} and \extpsynth{} revealed that the variance differences did not lead to statistically significant point estimates. The results indicate that the adjustment of the intercept term to the data within a small area used in the \extpsynth{} estimator will in general yield slightly smaller variances than the \psmall{} estimator.\par
+Figure \ref{fig:disterrors} reveals that the error distribution of \psmall{} and \extpsynth{} are very similar, with \psmall{} showing marginally higher estimation errors. In order to investigate the differences between \psmall{} and \extpsynth{}, we compared the g-weight variances of both estimators for all 321 FR units (fig. \ref{fig:compvar}, left). As obvious, \psmall{} yielded slightly larger variances for the vast majority of the estimates. As addressed in section \ref{sec:extpsynth}, one possible explanation for such differences was the effect of one or more cluster not entirely being included in a small area unit, as this would constitute a violation of the \extpsynth{} estimator. This violation was actually observed in 155 of the 321 FR units (48\%). However, the affected FR units (depicted in red diamonds, fig. \ref{fig:compvar}) did not show a significant divergence from the \psmall{} variances with respect to the remaining unaffected FR units. The variance differences between the two estimators were thus due to the mathematical formulations of the \psmall{} and \extpsynth{} estimator, which are asymptotically equivalent only under large terrestrial sample sizes $n_{2,G}$ within the small area \citep[pp.17--18]{mandallaz2016}. An additional comparison of the absolute differences in the g-weight variance (fig. \ref{fig:compvar}, right) revealed that large divergences did in fact particularly occur for small area units with small terrestrial sample sizes ($n_{2,G} \leq 5$). The differences decreased with increasing sample size and thus confirmed the asymptotic relationship between the two estimators. However, a comparison of the confidence intervals of \psmall{} and \extpsynth{} revealed that the variance differences did not lead to statistically significant point estimates.\par
 
-
+% The results indicate that the adjustment of the intercept term to the data within a small area used in the \extpsynth{} estimator will in general yield slightly smaller variances than the \psmall{} estimator.
 
 % NOTES:
 % - Section \ref{sec:comp} provides a more detailed analysis of the differences between the two estimators.
@@ -94,13 +94,6 @@ Figure \ref{fig:disterrors} reveals that the error distribution of \psmall{} and
 %                       of the adjusted regression coefficient
 % - we can see the asymptotic of psmall and extpsynth: with increasing n2G, psmall and extpsynth are mathematically identical
 % ==> so differences will particularly concern sae units with small n2G (threshold seems to be around n2G < 10)
-%
-% for Discussion:
-% - our analyses 
-%   a) suggest that the differences between \psmall{} and \extpsynth{} become negligible for sample sizes $n_{2,G}$ larger than 10 due to the asymptotic relationship between these estimators 
-%   b) showed that violation of the '\extpsynth{}'-assumption had only minor effects on the variance estimates that did not lead to statistically different point estimates 
-%   c) indicate that \extpsynth{} will in general have slightly smaller est.variances due to a slightly better model fit through the data in the small area, which is caused by the 
-%      adjusted intercept (which however is mainly a means to insure the zero-mean-residual assumption in the \extpsynth{}-estimator
 
 
 \begin{figure}[H]
@@ -157,7 +150,7 @@ Obviously, the residual term generally constitutes the dominating part of the \p
 \begin{figure}[H]
 	\centering
 	\resizebox{1\hsize}{!}{\includegraphics{fig/eval_2phase_fail_11.png}}
-	\caption{}
+	\caption{Increase or reduction of the SRS variance by application of the \psmall{} estimator for all 321 FR units in dependence of a) the terrestrial sample size in the FR units (\textit{x-axis}) and b) the residual term proportion of the \psmall{} g-weight variance (\textit{y-axis}).}
 	\label{fig:fail}
 \end{figure}
 
@@ -178,3 +171,4 @@ Obviously, the residual term generally constitutes the dominating part of the \p
 
 
 % However, small terrestrial sample sizes can also have the effect that the SRS estimator might not reflect the actual variation of the local density within a small area. In this case, the two-phase variance estimate might be larger but more realistic. Whereas a visual analysis of aerial images, remote sensing data or stand maps might give some evidence for this hypothesis, a definite proof is practically infeasible.
+

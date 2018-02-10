@@ -1,13 +1,34 @@
 \section{Discussion} %article
 \label{sec:Dis}
 
-% ----------------------------------------------------------------------- %
-% ----------------------------------------------------------------------- %
-%\subsection{Stratification according to ALS Acquisition Years and Tree Species}
-%\label{sec:strat_dis}
+The aim of this study was to investigate the performance of design-based estimators for small area estimation of mean standing timber volume on two spatial forest management levels in Germany. It was of particular interest to gather information about the estimation error levels that can be realized using the German NFI data, characterized by low sampling intensities in the area of interests, as terrestrial phase information in the two-phase estimators. To address these research questions, we applied the simple random sampling (SRS), the pseudo-small (\psmall{}) and the extended pseudo-synthetic (\extpsynth{}) estimator to 45 and 405 small area units in the German state of Rhineland-Palatinate.\par
+
+Our study showed that on both small area levels, the \psmall{} and the \extpsynth{} estimator generally leads to a substantial reduction of the estimation errors produced by the SRS estimator. On the upper management level (FA districts), \psmall{} and \extpsynth{} allowed to provide estimation errors smaller than 5\% for 73\% of the small areas compared to only 17\% under the SRS estimator. This level of estimation accuracy could not be achieved on the subsequent management level (FR districts). The reason for this were primarily the substantially smaller terrestrial sample sizes. However, in most FR units (95\%), the estimation errors could be limited to 20\% compared to 40\% under SRS. A pairwise comparison of the confidence intervals revealed that the estimators did thereby not produce significantly different point estimates. The much smaller estimation errors of the \psynth{} estimator suggested that the neglection of the regression model accuracies in the small area units leads to overoptimistic estimation accuracies and confidence intervals. If possible, one should thus prefer the unbiased estimates of \psmall{} or \extpsynth{}.\par
+
+For several FR units, it was observed that the \psmall{} and the \extpsynth{} estimator can produce larger variances than the SRS estimator. It is important to note that this is in perfect agreement with the theory of both two-phase estimators and can theoretically appear if the residual variance in the small area, which generally constitutes the dominating part of the two-phase variance, turns out to be much higher than the variance of the terrestrial data in the small area. The empirical findings of our study suggest that such cases can particularly occur if moderate or poor model fits within a small area are combined with small terrestrial sample sizes ($\leq 5$) in the small area. Nonetheless, it should be kept in mind that small terrestrial sample sizes can also cause the SRS estimator to not reflect the actual variation of the local density within a small area. In this case, the two-phase variance estimate might be larger but more realistic. Whereas a visual analysis of aerial images, remote sensing data or stand maps might give some further evidence for or against this hypothesis, a definite proof is practically infeasible.\par
+
+We were able to empirically confirm that the \extpsynth{} estimator generally produces slightly smaller variances and estimation errors than the \psmall{}. This is most probably caused by marginally smaller model residuals due to the intercept adjustment to the terrestrial data in the small area unit, which is primarily a means to ensure the zero-mean-residual property of the \extpsynth{}. Our analysis also indicated that the difference between the two estimators are negligible for sample sizes $\geq$ 10 due to their asymptotic relationship. Furthermore, one or more clusters not entirely included in the small area unit did reassuringly not have a systematic impact on the estimates of \extpsynth{}. This empirical evidence can however not be generalized to any application of \extpsynth{} under cluster sampling. It thus seems recommendable to calculate both \psmall{} and \extpsynth{}, and subsequently compare their results. If no suspicious deviations occur, one can favor the \extpsynth{} as the estimator of choice.\par
 
 
+
+
+
+%% auxiliary information:
+% - realistically represent current state of ALS availability (see BW), but also tspec info as a specialty
+% - still missingness in the auxililary data
+% - future perspective (BDOM, tspec)
+% - conclusion for estimators: 
+%   o a) using exhaustive aux. variable info in estimators
+%   o b) increase in model accuracies due to more flexible OLS models (*) *: this might also solve the problem of hight residual variations in some FR units (SRS <-> 2p)
+%   o c) demonstrated procedures can then also be used for change esitmation (without the inconvenience of time gaps)
+
+%% conistency of sampling frame:
+% - (**)
+
+% ---------------------------------------------------------------------- %
 % NOTES:
+%
+% begin with general results:
 %
 % - extension to change estimation
 %   o BDOM more frequently updated, max. 1 year time gap between CHM and BWI3 survey
@@ -15,29 +36,20 @@
 %   o the gain in model accuracy will certainly considerably increase if the ALSyear stratification becomes unnecessary Value increase also in combination with
 %     further explanatory variables such as growing conditions
 %
-% - transfer of the suggested procedure to FDI inventories: maybe possible to get qunatified data for stands with acceptable estimation errors? (would be of high interest)
+% - CONCLIUSION: transfer of the suggested procedure to FDI inventories: maybe possible to get qunatified data for stands with acceptable estimation errors? (would be of high interest)
 %
-% - main findings:
-%   o FA-level: 
-%     + problem of large estiamtion errors solved on FA-level (average error of 5\%, 95\% <= 6.6%)
+% - recommendation: treat \psynth estimation with extreme caution (residuals not considered, thus provides overoptimistic errors and CIs)
 %
-%   o FR-level:
-%     + in most FR units (95\%), errors could be limited to 20\% compared to 40\% under SRS (status quo)
-%     + however, the FA error level could not be achieved, due to much smaller sample sizes on the FR level
-%     + 
-%
-%
-% - the extpsynth estimator seems to generally produce slightly smaller variances and est. errors than psmall. This most probably caused marginally smaller residuals in the small area unit due to the adjustment of the intercept (which is primarily a means to ensure the zero-mean-residual property). Our analysis indicated that the difference between the two estimators get negligible for sample sizes > 10 due to their asymptotic relationship. Reassuringly, violations of the extpsynth estimator by one or more clusters not entirely included in G did not have an impact on the estimates.
-%
-% - our advice: if possible, calculate both estimators (two opinions). Differences might reveal undetected patterns in the data.
 %
 % - the decision wether the errors are acceptable cannot be answered here but (in our opinion) depend on the question whether ... decisions can be made based on the provided Confidence Intervals.
 % - in a next step, we will investigate whether the derived confidence intervals are sufficient to be used as a validation for the stand-wise inventories (Kuliesis et al.)
 % 
 %
 %
-%
-%
+% - loss of some n1 and n2 due to missing information in remote sensing data. If really exhaustively available, one could also use the true means of the auxiliary variables (exhaustive estimators), which
+%   will further decrease the estimation errors. Previous studies of Mandallaz, Breschan, Hill (2013) however showed that given a reasonable large sample size n_{1,G} the differences in the est. errors
+%   are usually small. This migth also be due to the fact that the largest proportion of the two-phase variance comes from the residual term, which is independent of an exhuastive or non-exhaustive
+%   evaluation of the auxiliary data. ( --> maybe here lead to future improvement of the data availability)
 %
 %
 %
@@ -46,7 +58,8 @@
 %                     ==> in our case, we can say that we illustrated how the German NFI data can now be used
 %                         for this purpose, i.e. providing of reliable data to validate the stand-wise inventories
 %
-
+% (**):
+% It should however be mentioned that a discrepancy between the terrestrially made forest/non-forest decision and that based on the polygon stand layer can lead to missing responses in the terrestrial sample $s_2$. This occurs if a terrestrial plot $x_l \in s_2$ does not provide the terrestrial response variable although its plot center would theoretically fall within the boundaries of the stand layer. For these cases, it is important to note that according to the double sampling estimator described in Section \ref{sec:SAestimators}, the plots of a cluster can either only belong to the sample $s_2$ or $s_1$. The missing terrestrial plot information $Y(x)$ can thus not be replaced by a prediction $\hat{Y}(x)$, i.e. by establishing a plot $x \in s_1$ instead, and has thus to be treated as a non-response.\par
 
 
 
