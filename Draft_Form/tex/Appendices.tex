@@ -1,15 +1,31 @@
-%\appendix
-%\addcontentsline{toc}{section}{Appendices}
-%\section*{Appendices}
-%\section{First appendix}
-%\section{Second appendix}
-
 \appendix
 \section{Appendix}
+\label{sec:appendix_saerlp}
 
-% ----------------------------------------------------------------------- %
-% A.1
-% ----------------------------------------------------------------------- %
-%\subsection{Model accuracies for $CHM$ variables}
+% -------------------------------------- %
+\subsection*{R-squared on cluster level}
 
-%\input{tab/mod_chm_table.tex}\newpage
+The R$^2$ on the cluster level is calculated using the number of plots $M(x)$ of each cluster in order to weight for the varying number of plots on which $Y_c(x)$ and $\hat{Y}_{c}(x)$ are based on. 
+
+\begin{equation*}\label{eq:R_squared_clust}
+R^2 =  \frac{\sum_{x \in s_2} \Big(\frac{M(x)}{\bar{M_2}}\Big)^2 \Big(\hat{Y}_{c}(x)-\hat{\bar{Y}}_c\Big)^2}{\sum_{x \in s_2} \Big(\frac{M(x)}{\bar{M_2}}\Big)^2 \Big(Y_{c}(x)-\hat{\bar{Y}}_c\Big)^2}
+\end{equation*}
+
+\noindent $Y_c(x)$ and $\hat{Y}_{c}(x)$ are the predicted and observed local densities on the cluster level calculated according to equations \ref{eq:locdens_clust} and \ref{eq:globresids}. $\hat{\bar{Y}}_c$ is the estimated sample mean corresponding to the weighted mean over all observed local densities on the cluster level (equ. \ref{eq:srs_est_clusters}).\par
+
+% -------------------------------------- %
+\subsection*{RMSE on cluster level}
+
+The same weights $M(x)$ are also applied to calculate the RMSE on the cluster level. $n_2$ is the number of clusters used in the modeling frame.
+
+\begin{equation*}\label{eq:RMSE_clust}
+RMSE= \sqrt{\frac{1}{n_{2}}  \sum_{x \in s_2} \Big(\frac{M(x)}{\bar{M}_2}\Big)^2 \Big(\hat{Y}_{c}(x)-Y_c(x)\Big)^2}
+\end{equation*}
+
+\noindent The \textit{relative} or \textit{normalized} RMSE is calculated by setting the absolute RMSE in relation to the estimated sample mean $\hat{\bar{Y}}_c$:
+
+\begin{equation*}\label{eq:NRMSE_clust}
+RMSE[\%] = \frac{RMSE}{\hat{\bar{Y}}_c}
+\end{equation*}
+
+\noindent Generally note that the weights $\frac{M(x)}{\bar{M_2}} \equiv 1$ if the number of plots per cluster is constant.

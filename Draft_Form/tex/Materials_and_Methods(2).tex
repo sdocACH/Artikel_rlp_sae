@@ -88,12 +88,12 @@ Using Eq. \ref{eq:locdens_plot_2} in Eq. \ref{eq:locdens_plot} yields the rewrit
 Y(x_l)= \sum_{i \in s_{2}(x_l)} \frac{cf_{i, corr}Y_i}{G_i} = \sum_{i \in s_{2}(x_l)} nha_{i}{Y_i}
 \end{equation}
 
-where $nha_i$ is the number of trees per hectare represented by tree $i$. The local densities on cluster level can then be used to derive the estimated spatial mean $\hat{Y}_c$ and its estimated variance $\hat{\var}(\hat{Y}_c)$ for any given spatial unit for which $n_2 \geq 2$ ($n_2$ denoting the number of sample units, i.e. clusters):
+where $nha_i$ is the number of trees per hectare represented by tree $i$. The local densities on cluster level can then be used to derive the estimated spatial mean $\hat{\bar{Y}}_c$ and its estimated variance $\hat{\var}(\hat{Y}_c)$ for any given spatial unit for which $n_2 \geq 2$ ($n_2$ denoting the number of sample units, i.e. clusters):
 
-\begin{subequations}\label{eq:srs_est_cluster}
+\begin{subequations}\label{eq:srs_est_clusters}
 	\begin{align}
-\hat{Y}_c &= \frac{\sum_{x \in s_2} M(x) Y_{c}(x)}{\sum_{x \in s_2} M(x)} \\
-\hat{\var}(\hat{Y}_c) &= \frac{1}{n_2(n_2 - 1)}\sum_{x \in s_2}\Big(\frac{M(x)}{\bar{M_2}}\Big)^2(Y_{c}(x) - \hat{Y}_c)^2
+\hat{\bar{Y}}_c &= \frac{\sum_{x \in s_2} M(x) Y_{c}(x)}{\sum_{x \in s_2} M(x)} \\
+\hat{\var}(\hat{\bar{Y}}_c) &= \frac{1}{n_2(n_2 - 1)}\sum_{x \in s_2}\Big(\frac{M(x)}{\bar{M_2}}\Big)^2(Y_{c}(x) - \hat{\bar{Y}}_c)^2
 	\end{align}
 \end{subequations}
 
@@ -126,9 +126,15 @@ All three considered small area estimators have in common that they use ordinary
 \pmb{A}_{c,s_2}^{-1}
 \end{equation}
 
-\noindent with $\hat{R}_{c}=Y_{c}(x)-\pmb{Z}_{c}^{\top}(x)\hat{\pmb{\beta}}_{c,s_2}$ being the empirical model residuals at the cluster level, which by construction of OLS satisfy the important \textit{zero mean residual property}, i.e. $\frac{\sum_{x \in s_{2}} M(x) \hat{R}_{c}(x)}{\sum_{x \in s_{2}} M(x)}=0$.\\
+with 
 
- In the following, we will give a short description of each small area estimator and refer to \citet{mandallaz2013a, mandallaz2016, mandallaz2013b} if the reader requires additional details or proofs. The estimators have also been implemented in the R-package \textit{forestinventory} \citep{forestinventory} which was used to compute all estimates in this study.\\
+\begin{equation}\label{eq:globresids}
+\hat{R}_{c}=Y_{c}(x)-\pmb{Z}_{c}^{\top}(x)\hat{\pmb{\beta}}_{c,s_2} = Y_{c}(x) - \hat{Y}_{c}(x)
+\end{equation}
+
+\noindent being the empirical model residuals at the cluster level, which by construction of OLS satisfy the important \textit{zero mean residual property}, i.e. $\frac{\sum_{x \in s_{2}} M(x) \hat{R}_{c}(x)}{\sum_{x \in s_{2}} M(x)}=0$.\\
+
+In the following, we will give a short description of each small area estimator and refer to \citet{mandallaz2013a, mandallaz2016, mandallaz2013b} if the reader requires additional details or proofs. The estimators have also been implemented in the R-package \textit{forestinventory} \citep{forestinventory} which was used to compute all estimates in this study.\\
 
 
 
@@ -144,7 +150,7 @@ All point information used for small area estimation is now restricted to that a
 	\begin{align}
 	\hat{\bar{\pmb{Z}}}_{c,G} &= \frac{\sum_{x \in s_{1,G}} M_{G}(x) \pmb{Z}_{c,G}(x)}{\sum_{x \in s_{1,G}} M_{G}(x)} \label{eq:meanZcG} \hspace{3ex} &\text{where} \hspace{3ex}
 	\pmb{Z}_{c,G}(x) =  \frac{\sum_{l=1}^{L} I_{G}(x_l)\pmb{Z}(x_l)}{M_{G}(x)}\\		
-	Y_{c,G}(x) &= \frac{\sum_{l=1}^{L} I_{G}(x_l)\pmb{Y}(x_l)}{M_{G}(x)}  &\text{and} \hspace{3ex}
+	Y_{c,G}(x) &= \frac{\sum_{l=1}^{L} I_{G}(x_l)Y(x_l)}{M_{G}(x)}  &\text{and} \hspace{3ex}
 	\hat{Y}_{c,G}(x)=\hat{\bar{\pmb{Z}}}_{c,G}^{\top}\hat{\pmb{\beta}}_{c,s_2}\\
 	\bar{\hat{R}}_{2,G} &= \frac{\sum_{x \in s_{2,G}} M_{G}(x) \hat{R}_{c,G}(x)}{\sum_{x \in s_{2,G}} M_{G}(x)} \hspace{3ex} &\text{where} \hspace{3ex}
 	\hat{R}_{c,G}(x) = Y_{c,G}(x)-\hat{Y}_{c,G}(x)
@@ -468,7 +474,7 @@ The tree species map information was used to predict the main tree species of th
 
 The model selection constituted a major part of the current study, especially because sophisticated challenges such as a) the heterogeneity in the remote sensing data, b) the identification of the optimal support sizes under angle count sampling and c) the incorporation of tree species information had to be addressed and investigated in order to identify the most accurate regression model realizable under the given data. We will here thus only provide a shortened summary of the extensive analysis carried out and refer to the study of \citet{hill2017a} if the reader is interested in more detailed information on the subjects.\par
 
-The model with highest \adjrsq{} and lowest RMSE was achieved with the variables \meanheight{}, \meanheight{}$^2$, \stddev{} and \alsyear{} derived from the ALS data as well as the \treespecies{} variable derived from the classification map as main effect terms. Additionally, interaction terms between \meanheight{} and \alsyear{}, \stddev{} and \alsyear{}, \meanheight{} and \stddev{}, and \meanheight{} and \treespecies{} were included. The model yielded an \adjrsq{} of 0.48 and an RMSE of 140.62 \mha{} (46.7\%) on the plot level (table \ref{tab:modacc_modterms}, full model). While the study of \citet{hill2017a} only provide the model evaluations on the plot level, the two-phase estimators described in section \ref{sec:SAestimators} derive and apply the regression coefficients and the residuals on the aggregated cluster level. We thus re-evaluated the model as used in the estimators also on the cluster level and found the model accuracies to be higher than on the plot level (\adjrsq{} of 0.59 and RMSE of 101.61 \mha{} and 33.6\%). A stratification to the ALS acquisition years substantially improved the model accuracy and thus proved to be an effective means in accounting for the artificially introduced noise in the data set due to ALS quality variations and time-gaps between the ALS and the terrestrial survey. However, the stratification led to a highly unbalanced dataset when stratifying according to the \treespecies{} variable. For this reason, a species individual modeling within each \alsyear{} stratum remained infeasible, but might have further improved the model accuracy. An additional evaluation of the model residuals within each ALS acquisition year stratum revealed that the model accuracies substantially varied between the strata (table \ref{tab:adj_r2_within}). Values above the overall \adjrsq{} were particularly achieved in ALS acquisition years close to the terrestrial survey date (0.60 to 0.65 on the cluster level). This effect was substantially diminished when dropping the \alsyear{} variable from the model term.\par
+The model with highest \adjrsq{} and lowest RMSE was achieved with the variables \meanheight{}, \meanheight{}$^2$, \stddev{} and \alsyear{} derived from the ALS data as well as the \treespecies{} variable derived from the classification map as main effect terms. Additionally, interaction terms between \meanheight{} and \alsyear{}, \stddev{} and \alsyear{}, \meanheight{} and \stddev{}, and \meanheight{} and \treespecies{} were included. The model yielded an \adjrsq{} of 0.48 and an RMSE of 140.62 \mha{} (46.7\%) on the plot level (table \ref{tab:modacc_modterms}, full model). While the study of \citet{hill2017a} only provide the model evaluations on the plot level, the two-phase estimators described in section \ref{sec:SAestimators} derive and apply the regression coefficients and the residuals on the aggregated cluster level. We thus re-evaluated the model as used in the estimators also on the cluster level (formulas given in Appendix) and found the model accuracies to be higher than on the plot level (\adjrsq{} of 0.59 and RMSE of 101.61 \mha{} and 33.6\%). A stratification to the ALS acquisition years substantially improved the model accuracy and thus proved to be an effective means in accounting for the artificially introduced noise in the data set due to ALS quality variations and time-gaps between the ALS and the terrestrial survey. However, the stratification led to a highly unbalanced dataset when stratifying according to the \treespecies{} variable. For this reason, a species individual modeling within each \alsyear{} stratum remained infeasible, but might have further improved the model accuracy. An additional evaluation of the model residuals within each ALS acquisition year stratum revealed that the model accuracies substantially varied between the strata (table \ref{tab:adj_r2_within}). Values above the overall \adjrsq{} were particularly achieved in ALS acquisition years close to the terrestrial survey date (0.60 to 0.65 on the cluster level). This effect was substantially diminished when dropping the \alsyear{} variable from the model term.\par
 
 As depicted in section \ref{sec:tspecclass}, the information of the tree species classification map was missing within 1 FA and 19 FR units. For these small area units, we applied the regression model without the \treespecies{} variable (table \ref{tab:modacc_modterms}, reduced model). However, the model accuracy of the full and reduced model were found to be very similar on both the plot and cluster level. We thus assumed that the application of the reduced model would not cause substantially larger estimation errors as compared to the full model and subsequently performed a joint evaluation of the estimation results in section \ref{sec:Res}.
 
