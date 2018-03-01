@@ -13,7 +13,7 @@ The German NFI is a periodic inventory that is carried out every 10 years over t
 
 % \subsubsection{One- and Two-Phase Sampling in the Infinite Population Approach}
 
-The estimators used in this study have been proposed by \citep{mandallaz2013a,mandallaz2013b} and derive their mathematical properties under the so-called infinite population approach. Therefore, we shall first provide a short introduction into this general estimation framework. We start by assuming that the population $P$ of trees $i \in 1,2, ..., N$ within a forest of interest $F$ is exactly defined, and each tree $i$ has a response variable $Y_i$ (e.g. its timber volume) that can be used to define the population mean $Y$ (e.g., the average timber volume per unit area) over $F$. Since a full census of all tree population individuals is almost never feasible, $Y$ has to be estimated based on a sample. In the infinite population approach this sample is a set of points or locations $x$ distributed independently and uniformly over the set of all possible points in $F$. Each point $x$ has an associated local density $Y(x)$ (e.g., the timber volume per unit area) whose spatial distribution is given by a fixed (i.e. non stochastic) piecewise constant function. The population mean $Y$ is mathematically equivalent to the integral of the local density function surface divided by the surface area of $F$, $\lambda(F)$, i.e. $Y=\frac{1}{N} \sum_{i=1}^{N}Y_i=\frac{1}{\lambda(F)}\int_{F}Y(x)dx$, and thus the population mean $Y$ corresponds to a spatial mean. Since the actual local density function is unobserved in its entirety, one estimates $Y$ by taking a sample $s_2$ consisting of $n_2$ points and measuring each of their respective local densities. This sampling procedure is often referred to as \textit{one-phase sampling} (OPS) and $s_2$ is referred to as the terrestrial inventory. In contrast to the one-phase approach, \textit{two-phase} or \textit{double-sampling} procedures use information from two nested samples (phases). Practically speaking, the terrestrial inventory $s_2$ is embedded in a large phase $s_1$ comprising $n_1$ sample locations that each provide a set of explanatory variables described by the column vector $\pmb{Z}(x)=(z(x)_1, z(x)_2,...,z(x)_p)^{\top}$ at each point $x \in s_1$. These explanatory variables are derived from auxiliary information that is available in high quantity within the forest $F$. For every $x \in s_1$, $\pmb{Z}(x)$ is transformed into a prediction $\hat{Y}(x)$ of $Y(x)$ using the choice of some prediction model. The basic idea of this method is to boost the sample size by providing a large sample of less precise but cheaper predictions of $Y(x)$ in $s_1$ and to correct any possible model bias, i.e., $\EX{(Y(x)-\hat{Y}(x))}$, using the subsample of terrestrial inventory units where the value of $Y(x)$ is observed.
+The estimators used in this study have been proposed by \citep{mandallaz2013a,mandallaz2013b} and derive their mathematical properties under the so-called infinite population approach. Therefore, we shall first provide a short introduction into this general estimation framework. We start by assuming that the population $P$ of trees $i \in 1,2, ..., N$ within a forest of interest $F$ is exactly defined, and each tree $i$ has a response variable $Y_i$ (e.g. its timber volume) that can be used to define the population mean $Y$ (e.g., the average timber volume per unit area) over $F$. Since a full census of all tree population individuals is almost never feasible, $Y$ has to be estimated based on a sample. In the infinite population approach this sample is a set of points or locations $x$ distributed independently and uniformly over the set of all possible points in $F$. Each point $x$ has an associated local density $Y(x)$ (e.g., the timber volume per unit area) whose spatial distribution is given by a fixed (i.e. non stochastic) piecewise constant function. The population mean $Y$ is mathematically equivalent to the integral of the local density function surface divided by the surface area of $F$, $\lambda(F)$, i.e. $Y=\frac{1}{N} \sum_{i=1}^{N}Y_i=\frac{1}{\lambda(F)}\int_{F}Y(x)dx$, and thus the population mean $Y$ corresponds to a spatial mean. Since the actual local density function is unobserved in its entirety, one estimates $Y$ by taking a sample $s_2$ consisting of $n_2$ points and measuring each of their respective local densities. This sampling procedure is often referred to as \textit{one-phase sampling} (OPS) and $s_2$ is referred to as the terrestrial inventory. In contrast to the one-phase approach, \textit{two-phase} or \textit{double-sampling} procedures use information from two nested samples (phases). Practically speaking, the terrestrial inventory $s_2$ is embedded in a large phase $s_1$ comprising $n_1$ sample locations that each provide a set of explanatory variables described by the column vector $\pmb{Z}(x)=(z(x)_1, z(x)_2,...,z(x)_p)^{\top}$ at each point $x \in s_1$. These explanatory variables are derived from auxiliary information that is available in high quantity within the forest $F$. For every $x \in s_1$, $\pmb{Z}(x)$ is transformed into a prediction $\hat{Y}(x)$ of $Y(x)$ using the choice of some prediction model. The basic idea of this method is to boost the sample size by providing a large sample of less precise but cheaper predictions of $Y(x)$ in $s_1$ and to correct any possible model bias, i.e., $\EX{(Y(x)-\hat{Y}(x))}$, using the subsample of terrestrial inventory units where the value of $Y(x)$ is observed. In this context, it is also important to note that the response and auxiliary variables are assumed to be error-free and the resulting errors for the point estimates reflect only the uncertainty due to sampling.
 
 % which in \pkg{forestinventory} is always a linear model fit in $s_2$ using ordinary least squares (OLS).
 %The one-phase and two-phase estimators applied in this study have been implemented in the software-package \textit{forestinventory} \cite{forestinventory} 
@@ -171,13 +171,15 @@ Note that the restriction to $G$, i.e. $I_{G}(x_l)=\{0,1\}$, is made on the indi
 	\end{align}
 \end{subequations}
 
+\noindent with $\bar{M}_{2,G}=\frac{\sum_{x \in s_{2,G}}M_{G}(x)}{n_{2,G}}$.\\
+
 The variance-covariance matrix of the auxiliary vector $\hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}}$ is thereby defined as
 
 \begin{equation}\label{estvarcovaux_G}
 \hat{\Sigma}_{\hat{\bar{\pmb{Z}}}_{c,G}} = \frac{1}{n_{1,G}(n_{1,G}-1)} \sum_{x \in s_{1,G}} \big(\frac{M_{G}(x)}{\bar{M}_{1,G}}\big)^2 (\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})(\pmb{Z}_{c,G}(x)-\hat{\bar{\pmb{Z}}}_{c,G})^{\top}
 \end{equation}
 
-with $\bar{M}_{1,G}=\frac{\sum_{x \in s_{1,G}}M_{G}(x)}{n_{1,G}}$.\\
+\noindent with $\bar{M}_{1,G}=\frac{\sum_{x \in s_{1,G}}M_{G}(x)}{n_{1,G}}$.\\
 
 The estimated design-based variance of $ \hat{Y}_{c,G,PSMALL}$ is given by Eq. \ref{eq:psmallvar}. Basically, the first term constitutes the variance introduced by the uncertainty in the regression coefficients, whereas the second term expresses the variance caused by estimating the exact auxiliary mean in $G$ using a non-exhaustive sample $s_{1,G}$. The third term is the variance of the model residuals and thus accounts for the inaccuracies of the model predictions. Note that the first term can also be rewritten using g-weights \cite[pg.14]{mandallaz2016} which ensures some beneficial calibration of the auxiliary variables to the first-phase sample.\\
 
@@ -233,31 +235,49 @@ error_{[\%]}=\frac{\sqrt{\hat{\var}(\hat{Y})}}{\hat{Y}}*100
 
 We further calculated the 95\% confidence interval for each estimate for visualization purposes. The confidence intervals can also be used heuristically for hypothesis testing to determine whether the point estimates of the three estimators for a given small area are statistically different. The confidence intervals for the SRS estimator can be obtained as:
 
+%\begin{equation}\label{ci_1phase}
+%CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
+%\hat{Y}+t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+%\end{equation}
+
 \begin{equation}\label{ci_1phase}
-CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
-\hat{Y}+t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+CI_{1-\alpha}(\hat{\bar{Y}}_c)=\hat{\bar{Y}}_c \pm t_{n_{2}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{\bar{Y}}_c)}
 \end{equation}
+
 
 The confidence intervals for the \psmall{} and \extpsynth{} estimates are calculated as:
 
-\begin{equation}\label{ci_2phase_sae}
-CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
-\hat{Y}+t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
-\end{equation}
+%\begin{equation}\label{ci_2phase_sae}
+%CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
+%\hat{Y}+t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+%\end{equation}
+
+\begin{subequations}\label{ci_2phase_sae}
+	\begin{align}
+CI_{1-\alpha}(\hat{Y}_{c,G,EXTPSYNTH})&=\hat{Y}_{c,G,EXTPSYNTH} \pm t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y}_{c,G,EXTPSYNTH})} \\
+CI_{1-\alpha}(\hat{Y}_{c,G,PSMALL})&=\hat{Y}_{c,G,PSMALL} \pm t_{n_{2,G}-1, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y}_{c,G,PSMALL})}
+	\end{align}
+\end{subequations}
+
+
 
 For the \psynth{} estimates, the confidence intervals are
 
-\begin{equation}\label{ci_2phase_global}
-CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
-\hat{Y}+t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+%\begin{equation}\label{ci_2phase_global}
+%CI_{1-\alpha}(\hat{Y})=\bigg{\lbrack}\hat{Y}-t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})},
+%\hat{Y}+t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y})}\bigg{\rbrack}
+%\end{equation}
+
+\begin{equation}\label{ci_2phase_psynth}
+CI_{1-\alpha}(\hat{Y}_{c,G,PSYNTH})=\hat{Y}_{c,G,PSYNTH} \pm t_{n_{2}-p, 1-\frac{\alpha}{2}}\sqrt{\hat{\var}(\hat{Y}_{c,G,PSYNTH})}
 \end{equation}
 
 \noindent with $p$ being the number of parameters used in the regression model including the intercept term.\\
 
-In order to address the potential benefits of the small area estimators compared with the SRS approach, we calculated the \textit{relative efficiency} (Eq. \ref{eq:releff}) which can be interpreted as the relative sample size under SRS needed to achieve the variance under the double sampling estimators.
+In order to address the potential benefits of the small area estimators compared with the SRS approach, we calculated the \textit{relative efficiency} (Eq. \ref{eq:releff}) which can be interpreted as the relative sample size under SRS needed to achieve the variance under the double-sampling (DS) estimators.
 
 \begin{equation}\label{eq:releff}
-rel.eff=\frac{\hat{\var}_{SRS}(\hat{Y})}{\hat{\var}_{SAE_{2phase}}(\hat{Y})}
+rel.eff=\frac{\hat{\var}_{SRS}(\hat{Y})}{\hat{\var}_{DS}(\hat{Y})}
 \end{equation}
 
 \newpage
@@ -396,7 +416,7 @@ Additional auxiliary data was derived from a countrywide satellite-based classif
 % Graphik:
 \begin{figure}[H]
 	\centering
-	\resizebox{0.9\hsize}{!}{\includegraphics*{fig/Auxvars_100dpi.png}}
+	\resizebox{0.9\hsize}{!}{\includegraphics*{fig/Auxvars_400dpi.png}}
 	\caption{Left: CHM (top) and tree species classification map (bottom) available on the federal state level. Right: Magnified illustration of the supports used to derive the explanatory variables from the auxiliary data.}
 	\label{fig:Auxvars}
 \end{figure}
@@ -415,7 +435,7 @@ The ALS acquisition year (\textit{ALSyear}) was added as a categorical variable 
 
 \subsubsection{Tree species map}
 
-The tree species map was used to predict the main tree species at each sample plot which served as an additional categorical variable called \textit{treespecies}. This involved two consecutive processing steps. In the first step, one of the five tree species was assigned to a sample location if 100\% of the raster values within the edge-corrected support were classified as that species. Otherwise, the sample location was assigned the value 'mixed'. Likewise for the CHM variables, the support radius was 12 meters although the use of different support sizes for each explanatory variable would be in agreement with the two-phase estimators presented in Section \ref{sec:SAestimators}. When using the \textit{treespecies} variable in a regression model, the support size and the percentage threshold parameters had to be optimized in order to minimize the variance within each level which subsequently leads to improved model precision. A detailed analysis and description of the optimal parameter processing for the explanatory variables of the present data set is provided in \citet{hill2017a}. In a second step, the \textit{treespecies} variable was also passed through a calibration model in order to reduce the effects of misclassification errors on the regression model coefficients and to increase model accuracy. The calibration model consisted of a decision tree from a random forest algorithm \citep{breiman2001} that was trained to predict the actual main plot tree species (known for all terrestrial plots) based on available auxiliary variables. These variables were the predicted \textit{treespecies} variable, the mean canopy height and standard deviation of the CHM, as well as the proportion of coniferous trees estimated from the classification map and the growing region derived from a polygon map. The algorithm was grown with 2000 trees considering 3 of the predictors for each split. We thus applied this calibration model to the \textit{treespecies} variable derived at all sample locations $s_1$. Table \ref{tab:classacc} gives the classification accuracies of the \textit{treespecies} variable after calibration.
+The tree species map was used to predict the main tree species at each sample plot which served as an additional categorical variable called \textit{treespecies}. This involved two consecutive processing steps. In the first step, one of the five tree species was assigned to a sample location if 100\% of the raster values within the edge-corrected support were classified as that species. Otherwise, the sample location was assigned the value 'mixed'. Likewise for the CHM variables, the support radius was 12 meters although the use of different support sizes for each explanatory variable would be in agreement with the two-phase estimators presented in Section \ref{sec:SAestimators}. When using the \textit{treespecies} variable in a regression model, the support size and the percentage threshold parameters had to be optimized in order to minimize the variance within each level which subsequently leads to improved model precision. A detailed analysis and description of the optimal parameter processing for the explanatory variables of the present data set is provided in \citet{hill2017a}. In a second step, the \textit{treespecies} variable was also passed through a calibration model in order to reduce the effects of misclassification errors on the regression model coefficients and to increase model accuracy. The calibration model consisted of a decision tree from a random forest algorithm \citep{breiman2001} that was trained to predict the actual main plot tree species (known for all terrestrial plots) based on available auxiliary variables. These variables were the predicted \textit{treespecies} variable, the mean canopy height and standard deviation of the CHM, as well as the proportion of coniferous trees estimated from the classification map and the growing region derived from a polygon map. The algorithm was grown with 2000 trees considering 3 of the predictors for each split. We thus applied this calibration model to the \textit{treespecies} variable derived at all sample locations $s_1$. Table \ref{tab:classacc} gives the classification accuracies \citep{congalton2008} of the \textit{treespecies} variable after calibration.
 
 
 \begin{table}[H]
