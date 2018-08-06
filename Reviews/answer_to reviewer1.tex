@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[normalem]{ulem}
+
+%============================================ Define Titlepage & packages =============================================%
+
+\title{Review - revision}
+
+\author{A double-sampling extension of the German National Forest Inventory for design-based small area estimation on forest district levels\\
+Andreas Hill, Daniel Mandallaz, Joachim Langshausen}
+
+\usepackage{fancyhdr}     
+\usepackage{amsmath} %Paket für erweiterte math. Formeln
+\usepackage[labelfont=bf]{caption}
+\usepackage[font=footnotesize]{caption}
+\usepackage[font=footnotesize]{subcaption}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[final]{pdfpages}
+\usepackage{color}
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=25mm,
+	right=25mm,
+	top=30mm,
+	bottom=30mm
+}
+
+\setlength{\parindent}{0em} % Einzug bei neuen Absätzen
+
+%------------------------------------------------------------------------------------------------%
+% -------------------------------------- Main Document------------------------------------------ %
+
+\begin{document}
+
+%------------------------------------------------------------------------------------------------%
+% -------------------------------------- Tex Settings ------------------------------------------ %
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\pagestyle{fancy} %Kopfzeile und Fusszeile
+\fancyfoot[C]{\thepage}
+\setlength{\headsep}{15mm}
+
+\definecolor{mybrown}{rgb}{0.6, 0.15, 0.1}
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+\definecolor{mygreen}{rgb}{0.1, 0.4, 0.4}
+\newcommand{\answer}[1]{\small \color{mybrown}{#1} \color{black}}
+\newcommand{\note}[1]{\textit{\small \color{amaranth} \textbf{Note:} #1} \color{black}}
+\newcommand{\todo}[1]{\color{red}{#1} \color{black}}
+\newcommand{\answerfin}[1]{\small \color{mygreen}{#1} \color{black}}
+
+
+%------------------------------------------------------------------------------------------------%
+% ---------------------------------- Reviewer 1 ------------------------------------------------ %
+
+\section*{Reviewer 1:}
+
+I have only a single marginal question, and probably I am wrong: $Z_{c}(x)$ is introduced as a row vector in line 183 and Eqs. 9a and 9b, but it is used as column vector in Eqs. 12, 13 and 14. I would appreciate much if the authors could check whether this inconsistency really exists with respect to notation of $Z_{c}(x)$.\\
+
+Answer:\\
+
+\answerfin{Vectors are always column vectors, i.e $Z(x)$ and $Z_{c}(x)$ are column vectors.	When they are used for predictions they have to be transposed in order to get a scalar product written as a matrix multiplication, i.e. $\pmb{Z}_{c}^{\top}(x)\hat{\pmb{\beta}}_{c,s_2}$. We added the information that $Z_{c}(x)$ is a column vector in line 183 to make this more clear for the reader.}
+
+  
+%------------------------------------------------------------------------------------------------%
+\end{document}
+
+
+
+
+
+
+

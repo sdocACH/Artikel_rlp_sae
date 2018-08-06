@@ -1,0 +1,34 @@
+
+# These are the comments on the proofreading 
+  -> (going through the editor's suggestions from top to bottom of the article):
+
+
+- page 1: authors names have been checked
+
+- page 3: We would like to keep the italics formatting
+
+- page 4: please remove subtitle if possible. It is redundant with the main section title. If removal 
+          not possible, leave as is
+
+- page 5: please keep the formula as is
+
+- page 6: please keep the formula as is
+
+- page 7: please keep the formulas as they are
+
+- page 8: please keep the formulas as they are
+
+- page 9: please keep the formula as is
+
+- page 9: numbers are given correctly, editor's suggestion has been accepted
+
+- page 13: please keep italics formatting
+
+- page 23: we added that no external funding was used
+
+- page 23: please keep the persons' degrees (Prof. and Dr.) in the acknowledgments
+
+- page 23 and following: the missing citation infos have been added. Please be aware that
+                         the reference to the R-Package forestinventory was the officially
+                         recommended formatting according to R-software standards. Please leave as it
+                         was given before.

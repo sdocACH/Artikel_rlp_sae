@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+%============================================ Define Titlepage & packages =============================================%
+
+\title{Coverletter}
+
+\author{A double-sampling extension of the German National Forest Inventory for design-based small area estimation on forest district levels\\
+Andreas Hill, Daniel Mandallaz, Joachim Langshausen}
+
+\usepackage{fancyhdr}     
+\usepackage{amsmath} %Paket für erweiterte math. Formeln
+\usepackage[labelfont=bf]{caption}
+\usepackage[font=footnotesize]{caption}
+\usepackage[font=footnotesize]{subcaption}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[final]{pdfpages}
+\usepackage{color}
+
+\usepackage{natbib}
+\usepackage{apalike}
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=25mm,
+	right=25mm,
+	top=30mm,
+	bottom=30mm
+}
+
+\setlength{\parindent}{0em} % Einzug bei neuen Absätzen
+
+%------------------------------------------------------------------------------------------------%
+% -------------------------------------- Main Document------------------------------------------ %
+
+\begin{document}
+
+%------------------------------------------------------------------------------------------------%
+% -------------------------------------- Tex Settings ------------------------------------------ %
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+\setlength{\headsep}{15mm}
+
+%------------------------------------------------------------------------------------------------%
+
+Dear Editors,\\
+
+National forest inventories (NFIs) have a long tradition of providing reliable and accurate information of the state and development of forests on the national scale. However, the operational use of NFI data on spatially smaller forest management units such as forest enterprises or districts has been scarce due to the low sample frequencies and the implied insufficiently large estimation errors. The objective of our study was to develop a double-sampling estimation procedure for the German NFI that increases the value of the NFI data for forest authorities by extending their applicability to estimation on two forest district levels (i.e., \textit{Forst{\"a}mter} and \textit{Forstreviere}). As the integral part of this double-sampling estimation procedure, we tested two model-assisted design-based regression estimators that have been suggested by \citet{mandallaz2013a} and \citet{mandallaz2013b} under the infinite population approach. The potential of these estimators to be integrated in existing national forest inventories for \textit{global} estimation has recently been demonstrated by \cite{massey2014a} and \citet{massey2015b}. Our study continues to explore the suitability of these estimators for the special case of small area estimation. In this framework, it was of particular interest to evaluate the performance of the estimators with respect to their future large-scale operational use in NFIs, which is why we implemented and applied the procedure over the entire forest area of the German federal state Rhineland-Palatinate (appr. 8400 km$^2$). Up to our knowledge, there has not yet been a comparable large-scale application within either Germany or the neighboring countries. Our submitted article also constitutes the follow-up study of our recently published article in the \textit{European Journal of Forest Research} \citep{hill2017a}, which addressed the building of a regression model that is integrated in the small area estimators in order to predict the timber volume density on NFI plot level over the entire federal state area. This regression model includes the novelty of combining ALS-derived information with predictor variables derived from a satellite-based tree species classification map.\\
+
+We believe that sharing our results on an international level via publication in \textit{Remote Sensing} is a valuable contribution to the field for the following main reasons: Firstly, the suggested small area estimators show great potential to use NFI data for estimation of various forest attributes on small-scale management levels. They are able to substantially reduce the estimation errors that are achieved under one-phase sampling (in the presented study, they achieved 5\% and 11\% on average on the two forest district levels, respectively). At the same time, they provide the advantage of the design-based framework, i.e., their design-unbiasedness does not depend on any model assumptions, which makes them very attractive to be used operationally. Secondly, the estimators are also well suited since explicitly formulated for cluster sampling designs such as used in the German NFI, which has not yet been the case for frequently used model-dependent estimators. Thirdly, our study complements the already existing literature about the considered estimators by providing new empirical insights about their performance and characteristics, leading to valuable recommendations with respect to their future operational application. And fourthly, the transferability of our method to other inventories is also supported by their recent implementation in an open-source statistical software package \citep{forestinventory} that has been optimized for large-scale application.\\
+
+We would very much appreciate if the editors would consider our article for publication in their special issue.\\
+
+With best regards,\\
+
+The authors\\ \\
+
+\newpage
+\thispagestyle{empty}
+
+\bibliographystyle{apalike2}
+%\bibliographystyle{spbasic} 
+\bibliography{bib/literaturerRLPsae}
+
+
+%------------------------------------------------------------------------------------------------%
+\end{document}
+
+
+
+
+
+
+

@@ -1,0 +1,396 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[normalem]{ulem}
+
+%============================================ Define Titlepage & packages =============================================%
+
+\title{Review - revision}
+
+\author{A double-sampling extension of the German National Forest Inventory for design-based small area estimation on forest district levels\\
+Andreas Hill, Daniel Mandallaz, Joachim Langshausen}
+
+\usepackage{fancyhdr}     
+\usepackage{amsmath} %Paket für erweiterte math. Formeln
+\usepackage[labelfont=bf]{caption}
+\usepackage[font=footnotesize]{caption}
+\usepackage[font=footnotesize]{subcaption}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[final]{pdfpages}
+\usepackage{color}
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=25mm,
+	right=25mm,
+	top=30mm,
+	bottom=30mm
+}
+
+\setlength{\parindent}{0em} % Einzug bei neuen Absätzen
+
+%------------------------------------------------------------------------------------------------%
+% -------------------------------------- Main Document------------------------------------------ %
+
+\begin{document}
+
+%------------------------------------------------------------------------------------------------%
+% -------------------------------------- Tex Settings ------------------------------------------ %
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\pagestyle{fancy} %Kopfzeile und Fusszeile
+\fancyfoot[C]{\thepage}
+\setlength{\headsep}{15mm}
+
+\definecolor{mybrown}{rgb}{0.6, 0.15, 0.1}
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+\definecolor{mygreen}{rgb}{0.1, 0.4, 0.4}
+\newcommand{\answer}[1]{\small \color{mybrown}{#1} \color{black}}
+\newcommand{\note}[1]{\textit{\small \color{amaranth} \textbf{Note:} #1} \color{black}}
+\newcommand{\todo}[1]{\color{red}{#1} \color{black}}
+\newcommand{\answerfin}[1]{\small \color{mygreen}{#1} \color{black}}
+
+
+%------------------------------------------------------------------------------------------------%
+% ---------------------------------- Reviewer 1 ------------------------------------------------ %
+
+\section*{Reviewer 1:}
+
+I have only a single marginal question, and probably I am wrong: $Z_{c}(x)$ is introduced as a row vector in line 183 and Eqs. 9a and 9b, but it is used as column vector in Eqs. 12, 13 and 14. I would appreciate much if the authors could check whether this inconsistency really exists with respect to notation of $Z_{c}(x)$.\\
+
+Answer:\\
+
+\answerfin{Vectors are always column vectors, i.e $Z(x)$ and $Z_{c}(x)$ are column vectors.	When they are used for predictions they have to be transposed in order to get a scalar product written as a matrix multiplication, i.e. $\pmb{Z}_{c}^{\top}(x)\hat{\pmb{\beta}}_{c,s_2}$. We added the information that $Z_{c}(x)$ is a column vector in line 183 to make this more clear for the reader.}
+
+
+
+
+
+%------------------------------------------------------------------------------------------------%
+% ---------------------------------- Reviewer 2 ------------------------------------------------ %
+
+\section*{Reviewer 2:}
+
+General comment on publishing the article in Remote Sensing:
+
+We decided to hand in our article to be published in the \textit{Remote Sensing} special issue \textit{Remote sensing based Forest Inventories from Landscape to Global Scale}, since multiple of the mentioned topics for articles of the special issue are covered by our article (such as 'Application of remote-sensing techniques for monitoring forest attributes at the forest enterprise level', 'Application of remote-sensing techniques for monitoring forest attributes for national forest inventories', 'Large scale in-situ data requirement and sampling design for monitoring forest ecosystems with remote-sensing techniques').  Additionally, of course, not all readers of \textit{Remote Sensing} are specialists in forest inventory, but most of the latter frequently read \textit{Remote Sensing}.
+
+
+\begin{enumerate}
+
+  % 01) ++++++++++++++++++++++++++ %
+  \item \textit{L28: “entire forest state area of Germany” I understand what you mean, but it may be misleading as readers might think about the area owned by the German state forest enterprise (Bundesforst). I would suggest to rephrase “forested area of Germany”.}
+  
+  \answerfin{Has been changed accordingly.}
+  % --------------------------- %
+  
+  
+  % 02) ++++++++++++++++++++++++++ %
+  \item \textit{L29: 114'191 ha – A wrong unit was used here, its 114 191 km$^2$ (or 11 419 124 ha)..}
+  
+  \answerfin{Has been corrected accordingly.}  
+  % --------------------------- %
+  
+  
+   % 03) ++++++++++++++++++++++++++ %
+  \item \textit{L36: “standwise forest inventories (SFI)”?}
+  
+  \answerfin{Has been changed accordingly.}  
+  % --------------------------- %
+  
+  
+  % 04) ++++++++++++++++++++++++++ %
+  \item \textit{L38-41: Please add the information that the FDI of Lower-Saxony (Betriebsinventur, BI) is only done for forests owned by the state forest enterprise (Lower Saxony State Forests = Niedersächsische Landesforsten, NLF)}
+  
+  \answerfin{The information has been added.}  
+  % --------------------------- %
+  
+  
+  % 05) ++++++++++++++++++++++++++ %
+  \item \textit{L41 As far as I remember, [4] is an article written in German. If so, please indicate in the reference list – it is annoying for readers to search for papers that turn out to be written in a language they possibly do not understand.}
+  
+  \answerfin{We now give the original title in German.}  
+  % --------------------------- %
+  
+  % 06) ++++++++++++++++++++++++++ %
+  \item \textit{L42: As far as I remember, v.Lüpke’s dissertation [5] is a cumulative work. If so, please cite the original articles and not the compilation.}
+  
+  \answerfin{Has been changed accordingly.}  
+  % --------------------------- %
+  
+  
+  % 07) ++++++++++++++++++++++++++ %
+  \item \textit{L43: I would suggest to cite the classic textbooks of Cochran (1977) and de Vries (1986) beside the modern literature [6-9] }
+  
+  \answerfin{The respective citations have been added.}  
+  % --------------------------- %
+  
+  % 08) ++++++++++++++++++++++++++ %
+  \item \textit{L43-48: I would suggest to add some words (here or in the discussion) addressing the problems arising with multi-purpose forest inventories (e.g. Corona and Marchetti 2007): The stratification is optimized for a single target variable (in most cases the volume of the growing stock) and the introduction of additional target variables becomes challenging (e.g. Ritter and Saborowski, 2014).}
+  
+  \answerfin{We think that the reviewer might mix up \textit{stratification} (where the sample sizes are optimized for strata \textit{prior} to the actual conduction of the inventory based on auxiliary data) with \textit{post-stratification} (where the categorical auxiliary data are used in the regression model \textit{after} the inventory has been conducted). The latter, which is the case applied in our article, does not impose any of the mentioned problems of multi-objective optimization. We thus think that including this topic does not fit well into our article since it is not affecting the methods that we are demonstrating.} 
+  
+%  \note{I don't think this issue concerns the work presented in our study, since optimization was not part of the study. One could mention the anticipated variance treated in the book of Mandallaz (2008). Multi-objective optimization would implies a weighting of the objectives, which is a highly political issue and probably unsolvable in my opinion. Separate investigation are probably simpler and better. Worth emphasizing that the method presented is valid for any response variable which can be used to define a local density. I also think that the reviewer exchanges stratification (where the sample sizes are optimized prior to the actual conduction of the inventory based on auxiliary data) and post-stratification (where the categorical auxiliary data are used in the regression model after the inventory has been conducted). The latter, which is the case applied in our article, does not impose any of the mentioned problems of multi-objective optimization. We thus think that including this topic does not fit well into our article since it is not affecting the methods we suggest.}
+  % --------------------------- %
+  
+  % 09) ++++++++++++++++++++++++++ %
+  \item \textit{L46-47: Double-sample procedures have not only been used in the FDI of Lower Saxony, but also in the NFIs of Canada (Gillis et al., 2010) and Switzerland (Lanz et al. 2010), and in different other inventories (e.g. Chojnacky, 1998 or  Gasparini et al., 2010).}
+  
+  \answerfin{We rephrased the sentence and added the suggested references.}  
+  % --------------------------- %
+  
+  % 10) ++++++++++++++++++++++++++ %
+  \item \textit{L99 “The German NFI (Bundeswaldinventur, BWI)“  I think, the abbreviation introduced in the next line becomes more meaningful when giving the German name here.}
+  
+  \answerfin{Has been changed.}  
+  % --------------------------- %
+  
+  % 11) ++++++++++++++++++++++++++ %
+  \item \textit{L100 “The third and most recent” }
+  
+  \answerfin{Has been changed.}  
+  % --------------------------- %
+  
+  % 12) ++++++++++++++++++++++++++ %
+  \item \textit{L101 '4x4km' I would prefer '4km ' 4km'}
+  
+  \answerfin{We would like to stick to the given notation in accordance with our previously published article (Hill et. al 2018: Combining canopy height and tree species map information for large-scale timber volume estimations under strong heterogeneity of auxiliary data and variable sample plot sizes, \textit{European Journal of Forest Research}).}  
+  % --------------------------- %
+  
+  % 13) ++++++++++++++++++++++++++ %
+  \item \textit{L102 '2x2km' same as above (2km ' 2km)}
+  
+  \answerfin{Same as above.}  
+  % --------------------------- %
+  
+  % 14) ++++++++++++++++++++++++++ %
+  \item \textit{L107: A short explanation of the angle count sampling concept would be helpful for readers who aren't foresters, maybe here or in a corresponding appendix.}
+  
+  \answerfin{We added an explanation of angle count sampling in Section 2.}  
+  % --------------------------- %
+  
+  % 15) ++++++++++++++++++++++++++ %
+  \item \textit{L110/111 “DBH” and “DBH” Please decide whether or not to use italics. Please also add the information that this refers to a height of 1.3 m, Remote Sensing has a lot of readers who are not foresters.}
+  
+  \answerfin{We added the information about the height. Concerning italics, we decided to use italics when first introducing a notation/term and use normal formatting when using the term afterwards.}  
+  % --------------------------- %
+  
+  % 17) ++++++++++++++++++++++++++ %
+  \item \textit{L196 Please also provide reference to the R software itself, and not only to the package. }
+  
+  \answerfin{The reference has been added.}  
+  % --------------------------- %
+  
+  % 18) ++++++++++++++++++++++++++ %
+  \item \textit{L273: I think this is the only occasion you use italics for "RLP".}
+  
+  \answerfin{We use italics when introducing a term for the first time and use normal formatting when using the term afterwards.}  
+  % --------------------------- %
+  
+  % 19) ++++++++++++++++++++++++++ %
+  \item \textit{L283: “communal forests” is most often used as a synonym for “community forests” in context of rural development policy. I think here it is rather an odd translation of the German word “Kommunalwald”. Maybe, “municipal forests” is the better translation.}
+  
+  \answerfin{We changed 'communal' to 'municipal' throughout the entire article.}  
+  % --------------------------- %
+  
+  % 20) ++++++++++++++++++++++++++ %
+  \item \textit{L295 "RLP" was already introduced as an abbreviation}
+  
+  \answerfin{'RLP' has been deleted.}  
+  % --------------------------- %
+  
+  % 21) ++++++++++++++++++++++++++ %
+  \item \textit{L287: Instead of “45 Forstämter (FA)” I would use “45 forest districts (Forstämter, FA)” }
+  
+  \answerfin{Has been changed, and likewise for the Forstreviere which we now call sub-districts.}  
+  % --------------------------- %
+  
+  % 22) ++++++++++++++++++++++++++ %
+  \item \textit{L289-290: If the SFI is conducted in a five year cycle, shouldn’t the management strategy be also set up for five years, instead of ten years?}
+  
+  \answerfin{The cycle of the stand wise inventories actually varies between 5 and 10 years and can in some cases even exceed 10 years. The stand wise inventories and the date of their conduction are planned by the state forest service. The management strategy for the stands is, however, always made for the upcoming 10 years ('mittelfristige Planung').}  
+  % --------------------------- %
+  
+  % 23) ++++++++++++++++++++++++++ %
+  \item \textit{L295 "2x2km" (see above)}
+  
+  \answerfin{We would like to keep the '2x2km' notation.}  
+  % --------------------------- %
+  
+  % 24) ++++++++++++++++++++++++++ %
+  \item \textit{Figure 1: "communal forests" (see above)}
+  
+  \answerfin{Has been corrected.}  
+  % --------------------------- %
+  
+  % 25) ++++++++++++++++++++++++++ %
+  \item \textit{Table 1: Please remove the digits (or at least reduce the number of digits). Giving values with an “accuracy” of 1/100th of a mm (i.e. 10 mm) for DBH, as an example, really does not make much sense. }
+  
+  \answerfin{We limited the number of digits for timber volume, DBH and height to one digit and removed the digits for stem number.}  
+  % --------------------------- %
+  
+  % 26) ++++++++++++++++++++++++++ %
+  \item \textit{Table 3: I think one digit for the percentage values should be enough.}
+  
+  \answerfin{Has been changed accordingly.}  
+  % --------------------------- %
+  
+  % 27) ++++++++++++++++++++++++++ %
+  \item \textit{Table 6: Please indicate for what variable point estimates are. I suppose it is volume of growing stock per area unit [m$^3$ha-1]? And again, check the number of digits.}
+  
+  \answerfin{Yes! We added the missing information accordingly.}  
+  % --------------------------- %
+  
+ % 28) ++++++++++++++++++++++++++ %
+  \item \textit{L454-458 I understand your intention and the necessity of removing FR-units. However, when comparing the performance of the estimators you should use the same population for all estimators. Removing the "difficult" FR-units (i.e. those with a low sampling density) only for PSMALL and EXTPSYNTH is somewhat unfair against the other estimators, and may bias the results. So, my advice is to recalculate SRS and PSYNTH for the same 321 FRs that were used for PSMALL and EXTPSYNTH. Edit: I noticed you confined your analyses to those 321 FRs later on (Fig 5 and Tab. 7), another reason to also do it here.}
+  
+  \answerfin{We changed the evaluation according to your suggestion and added a sentence in the paragraph above the table. The descriptive summary statistics for the one-phase SRS and the PSYNTH estimator did only differ marginally, with exception of the maximal errors which logically turned out to be lower. We also adjusted the numbers given in Section 6.2 and the graphic of Figure 3 respectively.}
+  
+  % --------------------------- %
+  
+ % 29) ++++++++++++++++++++++++++ %
+  \item \textit{L517: Please use the same scaling for both x- and y-axis on the left plot. It is irritating that the 1:1 line does not cross the grid-corners.}
+  
+  \answerfin{Has been changed accordingly.}  
+  % --------------------------- %
+  
+   % 30) ++++++++++++++++++++++++++ %
+  \item \textit{L655-656: "Northwest German Forest Research Institution" It should be "Institute" instead of "Institution"}
+  
+  \answerfin{Has been corrected.}  
+  % --------------------------- %
+  
+
+\end{enumerate} 
+  
+  
+%------------------------------------------------------------------------------------------------%
+% ---------------------------------- Reviewer 3 ------------------------------------------------ %
+  
+\section*{Reviewer 3:}
+  
+\begin{enumerate}
+  	
+    % 01) ++++++++++++++++++++++++++ %
+  	\item \textit{Under the design-based inferential framework, invoking the asymptotical properties of a small-area estimator is a contradiction in terms; the asymptotic properties are based on large-sample assumptions, while SAE estimators are used when the sample size is (too) small. If the sample size for the entire population is very large, then the small-area estimation becomes a common domain estimation problem, and there is no need for tailored SA estimators because the direct estimators are probably the most efficient -  see Estevao and Särndal (2004) 'Borrowing strength is not the best technique within a wide class of design-consistent domain estimators.  Journal of Official Statistics, 20, 645-669' for details. This is an important aspect that it’s been often ignored in the model-assisted SA studies. The authors put a great deal of effort in assessing the results by the realized sample sizes in various SAs, however, such comparisons have limited relevance if the asymptotic results cannot be invoked. This is not criticism, personally I do not have a solution, and there is probably no analytical solution to derive the small-sample properties of these estimators. However, I think that rising this issue would add value to the manuscript, by informing the readers of potential drawbacks of the estimation methods.}
+  	
+%  	\note{ the populations are domains (i.e. a continuum of infinitely many points) of the plane F, also known as the Monte Carlo approach: the objective is to estimate the integral $\int_{G} Y(x)dx$, $G \in F$ a function $Y(x)$ which is essentially the Horwitz-Thompson estimator for a response variable for the population of trees. This is the main difference with standard survey sampling. Another important difference is that instead of having a single large sample we have $n_2$ points $x$	each one with a sample of trees (terrestrial sample). The sample size $n_2$ can be large over the entire domain, but small over sub-domains, and too small to fit models using auxiliary data available at a much larger number of points $n_1$. You do not have to borrow strength if you are strong, which is obvious. We do not propose to fit models over extremely large areas with very different forest structures (say all Europe) but to rely on predictions based on remote sensing data to provide better estimates for smaller management units. Asymptotic results for the variances are, given the complexity of the problem, the only available ones. When are asymptotic results approximately valid? Take for instance n=6 (not a very large number), then the distribution of the mean of n=6 uniformly distributed random variables is practically undistinguishable from the normal distribution, so that in this case n=6 is the asymptotic validity range. On the other hand with extreme values statistics, n=100 can be far to small to reach a normal distribution. Some simulations performed on the artificial examples (see our articles published in the Canadian Journal of Forest Research - Source) and on a unique data set (Zurichberg data, see book of Mandallaz for examples) show that for SA problems, $n$ > 12 or even 6 is acceptable. All the variance estimates are based on the asumption of i.i.d uniformly distributed points (or clusters origins) for remote sensing for remote sensing followed by SRS selection for terrestrial observations, whereas in practice systematic grids are used. Simulation and past experience with alternative model-dependent Kriging procedure (Source) show that the variance estimates are usually to pessimistic. On the other hand, only sampling errors are taken into account and not measurement errors (e.g. on bole volume).}
+  	
+  	\answerfin{Asymptotic results for the variances are, given the complexity of the problem, the only available ones. When are asymptotic results approximately valid? If one takes for instance n=6 (not a very large number), then the distribution of the mean of n=6 uniformly distributed random variables is practically undistinguishable from the normal distribution, so that in this case n=6 is the asymptotic validity range. On the other hand with extreme values statistics, n=100 can be far to small to reach e.g. the Gumbel distribution. Transferring this to the case of forest inventory, it is actually impossible to define a minimal sample size that always ensures the validity of the central limit theorem for the particular case. However, simulations performed for an artificial example in Mandallaz et al. (2013). New regression estimators in forest inventories with two-phase sampling and partially exhaustive information: a design-based monte carlo approach with applications to small-area estimation. \textit{Canadian Journal of Forest Research}, 43(11), 1023-1031, suggested that for SA problems, a sample size in a small area of $n$ > 6 is acceptable to reach the nominal coverage rates of the confidence intervals. Whereas these simulations where performed for simple sampling, re-evaluating the simulation example recently confirmed the same results for cluster sampling. We added a respective remark in the discussion, Section 7.1, line 638-645.}
+
+    % 02) ++++++++++++++++++++++++++ %
+    \item \textit{The authors argue that some PSYNTH and the EXTPSYNTH estimators may not always be design-unbiased for the SAs that do not contain field sampling units. I assume that the authors are well aware that the sample sizes within the SAs are random variables. Under SAE there is always a risk that a some SAs will not be represented in a particular sample, but every SA will contain field observations under unconditional estimation over all possible samples, otherwise a coverage bias will occur. Thus, for statements such as 'The PSYNTH estimator thus has a potential unobservable design-based bias' (lines 228-229), the authors should clarify if they are considering the properties of the estimators conditioning on the realized sample, or unconditionally. One could also argue that, if the asymptotic arguments are	invoked (although they should probably not be), then the PSYNTH estimator is still design-consistent for SAs, even in the absence of field observations. See Firth and Bennett (1998) 'Robust models in probability sampling. Journal of the Royal Statistical Society, 60, 3-21'.}
+    
+    \answerfin{It is, of course, conditioned on the realized sample. We added this information in the respective line 248/249.}
+  
+    % 03) ++++++++++++++++++++++++++ %
+    \item \textit{Regarding the case study, I understand the motivation for using SAE at FR level, where the average number of field sampling units (clusters) is about 5 (0 to 13) per SA. However, using SAE at FA level - where the average sample size contains about 46 clusters (11 to 64)- has to be better justified because, least for some FAs, a direct estimator would have been more efficient (Estevao and Saerndal 2004). However, it is perfectly understandable that constructing domain specific (FA-level) models is a time consuming endeavor and simplifying the regression modeling is a pragmatic solution for statistical production, but a discussion on this topic should be provided to inform the readers of the possible choices.}
+    
+    \answerfin{Thank you for this valuable hint! We added a discussion of this question in the discussion, Section 7.1., line 590-600. We point out that the main reason we did not consider direct estimation on the FA-level was the large number of parameters (39 coefficients for the full model, see also Hill et al. 2018*) to be fitted for each FA-unit model due to the pronounced heterogeneity of the auxiliary data (multiple tree species and ALS acquisition years per FA-unit). In this case, the strategy to 'borrow strength' from the entire inventory domain was preferred to direct estimation in order to avoid overfitting and the implied risk of unstable global estimation.\\
+    
+    * Hill, A., Buddenbaum, H., \& Mandallaz, D. (2018). Combining canopy height and tree species map information for large-scale timber volume estimations under strong heterogeneity of auxiliary data and variable sample plot sizes. \textit{European Journal of Forest Research}, 1-17.}
+
+%    \note{the situation is even more complicated because we treat a systematic sample (grid) as a random sample of uniformly distributed points (or cluster origins). Consequently all sample sizes (i.e. number of plots or cluster in the forest or sub-domains of it) clusters are random. Treating such a systematic sample as a random will as afore mentioned lead to an over-estimations of the the sampling variance. The resulting variances are conditional on the observed sample sizes. In model-assisted design-based inference models do not have to be true (as in model-dependent survey inference), they only have to be useful. In the external approach (asymptotically valid also for internal models) you must correct the estimator with the residuals. (PSMALL does that and EXTPSYNTH also but in a indirect way). It can happen, by chance, that	the PSYNTH is indeed closer to the truth (example in the book). 
+%    	
+%    The crucial	point is to use remote sensing data and direct estimation (still using auxiliary information) can be unstable because of the large number of parameters in the prediction model. The synthetic estimator can be severely biased (take the model with only the intercept term, it is unbiased globally but not locally, unless the forest looks much the same everywhere, this has been confirmed by simulations with more complex model). In the model-dependent approach it can happen (we have such a case study ) that the synthetic estimator is closer to the known true value than all other estimates (included the sample mean of the observations in the small area). It is not clear what direct estimation mean: a model relying on auxiliary information built especially for the SA under consideration (which can be expected to be better than a global model, provided we have enough observations for model-building) or estimates based only on the sampled response variable in the SA. If you have unlimited resources it is clearly better. National forest inventory are time consuming and expensive and local management want this data to be useful for their own use, so that ideally that do not have to perform local inventories.}
+    % --------------------------- %  
+    
+    
+    % 04) ++++++++++++++++++++++++++ %
+    \item \textit{Regarding the terminology used (especially) in Section 4, expressions like “design-based small area regression estimator” are not very accurate, since the same estimator (i.e., the same mathematical expression) can be used (appropriately or not) in different contexts. For instance, one could use the PSYNTH estimator (based on an internal model) as an external estimator for another population in a	model-dependent framework. Instead, I would rather use the formulation “design-based small area regression estimation”, to avoid confusions.}
+    
+    \answerfin{When using the terms '... estimators' as titles in Section 4, they refer explicitly to the estimators which we decided to apply in our article. In accordance to the various articles published on the used estimators by Mandallaz (see selected references below), we would prefer to maintain the terminology as given in our article. Additionally, up to our knowledge the terms 'design-based estimator', 'model-based estimators' are also frequently used in the literature, e.g.:
+    	   	
+    	\begin{itemize}
+    		
+    		\item Mandallaz, D. (2013). A three-phase sampling extension of the generalized regression estimator with partially exhaustive information. \textit{Canadian Journal of Forest Research}, 44(4), 383-388.
+    		
+    		\item Mandallaz, D., Breschan, J., \& Hill, A. (2013). New regression estimators in forest inventories with two-phase sampling and partially exhaustive information: a design-based monte carlo approach with applications to small-area estimation. \textit{Canadian Journal of Forest Research}, 43(11), 1023-1031.
+    		
+    		\item Massey, A., \& Mandallaz, D. (2015). Comparison of classical, kernel-based, and nearest neighbors regression estimators using the design-based Monte Carlo approach for two-phase forest inventories. \textit{Canadian Journal of Forest Research}, 45(11), 1480-1488.
+    		
+    		\item Breidenbach, J., McRoberts, R. E., \& Astrup, R. (2016). Empirical coverage of model-based variance estimators for remote sensing assisted estimation of stand-level timber volume. \textit{Remote Sensing of Environment}, 173, 274-281
+    		
+    		\item Ghosh, M., \& Kumar Sinha, B. (1990). On the consistency between model-and design-based estimators in survey sampling. \textit{Communications in Statistics-Theory and Methods}, 19(2), 689-702
+    		
+    		\item Magnussen, S. (2015). Arguments for a model-dependent inference?. \textit{Forestry: An International Journal of Forest Research}, 88(3), 317-325
+  
+    		
+    	\end{itemize}
+    
+    and many more.}
+    	
+
+    % --------------------------- %  
+  
+    % 05) ++++++++++++++++++++++++++ %
+   \item \textit{Please elaborate on the importance of the zero-mean residual property (lines 191-192). This is an important issue that can be tracked down to the definition of the internally bias-calibrated models in Firth and Bennett (1998) “Robust models in probability sampling. Journal of the Royal Statistical Society, 60, 3-21”. }
+  
+   \answerfin{We rephrased this part. We added some sentences to emphasize the difference between the OLS residuals being zero on average (this is of course the case for any OLS fitted model) and the consequence for the theoretical residuals in the inventory domain $F$ if they model is fitted internally (then, we have the \textit{zero mean residual property} according to the works of Mandallaz). We also mention the importance of this property for deriving the g-weight variance in the framework of small area estimation, a technique that was introduced by Mandallaz in 2012/2013. In case a reader is interested in more mathematical details, we give the respective references. We would like to emphasize that the objective of our article was to illustrate the application of the already extensively mathematically described estimators by Mandallaz to large inventory areas and investigate their suitability for future operational use in NFIs. Consequently, the article explicitly targets at an audience of practitioners. For this reason, we strongly believe that discussing more mathematical details which have already been given in various peer-reviewed articles in the Canadian Journal of forest research and technical reports (references given in the article) is beyond the scope of the article's objective.}
+
+   % --------------------------- %  
+  
+   % 06) ++++++++++++++++++++++++++ %
+   \item \textit{Line 231-232: See the general comments with regard to design-unbiasedness.}
+  
+   \answerfin{We added that it is conditional on the realized sample.}
+  % --------------------------- %  
+  
+  % 07) ++++++++++++++++++++++++++ %
+  \item \textit{Line 233: The PSYNTH estimator is not design-based, the estimation is design based.}
+  
+  \answerfin{Has been changed respectively.}
+  
+%  \answerfin{The PSYNTH estimator as well as its estimations are design-based. To our knowledge, the terms 'design-based estimator', 'model-based estimators' are perfectly valid and frequently used in the literature (see, e.g., Breidenbach, J., McRoberts, R. E., \& Astrup, R. (2016). Empirical coverage of model-based variance estimators for remote sensing assisted estimation of stand-level timber volume. \textit{Remote Sensing of Environment}, 173, 274-281.; Ghosh, M., \& Kumar Sinha, B. (1990). On the consistency between model-and design-based estimators in survey sampling. \textit{Communications in Statistics-Theory and Methods}, 19(2), 689-702., Magnussen, S. (2015). Arguments for a model-dependent inference?. \textit{Forestry: An International Journal of Forest Research}, 88(3), 317-325, and many more. We thus think that it is justified to leave the terminology as is.)}
+
+  
+  % --------------------------- %  
+  
+  % 08) ++++++++++++++++++++++++++ %
+  \item \textit{Line 418-419: Is it real stratification of post-stratification by the ALS acquisition year?}
+  
+  \answerfin{We referred to using a categorical variable in a regression model in a classical model-dependent framework as 'stratification'. Using this model in a regression estimator is indeed referred to as 'post-stratification'. The entire paragraph which the reviewer refers to, however, exclusively deals with the model building part. In order to avoid misunderstandings, we rephrased the sentences and avoided the term 'stratification'.}
+  
+  % --------------------------- % 
+  
+  % 09) ++++++++++++++++++++++++++ %
+  \item \textit{Lines 435-442: Removing observation during the regression model process is perfectly valid, as long as the regression residuals are estimated on the full sample. Of course, the zero-mean residual property doesn’t hold anymore, which in turn restricts the use of some estimators. Please reformulate.}
+  
+  \answerfin{You are absolutely right. We rephrased the paragraph respectively.}
+
+
+  % --------------------------- % 
+  
+  % 10) ++++++++++++++++++++++++++ %
+  \item \textit{Line 593-594: If the asymptotic argument is raised, then there is no need for small-area estimators, I would say, because the sample would sufficiently large to support a direct estimators.}
+  
+  \answerfin{We think the reviewer misunderstood the sentence. We here refer to the asymptotic equivalency of the two design-unbiased small area estimators PSMALL and EXTPSYNTH (firstly mentioned in Mandallaz, D.; Hill, A.; Massey, A. (2016) Design-based properties of some small-area estimators in forest inventory with two-phase sampling - revised version. \textit{Technical report}, Department of Environmental Systems Science, ETH Zurich, and empirically observed in our study).}
+
+  % --------------------------- % 
+  
+
+%  the extended model (extended by the indicator variable of the small area under consideration) is a mathematical trick to ensure zero mean residual over the small area, which enables to derive better variance estimates based on the g-weights estimates adapted from Sarndal’s work. The technical details and proofs are available in the references. In (Mandallaz D., Massey A., 2015, e-collection-. Regression and non-parametric estimators for two-phase forest inventories in the design-based Monte-Carlo approach, Appendix C) we also consider a model-calibration approach (according to Wu,C. and Sitter R., JASA (2001, pp.185-193) and translated the results into the Monte Carlo approach and found out that it is asymptotically equivalent to the two-phase regression estimator.
+  
+  
+\end{enumerate} 
+  
+%------------------------------------------------------------------------------------------------%
+\end{document}
+
+
+
+
+
+
+
